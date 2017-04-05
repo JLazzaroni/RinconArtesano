@@ -10,7 +10,7 @@ namespace RinconArtesano.Controllers
     {
         public ActionResult Index()
         {
-            //asdasdasd
+            //alfajor
             return View();
         }
 
