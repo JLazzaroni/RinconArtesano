@@ -11,15 +11,48 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using RinconArtesano.Models;
+using System.Net.Mail;
+using System.Net;
+using System.Diagnostics;
+using System.Configuration;
 
 namespace RinconArtesano
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        //public Task SendAsync(IdentityMessage message)
+        //{
+        //    // Conecte su servicio de correo electrónico aquí para enviar correo electrónico.
+        //    return Task.FromResult(0);
+        //}
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Conecte su servicio de correo electrónico aquí para enviar correo electrónico.
-            return Task.FromResult(0);
+            await configSendGridasync(message);
+        }
+
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            var cuerpo = message.Body;
+            var myMessage = new MailMessage();
+            myMessage.To.Add(message.Destination);
+            myMessage.From = new MailAddress("rinconartesano01@gmail.com");
+            myMessage.Subject = message.Subject;
+            myMessage.Body = message.Body;
+            myMessage.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = "rinconartesano01@gmail.com",
+                    Password = "Ingenieria2017"
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(myMessage);
+            }
         }
     }
 
