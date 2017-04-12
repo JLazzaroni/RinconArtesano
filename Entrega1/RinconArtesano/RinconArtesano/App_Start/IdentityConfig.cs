@@ -140,7 +140,7 @@ namespace RinconArtesano
         }
     }
 
-    //JLazzaroni - administrador de roles
+    //Administrador de roles
 
     public class ApplicationRoleManager : RoleManager<IdentityRole>
     {

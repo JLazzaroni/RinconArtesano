@@ -22,3 +22,36 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
+/*///////////////*/
+
+.promocionaProductos__header {
+    background-color: rgba(255, 0, 0, 0.38);
+}
+
+.promocionaProductos hr:nth-child(4) {
+    max-width: 100px;
+    margin: 21px auto;
+    border-color: transparent;
+}
+
+.promocionaProductos span {
+    cursor: pointer;
+}
+
+.promocionaProductos__header:hover {
+    background-color:#F44336
+}
+
+
+.form__titulo {
+    background-color: #1fa67a;
+    border-top: 1px solid #34a782;
+    border-bottom: 1px solid #1b926c;
+    margin-bottom: 0;
+    padding: 50px;
+    text-shadow: 4px 3px 0 #1d9d74, 9px 8px 0 rgba(0,0,0,0.15);
+    color: white;
+}

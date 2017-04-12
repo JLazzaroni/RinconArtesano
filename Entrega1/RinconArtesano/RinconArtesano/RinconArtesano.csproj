@@ -173,7 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AspNetUserController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -222,6 +222,7 @@
     <Compile Include="Models\UserLogins.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserRolesViewModel.cs" />
     <Compile Include="Models\Users.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
@@ -233,8 +234,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\clean-blog.css" />
     <Content Include="Content\clean-blog.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -260,6 +264,11 @@
       <DependentUpon>RinconArtesanoModel.edmx</DependentUpon>
       <LastGenOutput>RinconArtesanoModel.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -358,11 +367,12 @@
     <Content Include="vendor\font-awesome\scss\_screen-reader.scss" />
     <Content Include="vendor\font-awesome\scss\_stacked.scss" />
     <Content Include="vendor\font-awesome\scss\_variables.scss" />
-    <Content Include="Views\AspNetUser\Create.cshtml" />
-    <Content Include="Views\AspNetUser\Delete.cshtml" />
-    <Content Include="Views\AspNetUser\Details.cshtml" />
-    <Content Include="Views\AspNetUser\Edit.cshtml" />
-    <Content Include="Views\AspNetUser\Index.cshtml" />
+    <Content Include="Views\Admin\AddRole.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\EditRoles.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ViewAllRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

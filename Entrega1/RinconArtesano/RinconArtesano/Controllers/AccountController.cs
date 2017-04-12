@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RinconArtesano.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
 
 namespace RinconArtesano.Controllers
 {
@@ -57,6 +59,9 @@ namespace RinconArtesano.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            //En caso de ser necesario, crea la cuenta Admin usando la configuración en Web.Config
+            CreateAdminIfNeeded();
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -481,5 +486,45 @@ namespace RinconArtesano.Controllers
             }
         }
         #endregion
+
+
+        /////////////////////////////
+
+        private ApplicationRoleManager _roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
+
+        private void CreateAdminIfNeeded()
+        {
+            // Obtiene usuario y contraseña del Web.config
+            string AdminUserName = ConfigurationManager.AppSettings["AdminUsuario"];
+            string AdminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+            // Se fija si el usuario Admin existe
+            var objAdminUser = UserManager.FindByEmail(AdminUserName);
+            if (objAdminUser == null)
+            {
+                //Se fija si el Rol Administrador existe
+                if (!RoleManager.RoleExists("Administrador"))
+                {
+                    // Crea el Rol Administrador
+                    IdentityRole objAdminRole = new IdentityRole("Administrador");
+                    RoleManager.Create(objAdminRole);
+                }
+                // Crea el usuario Admin
+                var newUser = new ApplicationUser { UserName = AdminUserName, Email = AdminUserName, EmailConfirmed = true };
+                var AdminUserCreateResult = UserManager.Create(newUser, AdminPassword);
+                // Le asigna el Rol Administrador al usuario Admin
+                UserManager.AddToRole(newUser.Id, "Administrador");
+            }
+        }
     }
 }
