@@ -1,0 +1,87 @@
+﻿@model RinconArtesano.Models.Products
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Products</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @if (Model.File.Any(f => f.FileType == 1/*FileType.Avatar*/))
+            {
+                <dt>
+                    Avatar
+                </dt>
+                <dd>
+                    <img src="~/File?id=@Model.File.First(f => f.FileType == 1/*FileType.Avatar*/).FileId" alt="avatar" />
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.UsersId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UsersId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductTitle)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ProductTitle)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ProductDescription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IdCategory)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IdCategory)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DateNull)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DateNull)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DeteAdd)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DeteAdd)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DateModification)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

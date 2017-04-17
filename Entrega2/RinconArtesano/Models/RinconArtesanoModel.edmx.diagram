@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3b075a0e43fd47c4a2720213bb2431b3" Name="Diagram1">
+        <EntityTypeShape EntityType="RinconArtesanoModel.Roles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.UserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.UserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Users" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_dbo_UserClaims_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_dbo_UserLogins_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.UserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetRoles" Width="1.5" PointX="3.375" PointY="8.5" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserClaims" Width="1.5" PointX="7.875" PointY="7" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserLogins" Width="1.5" PointX="7.875" PointY="9.75" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUsers" Width="1.5" PointX="5.625" PointY="7.375" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RinconArtesanoModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.File" Width="1.5" PointX="9.625" PointY="1.125" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Products" Width="1.5" PointX="7.375" PointY="1" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Files_Products" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.FilePath" Width="1.5" PointX="9.625" PointY="12.5" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_FilePath_Products" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

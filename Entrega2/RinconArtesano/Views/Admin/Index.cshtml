@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<RinconArtesano.Models.ExpandedUserViewModel>
+
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<br />
+<p>
+    @Html.ActionLink("Crear nuevo", "Create", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Editar Roles", "ViewAllRoles", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Volver al Home", "../", "Home", null, new { @class = "btn btn-default" })
+</p>
+<br />
+@using (Html.BeginForm("Index", "Admin", FormMethod.Get))
+{
+
+    <div class="form-group">
+        Buscar usuario:&nbsp; @Html.TextBox("searchStringUserNameOrEmail", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+
+        <input type="submit" value="Buscar" />
+    </div>
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Email
+        </th>
+        <th>
+            Locked Out
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditUser", new { UserName = item.UserName }, new { @class = "btn btn-info" }) |
+                @if ((item.UserName.ToLower() != this.User.Identity.Name.ToLower()))
+                {
+                    @Html.ActionLink("Eliminar", "DeleteUser", new { UserName = item.UserName },
+                    new { 
+                        onclick = "return confirm('¿Esta seguro que desea eliminar este usuario?');",
+                        @class = "btn btn-danger"
+                    })
+                }
+            </td>
+        </tr>
+    }
+
+
+</table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model,
+    page => Url.Action("Index",
+    new
+    {
+        page,
+        searchStringUserNameOrEmail = ViewBag.searchStringUserNameOrEmail,
+        currentFilter = ViewBag.CurrentFilter
+    }))
+<hr />

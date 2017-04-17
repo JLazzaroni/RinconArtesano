@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RinconArtesano", "RinconArtesano\RinconArtesano.csproj", "{5857FFF9-21FA-4758-A838-A58F211A1BC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RinconArtesano.Tests", "RinconArtesano.Tests\RinconArtesano.Tests.csproj", "{FA15A6C5-74AA-4E20-9E3B-D97813CBDC69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5857FFF9-21FA-4758-A838-A58F211A1BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5857FFF9-21FA-4758-A838-A58F211A1BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5857FFF9-21FA-4758-A838-A58F211A1BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5857FFF9-21FA-4758-A838-A58F211A1BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA15A6C5-74AA-4E20-9E3B-D97813CBDC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA15A6C5-74AA-4E20-9E3B-D97813CBDC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA15A6C5-74AA-4E20-9E3B-D97813CBDC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA15A6C5-74AA-4E20-9E3B-D97813CBDC69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
