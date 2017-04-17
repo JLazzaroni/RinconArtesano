@@ -25,7 +25,6 @@ namespace RinconArtesano.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<UserClaims> UserClaims { get; set; }
         public virtual DbSet<UserLogins> UserLogins { get; set; }
@@ -34,5 +33,8 @@ namespace RinconArtesano.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<File> File { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<FilePath> FilePath { get; set; }
     }
 }

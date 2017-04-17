@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RinconArtesano.Models;
+using System.Web.Security;
 
 namespace RinconArtesano.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
@@ -18,6 +20,15 @@ namespace RinconArtesano.Controllers
         public ActionResult Index()
         {
             return View(db.Products.ToList());
+            ////Guid guid = (Guid)Membership.GetUser(User.Identity.Name).ProviderUserKey;
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    return View(db.Products.ToList());
+            //}
+            //else
+            //{
+            //    return View("ErrorLogin");
+            //}
         }
 
         // GET: Products/Details/5
@@ -27,7 +38,7 @@ namespace RinconArtesano.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Products products = db.Products.Find(id);
+            Products products = db.Products.Include(s => s.File).SingleOrDefault(s => s.ProductId == id);
             if (products == null)
             {
                 return HttpNotFound();
@@ -46,10 +57,24 @@ namespace RinconArtesano.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProduct,IdUser,Title,Description,IdCategory")] Products products)
+        public ActionResult Create([Bind(Include = "ProductId,UsersId,ProductTitle,ProductDescription,IdCategory,DateNull,DeteAdd,DateModification")] Products products, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var avatar = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = 1,//FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    products.File = new List<File> { avatar };
+                }
                 db.Products.Add(products);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -65,7 +90,7 @@ namespace RinconArtesano.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Products products = db.Products.Find(id);
+            Products products = db.Products.Include(s => s.File).SingleOrDefault(s => s.ProductId == id);
             if (products == null)
             {
                 return HttpNotFound();
@@ -78,7 +103,7 @@ namespace RinconArtesano.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProduct,IdUser,Title,Description,IdCategory")] Products products)
+        public ActionResult Edit([Bind(Include = "ProductId,UsersId,ProductTitle,ProductDescription,IdCategory,DateNull,DeteAdd,DateModification")] Products products)
         {
             if (ModelState.IsValid)
             {

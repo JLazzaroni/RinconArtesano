@@ -32,6 +32,13 @@ namespace RinconArtesano
                       "~/Content/font-awesome.min.css"
                       ));
 
+            bundles.Add(new ScriptBundle("~/vendor/js").Include(
+               "~/vendor/jquery/jquery.min.js",
+               "~/vendor/bootstrap/js/bootstrap.min.js"));
+
+            bundles.Add(new StyleBundle("~/vendor/css").Include(
+          "~/vendor/bootstrap/css/bootstrap.min.css",
+          "~/vendor/font-awesome/css/font-awesome.min.css"));
         }
     }
 }

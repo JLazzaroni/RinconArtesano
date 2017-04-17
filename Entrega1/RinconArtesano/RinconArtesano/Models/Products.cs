@@ -14,10 +14,25 @@ namespace RinconArtesano.Models
     
     public partial class Products
     {
-        public int IdProduct { get; set; }
-        public string IdUser { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Products()
+        {
+            this.File = new HashSet<File>();
+            this.FilePath = new HashSet<FilePath>();
+        }
+    
+        public int ProductId { get; set; }
+        public int UsersId { get; set; }
+        public string ProductTitle { get; set; }
+        public string ProductDescription { get; set; }
         public Nullable<int> IdCategory { get; set; }
+        public Nullable<System.DateTime> DateNull { get; set; }
+        public System.DateTime DeteAdd { get; set; }
+        public Nullable<System.DateTime> DateModification { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<File> File { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FilePath> FilePath { get; set; }
     }
 }

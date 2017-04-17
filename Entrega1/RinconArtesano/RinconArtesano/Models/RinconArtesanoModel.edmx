@@ -56,15 +56,38 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ContentType" Type="varchar" MaxLength="50" />
+          <Property Name="Content" Type="varbinary(max)" />
+          <Property Name="FileType" Type="int" />
+          <Property Name="IdProduct" Type="int" />
+        </EntityType>
+        <EntityType Name="FilePath">
+          <Key>
+            <PropertyRef Name="FilePathId" />
+          </Key>
+          <Property Name="FilePathId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="varbinary" MaxLength="50" />
+          <Property Name="FileType" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
-            <PropertyRef Name="IdProduct" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="IdProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdUser" Type="nchar" MaxLength="10" />
-          <Property Name="Title" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsersId" Type="int" Nullable="false" />
+          <Property Name="ProductTitle" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="IdCategory" Type="int" />
+          <Property Name="DateNull" Type="datetime" />
+          <Property Name="DeteAdd" Type="datetime" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -229,12 +252,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FilePath_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="FilePath" Type="Self.FilePath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="FilePath">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="File" Type="Self.File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RinconArtesanoModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FilePath" EntityType="Self.FilePath" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
@@ -273,21 +322,19 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRoles" EntitySet="UserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_FilePath_Products" Association="Self.FK_FilePath_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="FilePath" EntitySet="FilePath" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_Products" Association="Self.FK_Files_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="File" EntitySet="File" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RinconArtesanoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Products">
-          <Key>
-            <PropertyRef Name="IdProduct" />
-          </Key>
-          <Property Name="IdProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdUser" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdCategory" Type="Int32" />
-        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="Id" />
@@ -370,7 +417,6 @@
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
         </Association>
         <EntityContainer Name="RinconArtesanoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Products" EntityType="Self.Products" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="UserClaims" EntityType="Self.UserClaims" />
           <EntitySet Name="UserLogins" EntityType="Self.UserLogins" />
@@ -402,6 +448,17 @@
           <AssociationSet Name="AspNetUserRoles" Association="RinconArtesanoModel.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="File" EntityType="RinconArtesanoModel.File" />
+          <EntitySet Name="Products" EntityType="RinconArtesanoModel.Products" />
+          <AssociationSet Name="FK_Files_Products" Association="RinconArtesanoModel.FK_Files_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="File" EntitySet="File" />
+          </AssociationSet>
+          <EntitySet Name="FilePath" EntityType="RinconArtesanoModel.FilePath" />
+          <AssociationSet Name="FK_FilePath_Products" Association="RinconArtesanoModel.FK_FilePath_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="FilePath" EntitySet="FilePath" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRoles">
@@ -485,23 +542,73 @@
           <End Type="RinconArtesanoModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
           <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
         </Association>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FileType" Type="Int32" />
+          <Property Name="IdProduct" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Files_Products" FromRole="File" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersId" Type="Int32" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IdCategory" Type="Int32" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <Property Name="DeteAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="File" Relationship="RinconArtesanoModel.FK_Files_Products" FromRole="Products" ToRole="File" />
+          <NavigationProperty Name="FilePath" Relationship="RinconArtesanoModel.FK_FilePath_Products" FromRole="Products" ToRole="FilePath" />
+        </EntityType>
+        <Association Name="FK_Files_Products">
+          <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="0..1" />
+          <End Type="RinconArtesanoModel.File" Role="File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FilePath">
+          <Key>
+            <PropertyRef Name="FilePathId" />
+          </Key>
+          <Property Name="FilePathId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="FileType" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_FilePath_Products" FromRole="FilePath" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_FilePath_Products">
+          <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="1" />
+          <End Type="RinconArtesanoModel.FilePath" Role="FilePath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="FilePath">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RinconArtesanoModelStoreContainer" CdmEntityContainer="RinconArtesanoEntities">
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.Products">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="RinconArtesanoModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
@@ -608,6 +715,42 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="File">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.File">
+              <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DeteAdd" ColumnName="DeteAdd" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilePath">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.FilePath">
+              <MappingFragment StoreEntitySet="FilePath">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FilePathId" ColumnName="FilePathId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
