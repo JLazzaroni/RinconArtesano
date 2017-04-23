@@ -1,0 +1,144 @@
+﻿@model RinconArtesano.Models.Products
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <br />
+        <h4 class="form__titulo">Productos - Detalles</h4>
+        <hr />
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                    <section id="imagenes">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="max-width: 400px; height:300px">
+                            <ol class="carousel-indicators">
+                                @foreach (var item in Model.Files.Where(f => f.FileType.Value == Convert.ToInt16(FileTypes.Image)).ToList())
+                                {
+
+                                    <li data-target="#carousel-example-generic" data-slide-to="@item.FileId" class="active"></li>
+                                }
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                                @foreach (var item in Model.Files.Where(f => f.FileType.Value == Convert.ToInt16(FileTypes.Image)).ToList())
+                                {
+                                    <div class="@(item.FileId == Model.Files.Min(f => f.FileId) ? "item active" : "item")">
+                                        <img src="@Url.Content(@item.FilePath)" alt="@item.FileName">
+                                    </div>
+                                }
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only">Siguiente</span>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-7">
+                    <section id="contenido">
+                        <ul class="list-unstyled">
+                            <li>
+                                <h4 class="form__titulo">
+                                    @Html.DisplayFor(model => model.ProductTitle)
+                                </h4>
+                            </li>
+                            <li>
+                                <b>Categoría:</b>
+                                <p>
+                                    @Html.DisplayFor(model => model.ProductsCategories.ProductCategoryDescriptions)
+                                </p>
+                            </li>
+                            <li>
+                                <b>Descripción:</b>
+                                <p>
+                                    @Html.DisplayFor(model => model.ProductDescription)
+                                </p>
+
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        @*<dl class="dl-horizontal">
+            <dt>
+                Título:
+            </dt>
+
+            <dd>
+                
+            </dd>
+
+            <dt>
+                Descripción:
+            </dt>
+
+            <dd>
+                
+            </dd>
+
+            <dt>
+                Categoria:
+            </dt>
+
+            <dd>
+                
+            </dd>
+
+            <dt>
+                Fecha alta:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateAdd)
+            </dd>
+
+            <dt>
+                Fecha modificación:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateModification)
+            </dd>
+
+            @if (Model.DateNull.HasValue)
+            {
+                <dt>
+                    Fecha baja:
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DateNull)
+                </dd>
+            }
+        </dl>*@
+        </div>
+        @if (!Model.DateNull.HasValue)
+        {
+            <p>
+
+                @Html.ActionLink("Editar", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Volver", "Index")
+            </p>
+        }
+        else
+        {
+            <p>
+                @Html.ActionLink("Volver", "Index")
+            </p>
+        }
+    </body>
+</html>
