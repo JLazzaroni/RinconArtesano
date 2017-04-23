@@ -1,8 +1,4 @@
-﻿@model PagedList.IPagedList<RinconArtesano.Models.ExpandedUserViewModel>
-
-@using PagedList.Mvc;
-
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+﻿@model IEnumerable<RinconArtesano.Models.ExpandedUserViewModel>
 
 <br />
 <p>
@@ -47,7 +43,8 @@
                 @if ((item.UserName.ToLower() != this.User.Identity.Name.ToLower()))
                 {
                     @Html.ActionLink("Eliminar", "DeleteUser", new { UserName = item.UserName },
-                    new { 
+                    new
+                    {
                         onclick = "return confirm('¿Esta seguro que desea eliminar este usuario?');",
                         @class = "btn btn-danger"
                     })
@@ -55,18 +52,5 @@
             </td>
         </tr>
     }
-
-
 </table>
 <br />
-Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
-
-@Html.PagedListPager(Model,
-    page => Url.Action("Index",
-    new
-    {
-        page,
-        searchStringUserNameOrEmail = ViewBag.searchStringUserNameOrEmail,
-        currentFilter = ViewBag.CurrentFilter
-    }))
-<hr />

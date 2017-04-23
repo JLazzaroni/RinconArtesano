@@ -8,7 +8,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RinconArtesano.Models;
-using PagedList;
 
 namespace RinconArtesano.Controllers
 {
@@ -72,21 +71,14 @@ namespace RinconArtesano.Controllers
                     listaUserViewModel.Add(nUserViewModel);
                 }
 
-                // Establece el numero de paginas
-                var _UserViewModelAsIPagedList =
-                    new StaticPagedList<ExpandedUserViewModel>
-                    (
-                        listaUserViewModel, intPage, intPageSize, intTotalPageCount
-                        );
-
-                return View(_UserViewModelAsIPagedList);
+                return View(listaUserViewModel);
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, "Error: " + ex);
                 List<ExpandedUserViewModel> listaUserViewModel = new List<ExpandedUserViewModel>();
 
-                return View(listaUserViewModel.ToPagedList(1, 25));
+                return View(listaUserViewModel);
             }
         }
 
