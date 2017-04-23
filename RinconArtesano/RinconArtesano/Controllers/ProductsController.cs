@@ -98,8 +98,8 @@ namespace RinconArtesano.Controllers
                 {
                     if (file != null && file.ContentLength > 0)
                     {
-                        string rutaServer = @"~\Files\Products";
-                        string rutaSource = @"~/Files/Products/";
+                        string rutaServer = @"~\Content\Images";
+                        string rutaSource = @"~/Content/Images/";
                         var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                         var pathServer = Path.Combine(Server.MapPath(rutaServer), nombreArchivo);
                         var pathSource = rutaSource + nombreArchivo;
@@ -197,8 +197,8 @@ namespace RinconArtesano.Controllers
                     {
                         if (file != null && file.ContentLength > 0)
                         {
-                            string rutaServer = @"~\Files\Products";
-                            string rutaSource = @"~/Files/Products/";
+                            string rutaServer = @"~\Content\Images";
+                            string rutaSource = @"~/Content/Images/";
                             var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                             var pathServer = Path.Combine(Server.MapPath(rutaServer), nombreArchivo);
                             var pathSource = rutaSource + nombreArchivo;
