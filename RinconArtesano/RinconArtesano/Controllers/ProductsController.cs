@@ -17,10 +17,9 @@ namespace RinconArtesano.Controllers
     {
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
 
-        [Authorize]
         public ActionResult Home()
         {
-            List<Products> prod = db.Products.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).ToList();
+            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).ToList();
             ViewBag.Productss = prod;
             return View();
         }

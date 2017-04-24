@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Experiences> experiences = ViewBag.Experiences;
+}
+
+<body>
+    <div>
+        <br />
+        <h4 class="form__titulo">Experiencias</h4>
+        <hr />
+
+        <div class="row">
+            @foreach (var exp in experiences)
+            {
+                <div class="col-lg-4 col-md-4">
+                    <img src="@Url.Content(@exp.Files.FirstOrDefault().FilePath)" alt="@exp.Files.FirstOrDefault().FileName" width="250" height="250">
+                    <h3>
+                        <a href=@Url.Action("ExperiencesDetails", "Experiences", new { id = exp.ExperienceId })>@exp.ExperienceTitle</a>
+                    </h3>
+                    <p>
+                        @exp.ExperienceDescription.Substring(0, exp.ExperienceDescription.Length <= 150 ? exp.ExperienceDescription.Length : 150)
+                    @{if (exp.ExperienceDescription.Length > 150)
+                    {@("...")}
+                    }
+                </p>
+
+                <a>@exp.AspNetUsers.UserName</a>
+            </div>
+            }
+        </div>
+    </div>
+</body>

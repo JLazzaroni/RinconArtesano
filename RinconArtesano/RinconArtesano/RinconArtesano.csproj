@@ -383,6 +383,10 @@
     <Content Include="Views\Experiences\Details.cshtml" />
     <Content Include="Views\Experiences\Edit.cshtml" />
     <Content Include="Views\Experiences\Index.cshtml" />
+    <Content Include="Views\Products\Home.cshtml" />
+    <Content Include="Views\Products\ProductsDetails.cshtml" />
+    <Content Include="Views\Experiences\Home.cshtml" />
+    <Content Include="Views\Experiences\ExperiencesDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

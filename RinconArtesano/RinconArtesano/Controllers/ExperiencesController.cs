@@ -17,7 +17,6 @@ namespace RinconArtesano.Controllers
     {
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
 
-        [Authorize]
         public ActionResult Home()
         {
             List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).ToList();
