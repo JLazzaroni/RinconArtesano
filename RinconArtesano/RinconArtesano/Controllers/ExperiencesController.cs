@@ -59,7 +59,14 @@ namespace RinconArtesano.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Experiences);
+            else if (Experiences.UsersId != User.Identity.GetUserId())
+            {
+                return View("PermissionsError");
+            }
+            else
+            {
+                return View(Experiences);
+            }
         }
 
         [Authorize]
@@ -155,7 +162,14 @@ namespace RinconArtesano.Controllers
             {
                 return HttpNotFound();
             }
-            return View(experiences);
+            else if (experiences.UsersId != User.Identity.GetUserId())
+            {
+                return View("PermissionsError");
+            }
+            else
+            {
+                return View(experiences);
+            }
         }
 
         [Authorize]

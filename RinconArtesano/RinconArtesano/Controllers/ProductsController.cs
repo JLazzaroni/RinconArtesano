@@ -59,7 +59,14 @@ namespace RinconArtesano.Controllers
             {
                 return HttpNotFound();
             }
-            return View(products);
+            else if (products.UsersId != User.Identity.GetUserId())
+            {
+                return View("PermissionsError");
+            }
+            else
+            {
+                return View(products);
+            }
         }
 
         [Authorize]
@@ -117,7 +124,7 @@ namespace RinconArtesano.Controllers
                     }
                 }
 
-                
+
                 products.UsersId = userId;
                 products.DateAdd = DateTime.Now;
 
@@ -158,8 +165,15 @@ namespace RinconArtesano.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductCategory = new SelectList(db.ProductsCategories, "ProductCategoryId", "ProductCategoryDescriptions");
-            return View(products);
+            else if (products.UsersId != User.Identity.GetUserId())
+            {
+                return View("PermissionsError");
+            }
+            else
+            {
+                ViewBag.ProductCategory = new SelectList(db.ProductsCategories, "ProductCategoryId", "ProductCategoryDescriptions");
+                return View(products);
+            }
         }
 
         [Authorize]
@@ -203,7 +217,7 @@ namespace RinconArtesano.Controllers
                             var pathSource = rutaSource + nombreArchivo;
                             file.SaveAs(pathServer);
 
-                            
+
                             List<Files> bdFile = prod.Files.OrderBy(f => f.FileId).ToList();
 
                             if (cont + 1 <= bdFile.Count())  //Si existe
@@ -220,7 +234,7 @@ namespace RinconArtesano.Controllers
                                 };
                                 db.Entry(bdFile[cont]).CurrentValues.SetValues(arc);
                             }
-                                
+
                             else
                             {
                                 //Nueva imagen
@@ -234,7 +248,7 @@ namespace RinconArtesano.Controllers
                                     DateAdd = DateTime.Now
                                 };
                                 prod.Files.Add(arc);
-                            } 
+                            }
                         }
                         cont++;
                     }
