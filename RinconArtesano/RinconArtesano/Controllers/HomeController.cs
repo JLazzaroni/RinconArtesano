@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RinconArtesano.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,14 @@ namespace RinconArtesano.Controllers
 {
     public class HomeController : Controller
     {
+        private RinconArtesanoEntities db = new RinconArtesanoEntities();
         public ActionResult Index()
         {
-            //alfajor
+            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).Take(3).ToList();
+            ViewBag.Productss = prod;
+            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).Take(3).ToList();
+            ViewBag.Experiences = exper;
+
             return View();
         }
 

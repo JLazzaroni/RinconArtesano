@@ -1,14 +1,10 @@
-﻿<header class="intro-header" style="background-image: url('Content/Images/portada.jpg'); margin-top:50px;">
+﻿@{
+    List<Products> products = ViewBag.Productss;
+    List<Experiences> experiences = ViewBag.Experiences;
+}
+
+<header class="intro-header" style="background-image: url('Content/Images/portada.jpg'); margin-top:50px;">
     <div class="container" style="width:100%">
-        @*<div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="site-heading">
-                        <h1>Rincón Artesanal</h1>
-                        <hr class="small">
-                        <span class="subheading">Bienvenidos a nuestra comunidad</span>
-                    </div>
-                </div>
-            </div>*@
         <div class="row">
             <div class="col-lg-10 col-md-10">
                 <div class="site-heading">
@@ -29,26 +25,63 @@
     </div>
 </header>
 <body>
-    @*<div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-preview">
-                        <a href=@Url.Action("Index", "AspNetUser")>
-                            <h2 class="post-title">
-                                Últimas Experiencias
-                            </h2>
-                        </a>
-                    </div>
-                    <hr>
-                    <div class="post-preview">
-                        <a href=@Url.Action("Index", "Home" )>
-                            <h2 class="post-title">
-                                Últimas Publicaciones
-                            </h2>
-                        </a>
-                    </div>
-                    <hr>
+    <div>
+        <br />
+        <h4 class="form__titulo">Publicaciones</h4>
+        <hr />
+
+        <div class="row">
+            @foreach (var prod in products)
+            {
+                <div class="col-lg-4 col-md-4">
+                    <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" width="250" height="250">
+                    <h3>
+                        <a href=@Url.Action("ProductsDetails", "Products", new { id = prod.ProductId })>@prod.ProductTitle</a>
+                    </h3>
+                    <p>
+                        @prod.ProductDescription.Substring(0, prod.ProductDescription.Length <= 150 ? prod.ProductDescription.Length : 150)
+                        @{if (prod.ProductDescription.Length > 150)
+                        {@("...")}
+                        }
+                    </p>
+                    <a>@prod.AspNetUsers.UserName</a>
                 </div>
+            }
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-10 col-md-10">
+                <a href=@Url.Action("Home", "Products") class="btn btn-default">Ver mas</a>
             </div>
-        </div>*@
+        </div>
+    </div>
+    <div>
+        <br />
+        <h4 class="form__titulo">Experiencias</h4>
+        <hr />
+
+        <div class="row">
+            @foreach (var exp in experiences)
+            {
+                <div class="col-lg-4 col-md-4">
+                    <img src="@Url.Content(@exp.Files.FirstOrDefault().FilePath)" alt="@exp.Files.FirstOrDefault().FileName" width="250" height="250">
+                    <h3>
+                        <a href=@Url.Action("ExperiencesDetails", "Experiences", new { id = exp.ExperienceId })>@exp.ExperienceTitle</a>
+                    </h3>
+                    <p>
+                        @exp.ExperienceDescription.Substring(0, exp.ExperienceDescription.Length <= 150 ? exp.ExperienceDescription.Length : 150)
+                        @{if (exp.ExperienceDescription.Length > 150)
+                        {@("...")}
+                        }
+                    </p>
+
+                    <a>@exp.AspNetUsers.UserName</a>
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-10 col-md-10">
+                <a href=@Url.Action("Home", "Experiences") class="btn btn-default">Ver mas</a>
+            </div>
+        </div>
+    </div>
 </body>
