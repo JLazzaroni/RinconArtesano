@@ -205,6 +205,12 @@
     <Compile Include="Models\FileTypes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessagesHijos.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MessagesPadres.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Products.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>

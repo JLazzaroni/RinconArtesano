@@ -85,6 +85,31 @@
           <Property Name="DateAdd" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" />
         </EntityType>
+        <EntityType Name="MessagesHijos">
+          <Key>
+            <PropertyRef Name="IdMessageHijo" />
+          </Key>
+          <Property Name="IdMessageHijo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMessagePadre" Type="int" Nullable="false" />
+          <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DenounceCount" Type="int" Nullable="false" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="DateNull" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MessagesPadres">
+          <Key>
+            <PropertyRef Name="IdMessagePadre" />
+          </Key>
+          <Property Name="IdMessagePadre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DenounceCount" Type="int" Nullable="false" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="DateNull" Type="datetime" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -219,6 +244,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MessagesHijos_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesHijos">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesHijos_MessagesPadres">
+          <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="1" />
+          <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessagesPadres">
+              <PropertyRef Name="IdMessagePadre" />
+            </Principal>
+            <Dependent Role="MessagesHijos">
+              <PropertyRef Name="IdMessagePadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesPadres_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesPadres">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Products_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -251,6 +312,8 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Experiences" EntityType="Self.Experiences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessagesHijos" EntityType="Self.MessagesHijos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MessagesPadres" EntityType="Self.MessagesPadres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -285,6 +348,18 @@
           <AssociationSet Name="FK_Files_Products" Association="Self.FK_Files_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesHijos_AspNetUsers" Association="Self.FK_MessagesHijos_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesHijos_MessagesPadres" Association="Self.FK_MessagesHijos_MessagesPadres">
+            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
+            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesPadres_AspNetUsers" Association="Self.FK_MessagesPadres_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_AspNetUsers" Association="Self.FK_Products_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -345,6 +420,20 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Files" EntitySet="Files" />
           </AssociationSet>
+          <EntitySet Name="MessagesHijos" EntityType="RinconArtesanoModel.MessagesHijos" />
+          <EntitySet Name="MessagesPadres" EntityType="RinconArtesanoModel.MessagesPadres" />
+          <AssociationSet Name="FK_MessagesHijos_AspNetUsers" Association="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesPadres_AspNetUsers" Association="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesHijos_MessagesPadres" Association="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres">
+            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
+            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -397,6 +486,8 @@
           <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_AspNetUsers" FromRole="AspNetUsers" ToRole="Products" />
           <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="AspNetUsers" ToRole="Experiences" />
           <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_AspNetUsers" FromRole="AspNetUsers" ToRole="Files" />
+          <NavigationProperty Name="MessagesHijos" Relationship="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesHijos" />
+          <NavigationProperty Name="MessagesPadres" Relationship="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesPadres" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -570,6 +661,71 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MessagesHijos">
+          <Key>
+            <PropertyRef Name="IdMessageHijo" />
+          </Key>
+          <Property Name="IdMessageHijo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMessagePadre" Type="Int32" Nullable="false" />
+          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DenounceCount" Type="Int32" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers" FromRole="MessagesHijos" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MessagesPadres" Relationship="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres" FromRole="MessagesHijos" ToRole="MessagesPadres" />
+        </EntityType>
+        <EntityType Name="MessagesPadres">
+          <Key>
+            <PropertyRef Name="IdMessagePadre" />
+          </Key>
+          <Property Name="IdMessagePadre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DenounceCount" Type="Int32" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers" FromRole="MessagesPadres" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MessagesHijos" Relationship="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres" FromRole="MessagesPadres" ToRole="MessagesHijos" />
+        </EntityType>
+        <Association Name="FK_MessagesHijos_AspNetUsers">
+          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="RinconArtesanoModel.MessagesHijos" Role="MessagesHijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesHijos">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesPadres_AspNetUsers">
+          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="RinconArtesanoModel.MessagesPadres" Role="MessagesPadres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesPadres">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesHijos_MessagesPadres">
+          <End Type="RinconArtesanoModel.MessagesPadres" Role="MessagesPadres" Multiplicity="1" />
+          <End Type="RinconArtesanoModel.MessagesHijos" Role="MessagesHijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessagesPadres">
+              <PropertyRef Name="IdMessagePadre" />
+            </Principal>
+            <Dependent Role="MessagesHijos">
+              <PropertyRef Name="IdMessagePadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -690,6 +846,33 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessagesHijos">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.MessagesHijos">
+              <MappingFragment StoreEntitySet="MessagesHijos">
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
+                <ScalarProperty Name="IdMessageHijo" ColumnName="IdMessageHijo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MessagesPadres">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.MessagesPadres">
+              <MappingFragment StoreEntitySet="MessagesPadres">
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
