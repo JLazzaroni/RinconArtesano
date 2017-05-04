@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using RinconArtesano.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Configuration;
+using System.Web.UI;
 
 namespace RinconArtesano.Controllers
 {
@@ -80,7 +81,7 @@ namespace RinconArtesano.Controllers
 
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);//(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -146,7 +147,31 @@ namespace RinconArtesano.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0, VaryByParam = "*")]
+        public virtual JsonResult existUserName(string userName)
+        {
+            var check = CheckUserNameExist(userName);
+            return check ? Json(false) : Json(true);
+        }
+        //[HttpPost]
+        //public JsonResult existsUserName(string UserName)
+        //{
+        //    RinconArtesanoEntities db = new RinconArtesanoEntities();
+        //    var user = db.AspNetUsers.Any(u => u.UserName.ToUpper().Equals(UserName.ToUpper()));//Membership.GetUser(UserName);
 
+        //    return Json(user == null);
+        //}
+
+        private bool CheckUserNameExist(string userName)
+        {
+            RinconArtesanoEntities db = new RinconArtesanoEntities();
+            if (db.AspNetUsers.Any(u => u.UserName.ToUpper().Equals(userName.ToUpper())))
+                return true;
+            else
+                return false;
+        }
         //
         // POST: /Account/Register
         [HttpPost]
@@ -156,7 +181,7 @@ namespace RinconArtesano.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };//new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -207,7 +232,7 @@ namespace RinconArtesano.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
+                var user = await UserManager.FindByEmailAsync(model.Email);//FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // No revelar que el usuario no existe o que no está confirmado
@@ -253,7 +278,7 @@ namespace RinconArtesano.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);//FindByNameAsync(model.Email);
             if (user == null)
             {
                 // No revelar que el usuario no existe
