@@ -1,0 +1,53 @@
+﻿@model List<RinconArtesano.Models.MessagesPadres>
+
+@{int i = 0;}
+@{int a = 0;}
+@{int b = 0;}
+
+@if (@Model.Count() > 0)
+{
+    <div class="panel-group" id="accordion1">
+        @foreach (MessagesPadres item in @Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#collapse_@i">
+                            @item.AspNetUsers.UserName - @item.DateAdd
+                        </a>
+                    </h4>
+                </div>
+
+                <div id="collapse_@i" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <h4 class="panel-title">@item.Message</h4>
+                        @if (item.MessagesHijos.Count > 0)
+                        {
+                            <br />
+                            foreach (MessagesHijos item1 in item.MessagesHijos)
+                            {
+                                <div class="panel-group" id="accordion_@b">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion_@b" href="#collapse2_@a">
+                                                    @item.AspNetUsers.UserName - @item.DateAdd
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse2_@a" class="panel-collapse collapse in">
+                                            <div class="panel-body">@item1.Message</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                b++;
+                                a++;
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+                        i++;
+        }
+    </div>
+}

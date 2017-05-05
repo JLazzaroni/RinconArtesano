@@ -394,6 +394,7 @@
     <Content Include="Views\Experiences\Home.cshtml" />
     <Content Include="Views\Experiences\ExperiencesDetails.cshtml" />
     <Content Include="Views\Shared\PermissionsError.cshtml" />
+    <Content Include="Views\Experiences\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

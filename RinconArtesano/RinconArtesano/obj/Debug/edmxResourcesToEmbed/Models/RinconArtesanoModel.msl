@@ -118,5 +118,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="MessagesHijos">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.MessagesHijos">
+        <MappingFragment StoreEntitySet="MessagesHijos">
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
+          <ScalarProperty Name="IdMessageHijo" ColumnName="IdMessageHijo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MessagesPadres">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.MessagesPadres">
+        <MappingFragment StoreEntitySet="MessagesPadres">
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

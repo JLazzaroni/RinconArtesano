@@ -80,6 +80,31 @@
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
   </EntityType>
+  <EntityType Name="MessagesHijos">
+    <Key>
+      <PropertyRef Name="IdMessageHijo" />
+    </Key>
+    <Property Name="IdMessageHijo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMessagePadre" Type="int" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="DenounceCount" Type="int" Nullable="false" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MessagesPadres">
+    <Key>
+      <PropertyRef Name="IdMessagePadre" />
+    </Key>
+    <Property Name="IdMessagePadre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="DenounceCount" Type="int" Nullable="false" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+  </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="ProductId" />
@@ -214,6 +239,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MessagesHijos_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MessagesHijos">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessagesHijos_MessagesPadres">
+    <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="1" />
+    <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MessagesPadres">
+        <PropertyRef Name="IdMessagePadre" />
+      </Principal>
+      <Dependent Role="MessagesHijos">
+        <PropertyRef Name="IdMessagePadre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessagesPadres_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MessagesPadres">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Products_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -246,6 +307,8 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Experiences" EntityType="Self.Experiences" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessagesHijos" EntityType="Self.MessagesHijos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessagesPadres" EntityType="Self.MessagesPadres" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -280,6 +343,18 @@
     <AssociationSet Name="FK_Files_Products" Association="Self.FK_Files_Products">
       <End Role="Products" EntitySet="Products" />
       <End Role="Files" EntitySet="Files" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessagesHijos_AspNetUsers" Association="Self.FK_MessagesHijos_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessagesHijos_MessagesPadres" Association="Self.FK_MessagesHijos_MessagesPadres">
+      <End Role="MessagesPadres" EntitySet="MessagesPadres" />
+      <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessagesPadres_AspNetUsers" Association="Self.FK_MessagesPadres_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="MessagesPadres" EntitySet="MessagesPadres" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_AspNetUsers" Association="Self.FK_Products_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

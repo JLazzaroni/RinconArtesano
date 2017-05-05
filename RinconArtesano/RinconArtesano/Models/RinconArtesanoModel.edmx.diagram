@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3b075a0e43fd47c4a2720213bb2431b3" Name="Diagram1" ZoomLevel="51">
+      <Diagram DiagramId="3b075a0e43fd47c4a2720213bb2431b3" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetRoles" Width="1.5" PointX="3.375" PointY="8.5" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserClaims" Width="1.5" PointX="7.875" PointY="7" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserLogins" Width="1.5" PointX="7.875" PointY="9.75" />
