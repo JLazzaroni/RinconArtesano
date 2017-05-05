@@ -48,10 +48,13 @@ namespace RinconArtesano.Models
 
     public class LoginViewModel
     {
+        //[Required]
+        //[Display(Name = "Correo electrónico")]
+        //[EmailAddress]
+        //public string Email { get; set; }
         [Required]
-        [Display(Name = "Correo electrónico")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Nombre de usuario")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +67,13 @@ namespace RinconArtesano.Models
 
     public class RegisterViewModel
     {
+        [System.Web.Mvc.Remote("existUserName", "Account", "", ErrorMessage = "Este nombre de usuario ya existe.", HttpMethod = "POST")]
+        [Required]
+        [StringLength(256, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 4)]
+        [Display(Name = "Nombre de usuario")]
+        public string UserName { set; get; }
+
+
         [Required]
         [EmailAddress]
         [Display(Name = "Correo electrónico")]
