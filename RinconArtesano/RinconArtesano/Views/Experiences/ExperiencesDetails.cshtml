@@ -7,9 +7,10 @@
 <body>
     <div>
         <br />
-        <h4 class="form__titulo">Experinecias</h4>
+        <h4 class="form__titulo">Experiencias</h4>
         <hr />
 
+        @Html.HiddenFor(model => model.ExperienceId)
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-5">
@@ -47,7 +48,36 @@
                             <li>
                                 <h4 class="form__titulo">
                                     @Html.DisplayFor(model => model.ExperienceTitle)
+                                    @if (User.IsInRole("Moderador") || User.IsInRole("Administrador"))
+                                    {
+                                        <span>
+                                            @if (Model.IsBlocked == true && !Model.DateNull.HasValue)
+                                            {
+                                                <a id="manualUnblockBtn" class="btn btn-primary" style="position: absolute;right: 0;top: 24px;margin-right: 35px;padding: 2px 12px;width: 140px;">DESBLOQUEAR</a>
+                                            }
+                                            else if (!Model.DateNull.HasValue)
+                                            {
+                                                <a id="manualBlockBtn" class="btn btn-warning" style="position: absolute;right: 0;top: 24px;margin-right: 35px;padding: 2px 12px;width: 140px;">BLOQUEAR</a>
+                                            }
+                                            @if (Model.DateNull.HasValue)
+                                            {
+                                                <a id="manualActivateBtn" class="btn btn-success" style="position: absolute;right: 0;top: 24px;margin-right: 35px;padding: 2px 12px;width: 140px;">ACTIVAR</a>
+                                            }
+                                            else if (!Model.DateNull.HasValue)
+                                            {
+                                                <a id="manualDeleteBtn" class="btn btn-danger" style="position: absolute;right: 0;top: 52px;margin-right: 35px;padding: 2px 12px;width: 140px;">ELIMINAR</a>
+                                            }
+                                        </span>
+                                    }
                                 </h4>
+                            </li>
+                            <li style="display: inline-flex;">
+                                <div data-toggle="modal" data-target=".modalDenuncias" class="button btn-default" style="display: inline-flex;padding: 10px;">
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: left;"></i>
+                                    <h4 style="padding-left: 10px;">
+                                        Denunciar
+                                    </h4>
+                                </div>
                             </li>
                         </ul>
                     </section>
@@ -75,9 +105,9 @@
                 </div>
 
             </div>
-
         </div>
     </div>
+    @Html.Partial("~/Views/Shared/_DenunciasModal.cshtml")
     <p>
         @Html.ActionLink("Volver", "Home")
     </p>

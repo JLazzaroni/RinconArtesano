@@ -19,7 +19,7 @@ namespace RinconArtesano.Controllers
 
         public ActionResult Home()
         {
-            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).ToList();
+            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).ToList();
             ViewBag.Experiences = exper;
             return View();
         }
@@ -124,6 +124,7 @@ namespace RinconArtesano.Controllers
 
                 experiences.UsersId = userId;
                 experiences.DateAdd = DateTime.Now;
+                experiences.IsBlocked = false;
 
                 db.Experiences.Add(experiences);
                 db.SaveChanges();
@@ -288,6 +289,31 @@ namespace RinconArtesano.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        public JsonResult manualDelete(int id)
+        {
+            Experiences experiences = db.Experiences.Find(id);
+            experiences.DateNull = DateTime.Now;
+            List<Files> listaFiles = experiences.Files.ToList();
+            foreach (var file in listaFiles)
+            {
+                file.DateNull = DateTime.Now;
+            }
+            db.SaveChanges();
+            return Json(new { message = "Experiencia eliminada exitosamente.", status = "OK" });
+        }
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        public JsonResult manualActivate(int id)
+        {
+            Experiences experiences = db.Experiences.Find(id);
+            experiences.DateNull = null;
+            experiences.IsBlocked = false;
+
+            db.SaveChanges();
+            return Json(new { message = "Experiencia activada exitosamente.", status = "OK" });
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

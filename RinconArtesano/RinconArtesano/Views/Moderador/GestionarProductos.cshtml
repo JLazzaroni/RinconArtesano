@@ -1,0 +1,63 @@
+﻿<script src="~/Scripts/admin.js"></script>
+
+@{
+    List<Products> Model = ViewBag.Products;
+}
+
+@Html.Partial("~/Views/Admin/_MenuGestion.cshtml")
+
+<br />
+@using (Html.BeginForm("GestionarProductos", HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Get))
+{
+    <div class="form-group">
+        <div class="row" style="display: flex;">
+            Buscar productos:&nbsp; @Html.TextBox("searchStringProduct", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+            <input class="btn btn-primary" type="submit" value="Buscar" />
+        </div>
+    </div>
+}
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Titulo
+        </th>
+        <th>
+            Fecha baja
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateNull)
+            </td>
+            <td>
+                @if (item.IsBlocked == true && !item.DateNull.HasValue)
+                {
+                    <a onclick="adminUnblockContenido('producto', @item.ProductId)" class="btn btn-primary">DESBLOQUEAR</a>
+                }
+                else if (!item.DateNull.HasValue)
+                {
+                    <a onclick="adminBlockContenido('producto', @item.ProductId)" class="btn btn-warning">BLOQUEAR</a>
+                }
+                @if (item.DateNull.HasValue)
+                {
+                    <a onclick="adminActivateContenido('producto', @item.ProductId)" class="btn btn-success">ACTIVAR</a>
+                }
+                else if (!item.DateNull.HasValue)
+                {
+                    <a onclick="adminDeleteContenido('producto', @item.ProductId)" class="btn btn-danger">ELIMINAR</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<br />

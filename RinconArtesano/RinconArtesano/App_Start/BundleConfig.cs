@@ -22,7 +22,9 @@ namespace RinconArtesano
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/clean-blog.min.js"));
+                      "~/Scripts/clean-blog.min.js",
+                      "~/Scripts/denuncias.js",
+                      "~/Scripts/manualBlock.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

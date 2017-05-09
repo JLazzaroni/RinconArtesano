@@ -1,0 +1,70 @@
+﻿<div id="modalDenuncias" class="modal fade modalDenuncias" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="left: 0%;">
+        <div class="modal-content">
+            <div class="modal-header form__titulo">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Denunciar</h4>
+            </div>
+            <div class="modal-body">
+                <h3>¿Cual es el problema?</h3>
+                <ul style="list-style-type: none;">
+                    <li>
+                        <div>
+                            <label>
+                                <input type="radio" name="denunciaRespuesta" value="noartesania">
+                                <span></span>
+                            </label>
+                            <label>
+                                No es una artesania
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <label>
+                                <input type="radio" name="denunciaRespuesta" value="sexual">
+                                <span></span>
+                            </label>
+                            <label>
+                                Contenido sexual
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <label>
+                                <input type="radio" name="denunciaRespuesta" value="spam">
+                                <span></span>
+                            </label>
+                            <label >
+                                Es spam
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <label>
+                                <input id="radioComentario" type="radio" name="denunciaRespuesta" value="comentario" checked>
+                                <span></span>
+                            </label>
+                            <label>
+                                Comentario:
+                            </label>
+                            <div class="form-group">
+                                <div>
+                                    <textarea class="form-control" cols="40" id="denunciaRespuestaComentario" name="denunciaRespuestaComentario" rows="5" style="margin-bottom: 10px; max-width: 95%;"></textarea>
+                                    <span class="field-validation-valid text-danger" data-valmsg-for="ExperienceDescription" data-valmsg-replace="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="denunciasBtn">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -176,9 +176,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DenunciasController.cs" />
     <Compile Include="Controllers\ExperiencesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ModeradorController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,6 +198,10 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Denuncias.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DenunciasViewModel.cs" />
     <Compile Include="Models\Experiences.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
@@ -253,6 +259,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Images\portada.jpg" />
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\clean-blog.js" />
     <Content Include="Scripts\clean-blog.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -281,6 +288,7 @@
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\git.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\denuncias.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -288,6 +296,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\manualBlock.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -394,6 +403,16 @@
     <Content Include="Views\Experiences\Home.cshtml" />
     <Content Include="Views\Experiences\ExperiencesDetails.cshtml" />
     <Content Include="Views\Shared\PermissionsError.cshtml" />
+    <Content Include="Views\Shared\_DenunciasModal.cshtml" />
+    <Content Include="Views\Moderador\Index.cshtml" />
+    <Content Include="Views\Admin\_UsuariosBuscar.cshtml" />
+    <Content Include="Views\Moderador\Create.cshtml" />
+    <Content Include="Views\Moderador\EditUser.cshtml" />
+    <Content Include="Views\Admin\_MenuGestion.cshtml" />
+    <Content Include="Views\Moderador\GestionarExperiencias.cshtml" />
+    <Content Include="Views\Admin\GestionarExperiencias.cshtml" />
+    <Content Include="Views\Admin\GestionarProductos.cshtml" />
+    <Content Include="Views\Moderador\GestionarProductos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

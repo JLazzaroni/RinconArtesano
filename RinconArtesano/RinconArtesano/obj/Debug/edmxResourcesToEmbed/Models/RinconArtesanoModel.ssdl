@@ -51,6 +51,18 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
+  <EntityType Name="Denuncias">
+    <Key>
+      <PropertyRef Name="DenunciaId" />
+    </Key>
+    <Property Name="DenunciaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Comentario" Type="varchar" MaxLength="1000" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="ExperienceId" Type="int" />
+    <Property Name="DateNull" Type="datetime" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Experiences">
     <Key>
       <PropertyRef Name="ExperienceId" />
@@ -63,6 +75,7 @@
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
     <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
+    <Property Name="IsBlocked" Type="bit" />
   </EntityType>
   <EntityType Name="Files">
     <Key>
@@ -80,6 +93,31 @@
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
   </EntityType>
+  <EntityType Name="MessagesHijos">
+    <Key>
+      <PropertyRef Name="IdMessageHijo" />
+    </Key>
+    <Property Name="IdMessageHijo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdMessagePadre" Type="int" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="DenounceCount" Type="int" Nullable="false" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MessagesPadres">
+    <Key>
+      <PropertyRef Name="IdMessagePadre" />
+    </Key>
+    <Property Name="IdMessagePadre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="DenounceCount" Type="int" Nullable="false" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+  </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="ProductId" />
@@ -92,6 +130,7 @@
     <Property Name="DateNull" Type="datetime" />
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
+    <Property Name="IsBlocked" Type="bit" />
   </EntityType>
   <EntityType Name="ProductsCategories">
     <Key>
@@ -166,6 +205,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Denuncias_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Denuncias_Experiences">
+    <End Role="Experiences" Type="Self.Experiences" Multiplicity="0..1" />
+    <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Experiences">
+        <PropertyRef Name="ExperienceId" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="ExperienceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Denuncias_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Experiences_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Experiences" Type="Self.Experiences" Multiplicity="*" />
@@ -214,6 +289,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MessagesHijos_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MessagesHijos">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessagesHijos_MessagesPadres">
+    <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="1" />
+    <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MessagesPadres">
+        <PropertyRef Name="IdMessagePadre" />
+      </Principal>
+      <Dependent Role="MessagesHijos">
+        <PropertyRef Name="IdMessagePadre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MessagesPadres_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MessagesPadres">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Products_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -244,8 +355,11 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Denuncias" EntityType="Self.Denuncias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Experiences" EntityType="Self.Experiences" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessagesHijos" EntityType="Self.MessagesHijos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MessagesPadres" EntityType="Self.MessagesPadres" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -265,6 +379,18 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Denuncias_AspNetUsers" Association="Self.FK_Denuncias_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Denuncias_Experiences" Association="Self.FK_Denuncias_Experiences">
+      <End Role="Experiences" EntitySet="Experiences" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Denuncias_Products" Association="Self.FK_Denuncias_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
     <AssociationSet Name="FK_Experiences_AspNetUsers" Association="Self.FK_Experiences_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Experiences" EntitySet="Experiences" />
@@ -280,6 +406,18 @@
     <AssociationSet Name="FK_Files_Products" Association="Self.FK_Files_Products">
       <End Role="Products" EntitySet="Products" />
       <End Role="Files" EntitySet="Files" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessagesHijos_AspNetUsers" Association="Self.FK_MessagesHijos_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessagesHijos_MessagesPadres" Association="Self.FK_MessagesHijos_MessagesPadres">
+      <End Role="MessagesPadres" EntitySet="MessagesPadres" />
+      <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessagesPadres_AspNetUsers" Association="Self.FK_MessagesPadres_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="MessagesPadres" EntitySet="MessagesPadres" />
     </AssociationSet>
     <AssociationSet Name="FK_Products_AspNetUsers" Association="Self.FK_Products_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

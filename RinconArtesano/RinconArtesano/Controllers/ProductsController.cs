@@ -19,7 +19,7 @@ namespace RinconArtesano.Controllers
 
         public ActionResult Home()
         {
-            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).ToList();
+            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).ToList();
             ViewBag.Productss = prod;
             return View();
         }
@@ -127,6 +127,7 @@ namespace RinconArtesano.Controllers
 
                 products.UsersId = userId;
                 products.DateAdd = DateTime.Now;
+                products.IsBlocked = false;
 
                 db.Products.Add(products);
                 db.SaveChanges();
@@ -292,6 +293,32 @@ namespace RinconArtesano.Controllers
 
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        public JsonResult manualDelete(int id)
+        {
+            Products products = db.Products.Find(id);
+            products.DateNull = DateTime.Now;
+            List<Files> listaFiles = products.Files.ToList();
+            foreach (var file in listaFiles)
+            {
+                file.DateNull = DateTime.Now;
+            }
+            db.SaveChanges();
+            return Json(new { message = "Producto eliminado exitosamente.", status = "OK" });
+        }
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        public JsonResult manualActivate(int id)
+        {
+            Products products = db.Products.Find(id);
+            products.DateNull = null;
+            products.IsBlocked = false;
+
+            db.SaveChanges();
+            return Json(new { message = "Producto activado exitosamente.", status = "OK" });
         }
 
         protected override void Dispose(bool disposing)
