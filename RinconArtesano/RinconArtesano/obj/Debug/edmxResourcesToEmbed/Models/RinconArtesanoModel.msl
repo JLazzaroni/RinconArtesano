@@ -147,6 +147,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
     <EntitySetMapping Name="Denuncias">
       <EntityTypeMapping TypeName="RinconArtesanoModel.Denuncias">
         <MappingFragment StoreEntitySet="Denuncias">
@@ -160,5 +164,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
   </EntityContainerMapping>
 </Mapping>

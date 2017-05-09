@@ -403,6 +403,10 @@
     <Content Include="Views\Experiences\Home.cshtml" />
     <Content Include="Views\Experiences\ExperiencesDetails.cshtml" />
     <Content Include="Views\Shared\PermissionsError.cshtml" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
     <Content Include="Views\Shared\_DenunciasModal.cshtml" />
     <Content Include="Views\Moderador\Index.cshtml" />
     <Content Include="Views\Admin\_UsuariosBuscar.cshtml" />
@@ -413,6 +417,12 @@
     <Content Include="Views\Admin\GestionarExperiencias.cshtml" />
     <Content Include="Views\Admin\GestionarProductos.cshtml" />
     <Content Include="Views\Moderador\GestionarProductos.cshtml" />
+<<<<<<< HEAD
+=======
+=======
+    <Content Include="Views\Experiences\Messages.cshtml" />
+>>>>>>> origin/master
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

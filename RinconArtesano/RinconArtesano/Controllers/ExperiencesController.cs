@@ -32,6 +32,7 @@ namespace RinconArtesano.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Experiences experiences = db.Experiences.SingleOrDefault(s => s.ExperienceId == id);
+            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 2 && x.CategoryId == id && x.DateNull == null).ToList();
             if (experiences == null)
             {
                 return HttpNotFound();
