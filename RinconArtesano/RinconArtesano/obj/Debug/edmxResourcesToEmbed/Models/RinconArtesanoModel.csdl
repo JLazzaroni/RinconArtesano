@@ -60,6 +60,7 @@
       <End Role="MessagesPadres" EntitySet="MessagesPadres" />
       <End Role="MessagesHijos" EntitySet="MessagesHijos" />
     </AssociationSet>
+<<<<<<< HEAD
     <EntitySet Name="Denuncias" EntityType="RinconArtesanoModel.Denuncias" />
     <AssociationSet Name="FK_Denuncias_AspNetUsers" Association="RinconArtesanoModel.FK_Denuncias_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -73,6 +74,8 @@
       <End Role="Products" EntitySet="Products" />
       <End Role="Denuncias" EntitySet="Denuncias" />
     </AssociationSet>
+=======
+>>>>>>> origin/master
   </EntityContainer>
   <EntityType Name="AspNetRoles">
     <Key>
@@ -127,7 +130,10 @@
     <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_AspNetUsers" FromRole="AspNetUsers" ToRole="Files" />
     <NavigationProperty Name="MessagesHijos" Relationship="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesHijos" />
     <NavigationProperty Name="MessagesPadres" Relationship="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesPadres" />
+<<<<<<< HEAD
     <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_AspNetUsers" FromRole="AspNetUsers" ToRole="Denuncias" />
+=======
+>>>>>>> origin/master
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -370,6 +376,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+<<<<<<< HEAD
   <EntityType Name="Denuncias">
     <Key>
       <PropertyRef Name="DenunciaId" />
@@ -421,4 +428,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+=======
+>>>>>>> origin/master
 </Schema>
