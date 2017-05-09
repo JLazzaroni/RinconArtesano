@@ -1,0 +1,63 @@
+﻿<script src="~/Scripts/admin.js"></script>
+
+@{
+    List<Experiences> Model = ViewBag.Experiences;
+}
+
+@Html.Partial("~/Views/Admin/_MenuGestion.cshtml")
+
+<br />
+@using (Html.BeginForm("GestionarExperiencias", HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Get))
+{
+    <div class="form-group">
+        <div class="row" style="display: flex;">
+            Buscar experiencias:&nbsp; @Html.TextBox("searchStringExperience", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+            <input class="btn btn-primary" type="submit" value="Buscar" />
+        </div>
+    </div>
+}
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Titulo
+        </th>
+        <th>
+            Fecha baja
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExperienceTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateNull)
+            </td>
+            <td>
+                @if (item.IsBlocked == true && !item.DateNull.HasValue)
+                {
+                    <a onclick="adminUnblockContenido('experiencia', @item.ExperienceId)" class="btn btn-primary">DESBLOQUEAR</a>
+                }
+                else if (!item.DateNull.HasValue)
+                {
+                    <a onclick="adminBlockContenido('experiencia', @item.ExperienceId)" class="btn btn-warning">BLOQUEAR</a>
+                }
+                @if (item.DateNull.HasValue)
+                {
+                    <a onclick="adminActivateContenido('experiencia', @item.ExperienceId)" class="btn btn-success">ACTIVAR</a>
+                }
+                else if (!item.DateNull.HasValue)
+                {
+                    <a onclick="adminDeleteContenido('experiencia', @item.ExperienceId)" class="btn btn-danger">ELIMINAR</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+<br />

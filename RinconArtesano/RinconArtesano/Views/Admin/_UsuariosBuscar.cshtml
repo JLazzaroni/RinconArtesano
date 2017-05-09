@@ -1,0 +1,9 @@
+﻿@using (Html.BeginForm("Index", "Admin", FormMethod.Get))
+{
+    <div class="form-group">
+        <div class="row" style="display: flex;">
+            Buscar usuarios:&nbsp; @Html.TextBox("searchStringUserNameOrEmail", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+            <input class="btn btn-primary" type="submit" value="Buscar" />
+        </div>
+    </div>
+}

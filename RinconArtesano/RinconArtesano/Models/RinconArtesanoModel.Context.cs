@@ -36,5 +36,6 @@ namespace RinconArtesano.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<MessagesHijos> MessagesHijos { get; set; }
         public virtual DbSet<MessagesPadres> MessagesPadres { get; set; }
+        public virtual DbSet<Denuncias> Denuncias { get; set; }
     }
 }

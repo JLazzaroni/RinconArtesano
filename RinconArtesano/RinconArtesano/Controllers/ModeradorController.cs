@@ -11,14 +11,15 @@ using RinconArtesano.Models;
 
 namespace RinconArtesano.Controllers
 {
-    public class AdminController : Controller
+
+    public class ModeradorController : Controller
     {
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
 
-        // GET: /Admin/
-        [Authorize(Roles = "Administrador")]
+
+        [Authorize(Roles = "Administrador, Moderador")]
         public ActionResult Index(string searchStringUserNameOrEmail, string currentFilter, int? page)
         {
             try
@@ -82,7 +83,8 @@ namespace RinconArtesano.Controllers
                 return View(listaUserViewModel);
             }
         }
-        [Authorize(Roles = "Administrador")]
+
+        [Authorize(Roles = "Administrador, Moderador")]
         public ActionResult GestionarExperiencias(string searchStringExperience, string currentFilter, int? page)
         {
             try
@@ -137,7 +139,7 @@ namespace RinconArtesano.Controllers
                 return View();
             }
         }
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Moderador")]
         public ActionResult GestionarProductos(string searchStringProduct, string currentFilter, int? page)
         {
             try
@@ -178,7 +180,7 @@ namespace RinconArtesano.Controllers
                     .Skip(intSkip)
                     .Take(intPageSize)
                     .ToList();
-                
+
                 ViewBag.Products = result;
 
                 return View();
@@ -192,11 +194,8 @@ namespace RinconArtesano.Controllers
                 return View();
             }
         }
-        
-        // Users *****************************
 
-        // GET: /Admin/Edit/Create 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Moderador")]
         public ActionResult Create()
         {
             ExpandedUserViewModel nvm = new ExpandedUserViewModel();
@@ -208,7 +207,7 @@ namespace RinconArtesano.Controllers
 
 
         // PUT: /Admin/Create
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Moderador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ExpandedUserViewModel vm)
@@ -244,7 +243,7 @@ namespace RinconArtesano.Controllers
 
                 if (AdminUserCreateResult.Succeeded == true)
                 {
-                    string strNewRole = Convert.ToString(Request.Form["Roles"]);
+                    string strNewRole = "ArtesanoUsuario";//Convert.ToString(Request.Form["Roles"]);
 
                     if (strNewRole != "0")
                     {
@@ -252,7 +251,7 @@ namespace RinconArtesano.Controllers
                         UserManager.AddToRole(nAdminUser.Id, strNewRole);
                     }
 
-                    return Redirect("~/Admin");
+                    return Redirect("~/Moderador");
                 }
                 else
                 {
@@ -272,7 +271,7 @@ namespace RinconArtesano.Controllers
 
 
         // GET: /Admin/Edit/EditUser 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador, Moderador")]
         public ActionResult EditUser(string UserName)
         {
             if (UserName == null)
@@ -308,10 +307,7 @@ namespace RinconArtesano.Controllers
                     return HttpNotFound();
                 }
 
-                if (User.IsInRole("Moderador"))
                     return Redirect("~/Moderador");
-                else
-                    return Redirect("~/Admin");
             }
             catch (Exception ex)
             {
@@ -349,10 +345,7 @@ namespace RinconArtesano.Controllers
                     DeleteUser(nvm);
                 }
 
-                if (User.IsInRole("Moderador"))
                     return Redirect("~/Moderador");
-                else
-                    return Redirect("~/Admin");
             }
             catch (Exception ex)
             {
@@ -361,249 +354,7 @@ namespace RinconArtesano.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrador")]
-        public ActionResult EditRoles(string UserName)
-        {
-            if (UserName == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            UserName = UserName.ToLower();
-
-            // Comprueba que exista el usuario
-            ExpandedUserViewModel neuvm = GetUser(UserName);
-
-            if (neuvm == null)
-            {
-                return HttpNotFound();
-            }
-
-            UserAndRolesViewModel nurvm = GetUserAndRoles(UserName);
-
-            return View(nurvm);
-        }
-
-        [Authorize(Roles = "Administrador")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditRoles(UserAndRolesViewModel vm)
-        {
-            try
-            {
-                if (vm == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
-                string UserName = vm.UserName;
-                string strNewRole = Convert.ToString(Request.Form["AddRole"]);
-
-                if (strNewRole != "No Roles Found")
-                {
-                    // Buscar el usuario
-                    ApplicationUser user = UserManager.FindByName(UserName);
-
-                    // Asignar el rol al usuario
-                    UserManager.AddToRole(user.Id, strNewRole);
-                }
-
-                ViewBag.AddRole = new SelectList(RolesUserIsNotIn(UserName));
-
-                UserAndRolesViewModel nvm =
-                    GetUserAndRoles(UserName);
-
-                return View(nvm);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Error: " + ex);
-                return View("EditRoles");
-            }
-        }
-
-        [Authorize(Roles = "Administrador")]
-        public ActionResult DeleteRole(string UserName, string RoleName)
-        {
-            try
-            {
-                if ((UserName == null) || (RoleName == null))
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
-                UserName = UserName.ToLower();
-
-                // Comprobar que exista el usuario
-                ExpandedUserViewModel nvm = GetUser(UserName);
-
-                if (nvm == null)
-                {
-                    return HttpNotFound();
-                }
-
-                if (UserName.ToLower() == this.User.Identity.Name.ToLower() && RoleName == "Administrador")
-                {
-                    ModelState.AddModelError(string.Empty,
-                        "Error: No se pudo eliminar el Rol Administrador para el usuario");
-                }
-
-                // Buscar el usuario
-                ApplicationUser user = UserManager.FindByName(UserName);
-                // Desasignar rol al usuario
-                UserManager.RemoveFromRoles(user.Id, RoleName);
-                UserManager.Update(user);
-
-                ViewBag.AddRole = new SelectList(RolesUserIsNotIn(UserName));
-
-                return RedirectToAction("EditRoles", new { UserName = UserName });
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Error: " + ex);
-
-                ViewBag.AddRole = new SelectList(RolesUserIsNotIn(UserName));
-
-                UserAndRolesViewModel nvm =
-                    GetUserAndRoles(UserName);
-
-                return View("EditRoles", nvm);
-            }
-        }
-
-
-        // Roles *****************************
-
-        // GET: /Admin/ViewAllRoles
-        [Authorize(Roles = "Administrador")]
-        public ActionResult ViewAllRoles()
-        {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
-            List<RoleViewModel> listaRoleViewModel = (from objRole in roleManager.Roles
-                                                      select new RoleViewModel
-                                                      {
-                                                          Id = objRole.Id,
-                                                          RoleName = objRole.Name
-                                                      }).ToList();
-
-            return View(listaRoleViewModel);
-        }
-
-
-        // GET: /Admin/AddRole
-        [Authorize(Roles = "Administrador")]
-        public ActionResult AddRole()
-        {
-            RoleViewModel nvm = new RoleViewModel();
-
-            return View(nvm);
-        }
-
-
-        // PUT: /Admin/AddRole
-        [Authorize(Roles = "Administrador")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddRole(RoleViewModel vm)
-        {
-            try
-            {
-                if (vm == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
-                var RoleName = vm.RoleName.Trim();
-
-                if (RoleName == "")
-                {
-                    throw new Exception("No hay nombre de Rol");
-                }
-
-                // Crear Rol
-                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
-                if (!roleManager.RoleExists(RoleName))
-                {
-                    roleManager.Create(new IdentityRole(RoleName));
-                }
-
-                return Redirect("~/Admin/ViewAllRoles");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Error: " + ex);
-                return View("AddRole");
-            }
-        }
-
-        [Authorize(Roles = "Administrador")]
-        public ActionResult DeleteUserRole(string RoleName)
-        {
-            try
-            {
-                if (RoleName == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
-                if (RoleName.ToLower() == "administrador")
-                {
-                    throw new Exception(String.Format("No se pudo eliminar el Rol {0}.", RoleName));
-                }
-
-                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
-                var UsersInRole = roleManager.FindByName(RoleName).Users.Count();
-                if (UsersInRole > 0)
-                {
-                    throw new Exception( String.Format("No se pudo eliminar el Rol {0} porque el mismo aun tiene usuarios asignados.",RoleName));
-                }
-
-                var objRoleToDelete = (from objRole in roleManager.Roles
-                                       where objRole.Name == RoleName
-                                       select objRole).FirstOrDefault();
-                if (objRoleToDelete != null)
-                {
-                    roleManager.Delete(objRoleToDelete);
-                }
-                else
-                {
-                    throw new Exception(
-                        String.Format(
-                            "No se pudo eliminar el Rol {0} porque el mismo no existe.",
-                            RoleName)
-                            );
-                }
-
-                List<RoleViewModel> listaRoleViewModel = (from objRole in roleManager.Roles
-                                                          select new RoleViewModel
-                                                          {
-                                                              Id = objRole.Id,
-                                                              RoleName = objRole.Name
-                                                          }).ToList();
-
-                return View("ViewAllRoles", listaRoleViewModel);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, "Error: " + ex);
-
-                var roleManager =
-                    new RoleManager<IdentityRole>(
-                        new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
-                List<RoleViewModel> listaRoleViewModel = (from objRole in roleManager.Roles
-                                                          select new RoleViewModel
-                                                          {
-                                                              Id = objRole.Id,
-                                                              RoleName = objRole.Name
-                                                          }).ToList();
-
-                return View("ViewAllRoles", listaRoleViewModel);
-            }
-        }
+        
 
 
 
@@ -647,11 +398,11 @@ namespace RinconArtesano.Controllers
 
             var colRoleSelectList = roleManager.Roles.OrderBy(x => x.Name).ToList();
 
-            SelectRoleListItems.Add( new SelectListItem { Text = "Select", Value = "0" });
+            SelectRoleListItems.Add(new SelectListItem { Text = "Select", Value = "0" });
 
             foreach (var item in colRoleSelectList)
             {
-                SelectRoleListItems.Add( new SelectListItem { Text = item.Name.ToString(), Value = item.Name.ToString() });
+                SelectRoleListItems.Add(new SelectListItem { Text = item.Name.ToString(), Value = item.Name.ToString() });
             }
 
             return SelectRoleListItems;
@@ -709,7 +460,7 @@ namespace RinconArtesano.Controllers
                 if (removePassword.Succeeded)
                 {
                     // Agregar nueva contraseña
-                    var AddPassword = UserManager.AddPassword( result.Id, vm.Password );
+                    var AddPassword = UserManager.AddPassword(result.Id, vm.Password);
 
                     if (AddPassword.Errors.Count() > 0)
                     {
@@ -782,8 +533,8 @@ namespace RinconArtesano.Controllers
 
             var listaRolesForUser = UserManager.GetRoles(user.Id).ToList();
             var listaRolesUserInNotIn = (from objRole in listaAllRoles
-                                       where !listaRolesForUser.Contains(objRole)
-                                       select objRole).ToList();
+                                         where !listaRolesForUser.Contains(objRole)
+                                         select objRole).ToList();
 
             if (listaRolesUserInNotIn.Count() == 0)
             {

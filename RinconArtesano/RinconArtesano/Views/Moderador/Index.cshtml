@@ -5,11 +5,10 @@
 <br />
 <p>
     @Html.ActionLink("Crear nuevo Usuario", "Create", null, new { @class = "btn btn-default" })
-    @Html.ActionLink("Editar Roles", "ViewAllRoles", null, new { @class = "btn btn-default" })
     @Html.ActionLink("Volver al Home", "../", "Home", null, new { @class = "btn btn-default" })
 </p>
 <br />
-    @Html.Partial("~/Views/Admin/_UsuariosBuscar.cshtml")
+@Html.Partial("~/Views/Admin/_UsuariosBuscar.cshtml")
 <br />
 
 <table class="table">
