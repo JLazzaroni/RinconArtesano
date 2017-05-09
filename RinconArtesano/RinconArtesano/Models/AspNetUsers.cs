@@ -25,6 +25,7 @@ namespace RinconArtesano.Models
             this.Files = new HashSet<Files>();
             this.MessagesHijos = new HashSet<MessagesHijos>();
             this.MessagesPadres = new HashSet<MessagesPadres>();
+            this.Denuncias = new HashSet<Denuncias>();
         }
     
         public string Id { get; set; }
@@ -56,5 +57,7 @@ namespace RinconArtesano.Models
         public virtual ICollection<MessagesHijos> MessagesHijos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MessagesPadres> MessagesPadres { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Denuncias> Denuncias { get; set; }
     }
 }

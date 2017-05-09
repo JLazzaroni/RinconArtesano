@@ -13,11 +13,17 @@
     }
     else
     {
+        if (User.IsInRole("Moderador"))
+        {
+            <li>
+                <a style="color:#F44336" href=@Url.Action("Index", "Moderador")>Moderador</a>
+            </li>
+        }
         <li>
             @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
     }
-    
+
     <li>
         <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
     </li>
