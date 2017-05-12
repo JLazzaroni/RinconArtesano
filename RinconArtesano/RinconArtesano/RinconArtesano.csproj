@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ExperiencesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ModeradorController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,6 +202,8 @@
     <Compile Include="Models\Denuncias.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MessagePadreViewModels.cs" />
+    <Compile Include="Models\MessageHijoViewModels.cs" />
     <Compile Include="Models\DenunciasViewModel.cs" />
     <Compile Include="Models\Experiences.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
@@ -297,6 +300,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\manualBlock.js" />
+    <Content Include="Scripts\messages.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -413,7 +417,7 @@
     <Content Include="Views\Admin\GestionarExperiencias.cshtml" />
     <Content Include="Views\Admin\GestionarProductos.cshtml" />
     <Content Include="Views\Moderador\GestionarProductos.cshtml" />
-    <Content Include="Views\Experiences\Messages.cshtml" />
+    <Content Include="Views\Shared\_Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

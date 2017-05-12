@@ -1,0 +1,108 @@
+﻿@model List<RinconArtesano.Models.MessagesPadres>
+
+@{int i = 0;}
+@{int a = 0;}
+@{int b = 0;}
+
+<br />
+<h4 class="form__titulo">Comentarios</h4>
+<br />
+
+@if (@Model.Count() > 0)
+{
+    <div class="panel-group" id="accordion1">
+        @foreach (MessagesPadres item in @Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#collapse_@i" aria-expanded="true" class="trigger collapsed" aria-controls="collapse_@i">
+                            @item.AspNetUsers.UserName - @item.DateAdd
+                        </a>
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right;" title="Denunciar comentario"></i>
+                    </h4>
+                </div>
+
+                <div id="collapse_@i" class="panel-collapse collapse out">
+                    <div class="panel-body">
+                        <h4 class="panel-title">@item.Message</h4>
+                        <br />
+                        @if (item.MessagesHijos.Count > 0)
+                        {
+                            foreach (MessagesHijos item1 in item.MessagesHijos)
+                            {
+                                <div class="panel-group" id="accordion_@b">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" style="background-color: lemonChiffon">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion_@b" href="#collapse2_@a">
+                                                    @item.AspNetUsers.UserName - @item.DateAdd
+                                                </a>
+                                                <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right;" title="Denunciar comentario"></i>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse2_@a" class="panel-collapse collapse in">
+                                            <div class="panel-body">@item1.Message</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                b++;
+                                a++;
+                            }
+                        }
+
+                        <div class="panel-group" id="accordion_@b">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="background-color: lightBlue">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordionComment" href="#collapseComment">
+                                            Responder
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="comment" class="panel-collapse collapse in">
+                                    <br />
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <textarea class="form-control" cols="40" id="Message_@item.IdMessagePadre" rows="2" style="max-width: 95%;"></textarea>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" href="javascript:void(0);" onclick="buttonMessageHijo(@item.IdMessagePadre, Message_@item.IdMessagePadre); return false;">Responder</button>
+                                            </span>
+                                        </div>
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        i++;
+        }
+    </div>
+}
+
+<div class="panel-group" id="accordionComment">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: lightBlue">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordionComment" href="#collapseComment">
+                    Nuevo comentario
+                </a>
+            </h4>
+        </div>
+
+        <div id="comment" class="panel-collapse collapse in">
+            <br />
+            <div class="col-md-12">
+                <div class="input-group">
+                    <textarea class="form-control" cols="40" id="MessagePadre" rows="2" style="max-width: 95%;"></textarea>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="buttonMessagePadre" type="button">Comentar</button>
+                    </span>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

@@ -32,6 +32,7 @@ namespace RinconArtesano.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
+            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();
             if (products == null)
             {
                 return HttpNotFound();

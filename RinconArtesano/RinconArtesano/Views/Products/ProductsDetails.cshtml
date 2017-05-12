@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "ProductsDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<MessagesPadres> Messages = ViewBag.Messages;
 }
 <body>
     <div>
@@ -107,3 +109,4 @@
         </p>
 </body>
 
+@Html.Partial("~/Views/Shared/_Messages.cshtml", Messages)

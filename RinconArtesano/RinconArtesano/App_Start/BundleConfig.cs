@@ -24,6 +24,7 @@ namespace RinconArtesano
                       "~/Scripts/respond.js",
                       "~/Scripts/clean-blog.min.js",
                       "~/Scripts/denuncias.js",
+                      "~/Scripts/messages.js",
                       "~/Scripts/manualBlock.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
