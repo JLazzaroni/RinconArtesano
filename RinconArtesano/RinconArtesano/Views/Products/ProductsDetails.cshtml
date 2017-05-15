@@ -53,7 +53,7 @@
                                     @if (User.IsInRole("Moderador") || User.IsInRole("Administrador"))
                                     {
                                         <span>
-                                            @if (Model.IsBlocked == true && !Model.DateNull.HasValue)
+                                            @if (Model.Bloqueado == true && !Model.DateNull.HasValue)
                                             {
                                                 <a id="manualUnblockBtn" class="btn btn-primary" style="position: absolute;right: 0;top: 24px;margin-right: 35px;padding: 2px 12px;width: 140px;">DESBLOQUEAR</a>
                                             }
