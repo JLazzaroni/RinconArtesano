@@ -19,7 +19,7 @@ namespace RinconArtesano.Controllers
 
         public ActionResult Home()
         {
-            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).ToList();
+            List<Products> prod = db.Products.Include("Files").OrderBy(x => x.DateAdd).ToList().Where(x => x.DateNull == null & x.IsBlocked == false).ToList();
             ViewBag.Productss = prod;
             return View();
         }
@@ -32,7 +32,7 @@ namespace RinconArtesano.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
-            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();
+            ViewBag.Messages = db.MessagesPadres.ToList().Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null);
             if (products == null)
             {
                 return HttpNotFound();
