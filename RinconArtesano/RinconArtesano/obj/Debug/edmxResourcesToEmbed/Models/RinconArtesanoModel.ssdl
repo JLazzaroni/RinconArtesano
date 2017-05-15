@@ -75,7 +75,7 @@
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
     <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
-    <Property Name="IsBlocked" Type="bit" />
+    <Property Name="Bloqueado" Type="bit" />
   </EntityType>
   <EntityType Name="Files">
     <Key>
@@ -101,7 +101,7 @@
     <Property Name="IdMessagePadre" Type="int" Nullable="false" />
     <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="DenounceCount" Type="int" Nullable="false" />
+    <Property Name="DenounceCount" Type="int" />
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateNull" Type="datetime" />
   </EntityType>
@@ -114,7 +114,7 @@
     <Property Name="CategoryId" Type="int" Nullable="false" />
     <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="DenounceCount" Type="int" Nullable="false" />
+    <Property Name="DenounceCount" Type="int" />
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateNull" Type="datetime" />
   </EntityType>
@@ -130,7 +130,7 @@
     <Property Name="DateNull" Type="datetime" />
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
-    <Property Name="IsBlocked" Type="bit" />
+    <Property Name="Bloqueado" Type="bit" />
   </EntityType>
   <EntityType Name="ProductsCategories">
     <Key>

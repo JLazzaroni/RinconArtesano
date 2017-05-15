@@ -74,12 +74,12 @@ namespace RinconArtesano.Controllers
             if (_tipoContenido.Equals("experiencia"))
             {
                 e = db.Experiences.Find(denuncia.ExperienceId);
-                e.IsBlocked = true;
+                e.Bloqueado = true;
             }
             else if (_tipoContenido.Equals("producto"))
             {
                 p = db.Products.Find(denuncia.ProductId);
-                p.IsBlocked = true;
+                p.Bloqueado = true;
             }
         }
 
@@ -92,12 +92,12 @@ namespace RinconArtesano.Controllers
             if (_tipoContenido.Equals("experiencia"))
             {
                 e = db.Experiences.Find(id);
-                e.IsBlocked = true;
+                e.Bloqueado = true;
             }
             else if (_tipoContenido.Equals("producto"))
             {
                 p = db.Products.Find(id);
-                p.IsBlocked = true;
+                p.Bloqueado = true;
             }
             db.SaveChanges();
             return Json(new { message = "Bloqueo exitoso.", status = "OK" });
@@ -111,12 +111,12 @@ namespace RinconArtesano.Controllers
             if (_tipoContenido.Equals("experiencia"))
             {
                 e = db.Experiences.Find(id);
-                e.IsBlocked = false;
+                e.Bloqueado = false;
             }
             else if (_tipoContenido.Equals("producto"))
             {
                 p = db.Products.Find(id);
-                p.IsBlocked = false;
+                p.Bloqueado = false;
             }
             db.SaveChanges();
             return Json(new { message = "Desbloqueo exitoso.", status = "OK" });

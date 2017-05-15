@@ -18,7 +18,7 @@ namespace RinconArtesano.Models
         public int IdMessagePadre { get; set; }
         public string UsersId { get; set; }
         public string Message { get; set; }
-        public int DenounceCount { get; set; }
+        public Nullable<int> DenounceCount { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateNull { get; set; }
     
