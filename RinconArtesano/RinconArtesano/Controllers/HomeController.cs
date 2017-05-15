@@ -12,9 +12,11 @@ namespace RinconArtesano.Controllers
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
         public ActionResult Index()
         {
-            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).Take(3).ToList();
+            //var productos = db.Products.Include("Files").OrderBy(x => x.DateAdd).Take(3).ToList();
+            List<Products> prod = db.Products.Include("Files").Where(x => x.Bloqueado == false).OrderBy(x => x.DateAdd).Take(3).ToList();//productos.Where(x => x.IsBlocked == false).ToList();//(x => x.DateNull == null).ToList();// & x.IsBlocked == false).ToList();//db.Products.Include("Files").Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).Take(3).ToList();
             ViewBag.Productss = prod;
-            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).Take(3).ToList();
+            //var experiencias = db.Experiences.OrderBy(x => x.DateAdd).Take(3).ToList();
+            List<Experiences> exper = db.Experiences.Where(x => x.Bloqueado == false).OrderBy(x => x.DateAdd).Take(3).ToList();//experiencias.Where(x => x.IsBlocked == false).ToList();//(x => x.DateNull == null).ToList();// & x.IsBlocked == false).ToList();//db.Experiences.Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).Take(3).ToList();
             ViewBag.Experiences = exper;
 
             return View();
