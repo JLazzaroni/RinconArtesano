@@ -13,45 +13,50 @@
 namespace RinconArtesano.Models
 {
 
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
-    public partial class RinconArtesanoEntities : DbContext
+
+public partial class RinconArtesanoEntities : DbContext
+{
+    public RinconArtesanoEntities()
+        : base("name=RinconArtesanoEntities")
     {
-        public RinconArtesanoEntities()
-            : base("name=RinconArtesanoEntities")
-        {
 
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-
-        public virtual DbSet<Files> Files { get; set; }
-
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-
-        public virtual DbSet<MessagesHijos> MessagesHijos { get; set; }
-
-        public virtual DbSet<MessagesPadres> MessagesPadres { get; set; }
-
-        public virtual DbSet<Denuncias> Denuncias { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<Experiences> Experiences { get; set; }
     }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        throw new UnintentionalCodeFirstException();
+    }
+
+
+    public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+
+    public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+
+    public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+
+    public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+
+    public virtual DbSet<Files> Files { get; set; }
+
+    public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+
+    public virtual DbSet<MessagesHijos> MessagesHijos { get; set; }
+
+    public virtual DbSet<MessagesPadres> MessagesPadres { get; set; }
+
+    public virtual DbSet<Denuncias> Denuncias { get; set; }
+
+    public virtual DbSet<Products> Products { get; set; }
+
+    public virtual DbSet<Experiences> Experiences { get; set; }
+
+    public virtual DbSet<ProductsCategories> ProductsCategories { get; set; }
+
+}
 
 }
 

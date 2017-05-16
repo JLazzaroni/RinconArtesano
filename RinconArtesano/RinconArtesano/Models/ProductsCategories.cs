@@ -12,37 +12,37 @@
 namespace RinconArtesano.Models
 {
 
-    using System;
+using System;
     using System.Collections.Generic;
     
-    public partial class ProductsCategories
+public partial class ProductsCategories
+{
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public ProductsCategories()
     {
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductsCategories()
-        {
+        this.Products = new HashSet<Products>();
 
-            this.Products = new HashSet<Products>();
+    }
 
-        }
-    
 
-        public int ProductCategoryId { get; set; }
+    public int ProductCategoryId { get; set; }
 
     public string ProductCategoryName { get; set; }
 
-        public string ProductCategoryDescriptions { get; set; }
-    
+    public string ProductCategoryDescriptions { get; set; }
+
     public System.DateTime DateAdd { get; set; }
 
     public Nullable<System.DateTime> DateNull { get; set; }
 
 
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-        public virtual ICollection<Products> Products { get; set; }
+    public virtual ICollection<Products> Products { get; set; }
 
-    }
+}
 
 }

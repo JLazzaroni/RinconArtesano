@@ -26,12 +26,12 @@
         <AssociationConnector Association="RinconArtesanoModel.FK_Products_AspNetUsers" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_Products" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Files_Products" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.ProductsCategories" Width="1.5" PointX="8.75" PointY="3.5" />
-        <AssociationConnector Association="RinconArtesanoModel.FK_Products_ProductsCategories" />
         <EntityTypeShape EntityType="RinconArtesanoModel.Experiences" Width="1.5" PointX="7.875" PointY="13.25" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Experiences_AspNetUsers" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_Experiences" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Files_Experiences" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.ProductsCategories" Width="1.5" PointX="8.75" PointY="3.5" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Products_ProductsCategories" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
