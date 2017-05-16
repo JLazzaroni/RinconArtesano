@@ -81,6 +81,7 @@
           <Property Name="DateModification" Type="datetime" />
           <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
           <Property Name="Bloqueado" Type="bit" />
+          <Property Name="IsBlocked" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="Files">
           <Key>
@@ -142,7 +143,10 @@
             <PropertyRef Name="ProductCategoryId" />
           </Key>
           <Property Name="ProductCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductCategoryDescriptions" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategoryDescriptions" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="DateNull" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -603,8 +607,11 @@
             <PropertyRef Name="ProductCategoryId" />
           </Key>
           <Property Name="ProductCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductCategoryDescriptions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCategoryDescriptions" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_ProductsCategories" FromRole="ProductsCategories" ToRole="Products" />
+          <Property Name="ProductCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Files">
           <Key>
@@ -755,6 +762,7 @@
           <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="Experiences" ToRole="AspNetUsers" />
           <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Experiences" ToRole="Denuncias" />
           <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Experiences" ToRole="Files" />
+          <Property Name="IsBlocked" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <Association Name="FK_Experiences_AspNetUsers">
           <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
@@ -920,6 +928,9 @@
           <EntitySetMapping Name="ProductsCategories">
             <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
               <MappingFragment StoreEntitySet="ProductsCategories">
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
                 <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
                 <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
               </MappingFragment>
@@ -996,6 +1007,7 @@
           <EntitySetMapping Name="Experiences">
             <EntityTypeMapping TypeName="RinconArtesanoModel.Experiences">
               <MappingFragment StoreEntitySet="Experiences">
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
                 <ScalarProperty Name="Bloqueado" ColumnName="Bloqueado" />
                 <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
                 <ScalarProperty Name="DateModification" ColumnName="DateModification" />
