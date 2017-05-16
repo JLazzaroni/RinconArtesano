@@ -1,5 +1,9 @@
 ﻿@model RinconArtesano.Models.Products
 
+@{
+    List<ProductsCategories> categories = ViewBag.CategoriesDescription;
+}
+
 <!DOCTYPE html>
 
 <html>
@@ -41,12 +45,14 @@
 
             <div class="form-group">
                 @Html.Label("Categoria:", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="col-md-3">
                     @Html.DropDownListFor(model => model.IdCategory, new SelectList(ViewBag.ProductCategory, "Value", "Text"), "Seleccione una categoria", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdCategory, "", new { @class = "text-danger" })
                 </div>
+                <div data-toggle="modal" data-target=".modalProductCategoryDescriptions" class="button btn-default" style="display: inline-flex;padding: 10px;">
+                    <i class="glyphicon glyphicon-search" aria-hidden="true" style="margin: auto;float: left;"></i>
+                </div>
             </div>
-
             <div class="form-horizontal">
                 <br />
                 <h4 class="form__titulo">Archivos</h4>
@@ -91,7 +97,7 @@
             </div>
         </div>
     }
-
+    @Html.Partial("_ProductCategoryDescriptions", categories)
     <div>
         @Html.ActionLink("Volver", "Index")
     </div>

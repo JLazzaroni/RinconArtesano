@@ -142,7 +142,10 @@
             <PropertyRef Name="ProductCategoryId" />
           </Key>
           <Property Name="ProductCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductCategoryDescriptions" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategoryDescriptions" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="DateNull" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -454,7 +457,6 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="ProductsCategories" EntityType="RinconArtesanoModel.ProductsCategories" />
           <EntitySet Name="Files" EntityType="RinconArtesanoModel.Files" />
           <EntitySet Name="sysdiagrams" EntityType="RinconArtesanoModel.sysdiagrams" />
           <AssociationSet Name="FK_Files_AspNetUsers" Association="RinconArtesanoModel.FK_Files_AspNetUsers">
@@ -506,6 +508,7 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Files" EntitySet="Files" />
           </AssociationSet>
+          <EntitySet Name="ProductsCategories" EntityType="RinconArtesanoModel.ProductsCategories" />
           <AssociationSet Name="FK_Products_ProductsCategories" Association="RinconArtesanoModel.FK_Products_ProductsCategories">
             <End Role="ProductsCategories" EntitySet="ProductsCategories" />
             <End Role="Products" EntitySet="Products" />
@@ -598,14 +601,6 @@
           <End Type="RinconArtesanoModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
           <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityType Name="ProductsCategories">
-          <Key>
-            <PropertyRef Name="ProductCategoryId" />
-          </Key>
-          <Property Name="ProductCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductCategoryDescriptions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_ProductsCategories" FromRole="ProductsCategories" ToRole="Products" />
-        </EntityType>
         <EntityType Name="Files">
           <Key>
             <PropertyRef Name="FileId" />
@@ -846,6 +841,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductsCategories">
+          <Key>
+            <PropertyRef Name="ProductCategoryId" />
+          </Key>
+          <Property Name="ProductCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCategoryDescriptions" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_ProductsCategories" FromRole="ProductsCategories" ToRole="Products" />
+        </EntityType>
         <Association Name="FK_Products_ProductsCategories">
           <End Type="RinconArtesanoModel.ProductsCategories" Role="ProductsCategories" Multiplicity="1" />
           <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="*" />
@@ -917,14 +923,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="ProductsCategories">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
-              <MappingFragment StoreEntitySet="ProductsCategories">
-                <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
-                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Files">
             <EntityTypeMapping TypeName="RinconArtesanoModel.Files">
               <MappingFragment StoreEntitySet="Files">
@@ -1020,6 +1018,17 @@
                 <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
                 <ScalarProperty Name="UsersId" ColumnName="UsersId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsCategories">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
+              <MappingFragment StoreEntitySet="ProductsCategories">
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -74,8 +74,8 @@ namespace RinconArtesano.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.ProductCategory = new SelectList(db.ProductsCategories, "ProductCategoryId", "ProductCategoryDescriptions");
-
+            ViewBag.ProductCategory = new SelectList(db.ProductsCategories.Where(x => x.DateNull == null), "ProductCategoryId", "ProductCategoryName");
+            ViewBag.CategoriesDescription = db.ProductsCategories.Where(x => x.DateNull == null).ToList();
             return View();
         }
 
@@ -95,7 +95,7 @@ namespace RinconArtesano.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.ProductCategory = new SelectList(db.ProductsCategories, "ProductCategoryId", "ProductCategoryDescriptions");
+                ViewBag.ProductCategory = new SelectList(db.ProductsCategories.Where(x => x.DateNull == null), "ProductCategoryId", "ProductCategoryName");
                 return View(products);
             }
             else
@@ -173,7 +173,8 @@ namespace RinconArtesano.Controllers
             }
             else
             {
-                ViewBag.ProductCategory = new SelectList(db.ProductsCategories, "ProductCategoryId", "ProductCategoryDescriptions");
+                ViewBag.ProductCategory = new SelectList(db.ProductsCategories.Where(x => x.DateNull == null), "ProductCategoryId", "ProductCategoryName");
+                ViewBag.CategoriesDescription = db.ProductsCategories.Where(x => x.DateNull == null).ToList();
                 return View(products);
             }
         }
@@ -192,7 +193,7 @@ namespace RinconArtesano.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.ProductCategory = new SelectList(db.ProductsCategories, "ProductCategoryId", "ProductCategoryDescriptions");
+                ViewBag.ProductCategory = new SelectList(db.ProductsCategories.Where(x => x.DateNull == null), "ProductCategoryId", "ProductCategoryName");
                 return View(products);
             }
             else
