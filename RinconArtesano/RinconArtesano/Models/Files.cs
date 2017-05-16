@@ -27,7 +27,7 @@ namespace RinconArtesano.Models
         public Nullable<System.DateTime> DateModification { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual Experiences Experiences { get; set; }
         public virtual Products Products { get; set; }
+        public virtual Experiences Experiences { get; set; }
     }
 }

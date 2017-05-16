@@ -19,7 +19,7 @@ namespace RinconArtesano.Controllers
 
         public ActionResult Home()
         {
-            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null & x.Bloqueado == false).OrderBy(x => x.DateAdd).ToList();
+            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).ToList();
             ViewBag.Productss = prod;
             return View();
         }
@@ -128,7 +128,7 @@ namespace RinconArtesano.Controllers
 
                 products.UsersId = userId;
                 products.DateAdd = DateTime.Now;
-                products.Bloqueado = false;
+                products.IsBlocked = false;
 
                 db.Products.Add(products);
                 db.SaveChanges();
@@ -317,7 +317,7 @@ namespace RinconArtesano.Controllers
         {
             Products products = db.Products.Find(id);
             products.DateNull = null;
-            products.Bloqueado = false;
+            products.IsBlocked = false;
 
             db.SaveChanges();
             return Json(new { message = "Producto activado exitosamente.", status = "OK" });
