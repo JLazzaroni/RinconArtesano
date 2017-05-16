@@ -40,7 +40,7 @@
                 @Html.DisplayFor(modelItem => item.DateNull)
             </td>
             <td>
-                @if (item.Bloqueado == true && !item.DateNull.HasValue)
+                @if (item.IsBlocked == true && !item.DateNull.HasValue)
                 {
                     <a onclick="adminUnblockContenido('producto', @item.ProductId)" class="btn btn-primary">DESBLOQUEAR</a>
                 }

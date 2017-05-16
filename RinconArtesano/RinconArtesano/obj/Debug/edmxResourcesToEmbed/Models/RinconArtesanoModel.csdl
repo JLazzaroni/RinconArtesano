@@ -43,19 +43,6 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Denuncias" EntitySet="Denuncias" />
     </AssociationSet>
-    <EntitySet Name="Experiences" EntityType="RinconArtesanoModel.Experiences" />
-    <AssociationSet Name="FK_Experiences_AspNetUsers" Association="RinconArtesanoModel.FK_Experiences_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Experiences" EntitySet="Experiences" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Denuncias_Experiences" Association="RinconArtesanoModel.FK_Denuncias_Experiences">
-      <End Role="Experiences" EntitySet="Experiences" />
-      <End Role="Denuncias" EntitySet="Denuncias" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Files_Experiences" Association="RinconArtesanoModel.FK_Files_Experiences">
-      <End Role="Experiences" EntitySet="Experiences" />
-      <End Role="Files" EntitySet="Files" />
-    </AssociationSet>
     <EntitySet Name="Products" EntityType="RinconArtesanoModel.Products" />
     <AssociationSet Name="FK_Products_AspNetUsers" Association="RinconArtesanoModel.FK_Products_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -72,6 +59,19 @@
     <AssociationSet Name="FK_Products_ProductsCategories" Association="RinconArtesanoModel.FK_Products_ProductsCategories">
       <End Role="ProductsCategories" EntitySet="ProductsCategories" />
       <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <EntitySet Name="Experiences" EntityType="RinconArtesanoModel.Experiences" />
+    <AssociationSet Name="FK_Experiences_AspNetUsers" Association="RinconArtesanoModel.FK_Experiences_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Experiences" EntitySet="Experiences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Denuncias_Experiences" Association="RinconArtesanoModel.FK_Denuncias_Experiences">
+      <End Role="Experiences" EntitySet="Experiences" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Files_Experiences" Association="RinconArtesanoModel.FK_Files_Experiences">
+      <End Role="Experiences" EntitySet="Experiences" />
+      <End Role="Files" EntitySet="Files" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="AspNetRoles">
@@ -126,8 +126,8 @@
     <NavigationProperty Name="MessagesHijos" Relationship="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesHijos" />
     <NavigationProperty Name="MessagesPadres" Relationship="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesPadres" />
     <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_AspNetUsers" FromRole="AspNetUsers" ToRole="Denuncias" />
-    <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="AspNetUsers" ToRole="Experiences" />
     <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_AspNetUsers" FromRole="AspNetUsers" ToRole="Products" />
+    <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="AspNetUsers" ToRole="Experiences" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
@@ -167,10 +167,10 @@
     </Key>
     <Property Name="ProductCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ProductCategoryDescriptions" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_ProductsCategories" FromRole="ProductsCategories" ToRole="Products" />
     <Property Name="ProductCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DateNull" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_ProductsCategories" FromRole="ProductsCategories" ToRole="Products" />
   </EntityType>
   <EntityType Name="Files">
     <Key>
@@ -188,8 +188,8 @@
     <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DateModification" Type="DateTime" Precision="3" />
     <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Files_AspNetUsers" FromRole="Files" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Files" ToRole="Experiences" />
     <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Files_Products" FromRole="Files" ToRole="Products" />
+    <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Files" ToRole="Experiences" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -290,8 +290,8 @@
     <Property Name="DateNull" Type="DateTime" Precision="3" />
     <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Denuncias_AspNetUsers" FromRole="Denuncias" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Denuncias" ToRole="Experiences" />
     <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Denuncias_Products" FromRole="Denuncias" ToRole="Products" />
+    <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Denuncias" ToRole="Experiences" />
   </EntityType>
   <Association Name="FK_Denuncias_AspNetUsers">
     <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
@@ -302,60 +302,6 @@
       </Principal>
       <Dependent Role="Denuncias">
         <PropertyRef Name="UsersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Experiences">
-    <Key>
-      <PropertyRef Name="ExperienceId" />
-    </Key>
-    <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="ExperienceTitle" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
-    <Property Name="ExperienceDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="DateNull" Type="DateTime" Precision="3" />
-    <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="DateModification" Type="DateTime" Precision="3" />
-    <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Bloqueado" Type="Boolean" />
-    <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="Experiences" ToRole="AspNetUsers" />
-    <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Experiences" ToRole="Denuncias" />
-    <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Experiences" ToRole="Files" />
-    <Property Name="IsBlocked" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-  </EntityType>
-  <Association Name="FK_Experiences_AspNetUsers">
-    <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-    <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Experiences">
-        <PropertyRef Name="UsersId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Denuncias_Experiences">
-    <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="0..1" />
-    <End Type="RinconArtesanoModel.Denuncias" Role="Denuncias" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Experiences">
-        <PropertyRef Name="ExperienceId" />
-      </Principal>
-      <Dependent Role="Denuncias">
-        <PropertyRef Name="ExperienceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Files_Experiences">
-    <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="0..1" />
-    <End Type="RinconArtesanoModel.Files" Role="Files" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Experiences">
-        <PropertyRef Name="ExperienceId" />
-      </Principal>
-      <Dependent Role="Files">
-        <PropertyRef Name="ExperienceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -371,7 +317,7 @@
     <Property Name="DateNull" Type="DateTime" Precision="3" />
     <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DateModification" Type="DateTime" Precision="3" />
-    <Property Name="Bloqueado" Type="Boolean" />
+    <Property Name="IsBlocked" Type="Boolean" />
     <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Products_AspNetUsers" FromRole="Products" ToRole="AspNetUsers" />
     <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Products" FromRole="Products" ToRole="Denuncias" />
     <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Products" FromRole="Products" ToRole="Files" />
@@ -422,6 +368,59 @@
       </Principal>
       <Dependent Role="Products">
         <PropertyRef Name="IdCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Experiences">
+    <Key>
+      <PropertyRef Name="ExperienceId" />
+    </Key>
+    <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ExperienceTitle" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="ExperienceDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DateNull" Type="DateTime" Precision="3" />
+    <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModification" Type="DateTime" Precision="3" />
+    <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsBlocked" Type="Boolean" />
+    <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="Experiences" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Experiences" ToRole="Denuncias" />
+    <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Experiences" ToRole="Files" />
+  </EntityType>
+  <Association Name="FK_Experiences_AspNetUsers">
+    <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Experiences">
+        <PropertyRef Name="UsersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Denuncias_Experiences">
+    <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="0..1" />
+    <End Type="RinconArtesanoModel.Denuncias" Role="Denuncias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Experiences">
+        <PropertyRef Name="ExperienceId" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="ExperienceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Files_Experiences">
+    <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="0..1" />
+    <End Type="RinconArtesanoModel.Files" Role="Files" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Experiences">
+        <PropertyRef Name="ExperienceId" />
+      </Principal>
+      <Dependent Role="Files">
+        <PropertyRef Name="ExperienceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

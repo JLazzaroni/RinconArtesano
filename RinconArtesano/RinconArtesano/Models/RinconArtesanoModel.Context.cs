@@ -35,7 +35,7 @@ namespace RinconArtesano.Models
         public virtual DbSet<MessagesHijos> MessagesHijos { get; set; }
         public virtual DbSet<MessagesPadres> MessagesPadres { get; set; }
         public virtual DbSet<Denuncias> Denuncias { get; set; }
-        public virtual DbSet<Experiences> Experiences { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Experiences> Experiences { get; set; }
     }
 }

@@ -75,8 +75,7 @@
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
     <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
-    <Property Name="Bloqueado" Type="bit" />
-    <Property Name="IsBlocked" Type="char" MaxLength="1" />
+    <Property Name="IsBlocked" Type="bit" />
   </EntityType>
   <EntityType Name="Files">
     <Key>
@@ -131,7 +130,7 @@
     <Property Name="DateNull" Type="datetime" />
     <Property Name="DateAdd" Type="datetime" Nullable="false" />
     <Property Name="DateModification" Type="datetime" />
-    <Property Name="Bloqueado" Type="bit" />
+    <Property Name="IsBlocked" Type="bit" />
   </EntityType>
   <EntityType Name="ProductsCategories">
     <Key>

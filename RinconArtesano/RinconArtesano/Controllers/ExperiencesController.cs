@@ -19,7 +19,7 @@ namespace RinconArtesano.Controllers
 
         public ActionResult Home()
         {
-            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null & x.Bloqueado == false).OrderBy(x => x.DateAdd).ToList();
+            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).ToList();
             ViewBag.Experiences = exper;
             return View();
         }
@@ -125,7 +125,7 @@ namespace RinconArtesano.Controllers
 
                 experiences.UsersId = userId;
                 experiences.DateAdd = DateTime.Now;
-                experiences.Bloqueado = false;
+                experiences.IsBlocked = false;
 
                 db.Experiences.Add(experiences);
                 db.SaveChanges();
@@ -310,7 +310,7 @@ namespace RinconArtesano.Controllers
         {
             Experiences experiences = db.Experiences.Find(id);
             experiences.DateNull = null;
-            experiences.Bloqueado = false;
+            experiences.IsBlocked = false;
 
             db.SaveChanges();
             return Json(new { message = "Experiencia activada exitosamente.", status = "OK" });

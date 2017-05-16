@@ -23,15 +23,15 @@
         <AssociationConnector Association="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres" />
         <EntityTypeShape EntityType="RinconArtesanoModel.Denuncias" Width="1.5" PointX="16.25" PointY="10.375" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_AspNetUsers" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.Experiences" Width="1.5" PointX="7.875" PointY="13.25" />
-        <AssociationConnector Association="RinconArtesanoModel.FK_Experiences_AspNetUsers" />
-        <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_Experiences" />
-        <AssociationConnector Association="RinconArtesanoModel.FK_Files_Experiences" />
         <EntityTypeShape EntityType="RinconArtesanoModel.Products" Width="1.5" PointX="11" PointY="6.875" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Products_AspNetUsers" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_Products" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Files_Products" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Products_ProductsCategories" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Experiences" Width="1.5" PointX="7.875" PointY="13.25" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Experiences_AspNetUsers" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_Experiences" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Files_Experiences" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

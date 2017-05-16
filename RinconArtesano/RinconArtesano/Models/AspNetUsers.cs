@@ -24,8 +24,8 @@ namespace RinconArtesano.Models
             this.MessagesHijos = new HashSet<MessagesHijos>();
             this.MessagesPadres = new HashSet<MessagesPadres>();
             this.Denuncias = new HashSet<Denuncias>();
-            this.Experiences = new HashSet<Experiences>();
             this.Products = new HashSet<Products>();
+            this.Experiences = new HashSet<Experiences>();
         }
     
         public string Id { get; set; }
@@ -56,8 +56,8 @@ namespace RinconArtesano.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Denuncias> Denuncias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Experiences> Experiences { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Products> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Experiences> Experiences { get; set; }
     }
 }

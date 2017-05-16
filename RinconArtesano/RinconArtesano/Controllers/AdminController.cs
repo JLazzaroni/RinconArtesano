@@ -114,11 +114,11 @@ namespace RinconArtesano.Controllers
                 int intSkip = (intPage - 1) * intPageSize;
 
                 intTotalPageCount = db.Experiences
-                    .Where(x => x.ExperienceTitle.Contains(searchStringExperience) & (x.DateNull.HasValue || x.Bloqueado == true))
+                    .Where(x => x.ExperienceTitle.Contains(searchStringExperience) & (x.DateNull.HasValue || x.IsBlocked == true))
                     .Count();
 
                 List<Experiences> result = db.Experiences
-                    .Where(x => x.ExperienceTitle.Contains(searchStringExperience) & (x.DateNull.HasValue || x.Bloqueado == true))
+                    .Where(x => x.ExperienceTitle.Contains(searchStringExperience) & (x.DateNull.HasValue || x.IsBlocked == true))
                     .OrderBy(x => x.ExperienceTitle)
                     .Skip(intSkip)
                     .Take(intPageSize)
@@ -169,11 +169,11 @@ namespace RinconArtesano.Controllers
                 int intSkip = (intPage - 1) * intPageSize;
 
                 intTotalPageCount = db.Products
-                    .Where(x => x.ProductTitle.Contains(searchStringProduct) & (x.DateNull.HasValue || x.Bloqueado == true))
+                    .Where(x => x.ProductTitle.Contains(searchStringProduct) & (x.DateNull.HasValue || x.IsBlocked == true))
                     .Count();
 
                 List<Products> result = db.Products
-                    .Where(x => x.ProductTitle.Contains(searchStringProduct) & (x.DateNull.HasValue || x.Bloqueado == true))
+                    .Where(x => x.ProductTitle.Contains(searchStringProduct) & (x.DateNull.HasValue || x.IsBlocked == true))
                     .OrderBy(x => x.ProductTitle)
                     .Skip(intSkip)
                     .Take(intPageSize)
