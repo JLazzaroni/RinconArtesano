@@ -57,6 +57,9 @@
     <EntitySetMapping Name="ProductsCategories">
       <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
         <MappingFragment StoreEntitySet="ProductsCategories">
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
           <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
           <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
         </MappingFragment>
@@ -133,6 +136,7 @@
     <EntitySetMapping Name="Experiences">
       <EntityTypeMapping TypeName="RinconArtesanoModel.Experiences">
         <MappingFragment StoreEntitySet="Experiences">
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
           <ScalarProperty Name="Bloqueado" ColumnName="Bloqueado" />
           <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
           <ScalarProperty Name="DateModification" ColumnName="DateModification" />

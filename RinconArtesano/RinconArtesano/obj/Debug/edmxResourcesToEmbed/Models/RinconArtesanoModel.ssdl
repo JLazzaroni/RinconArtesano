@@ -76,6 +76,7 @@
     <Property Name="DateModification" Type="datetime" />
     <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
     <Property Name="Bloqueado" Type="bit" />
+    <Property Name="IsBlocked" Type="char" MaxLength="1" />
   </EntityType>
   <EntityType Name="Files">
     <Key>
@@ -137,7 +138,10 @@
       <PropertyRef Name="ProductCategoryId" />
     </Key>
     <Property Name="ProductCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProductCategoryDescriptions" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductCategoryDescriptions" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
