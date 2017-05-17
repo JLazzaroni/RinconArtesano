@@ -13,19 +13,19 @@ namespace RinconArtesano.Controllers
         public ActionResult Index()
         {
             var productos = (from p in db.Products
-                             where p.DateNull == null && p.IsBlocked == false
+                             where p.DateNull == null
                              orderby p.DateAdd descending
                              select p);
 
-            List<Products> prod = productos.Take(3).ToList();
+            List<Products> prod = productos.Where(x => x.IsBlocked == false).Take(3).ToList();
             ViewBag.Productss = prod;
 
             var experiencias = (from e in db.Experiences
-                                 where e.DateNull == null && e.IsBlocked == false
+                                 where e.DateNull == null
                                  orderby e.DateAdd descending
                                  select e);
 
-            List<Experiences> exper = experiencias.Take(3).ToList();
+            List<Experiences> exper = experiencias.Where(x => x.IsBlocked == false).Take(3).ToList();
             ViewBag.Experiences = exper;
 
             return View();
