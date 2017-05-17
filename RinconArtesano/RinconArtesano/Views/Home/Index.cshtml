@@ -1,8 +1,8 @@
 ﻿@{
     List<Products> products = ViewBag.Productss;
-    products = products.Where(x => (bool)x.IsBlocked == false).Take(3).ToList();
+    products = products.Where(x => x.IsBlocked == false).Take(3).ToList();
     List<Experiences> experiences = ViewBag.Experiences;
-    experiences = experiences.Where(x => (bool)x.IsBlocked == false).Take(3).ToList();
+    experiences = experiences.Where(x => x.IsBlocked == false).Take(3).ToList();
 }
 
 <header class="intro-header" style="background-image: url('Content/Images/portada.jpg'); margin-top:50px;">

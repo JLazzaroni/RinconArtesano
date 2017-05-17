@@ -219,4 +219,3 @@ C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.O
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.dll
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache
