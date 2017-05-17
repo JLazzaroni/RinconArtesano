@@ -26,7 +26,9 @@ public partial class AspNetUsers
 
         this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
 
-        this.AspNetRoles = new HashSet<AspNetRoles>();
+        this.Denuncias = new HashSet<Denuncias>();
+
+        this.Experiences = new HashSet<Experiences>();
 
         this.Files = new HashSet<Files>();
 
@@ -34,11 +36,9 @@ public partial class AspNetUsers
 
         this.MessagesPadres = new HashSet<MessagesPadres>();
 
-        this.Denuncias = new HashSet<Denuncias>();
-
         this.Products = new HashSet<Products>();
 
-        this.Experiences = new HashSet<Experiences>();
+        this.AspNetRoles = new HashSet<AspNetRoles>();
 
     }
 
@@ -79,7 +79,11 @@ public partial class AspNetUsers
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+    public virtual ICollection<Denuncias> Denuncias { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Experiences> Experiences { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
@@ -95,15 +99,11 @@ public partial class AspNetUsers
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Denuncias> Denuncias { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
     public virtual ICollection<Products> Products { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Experiences> Experiences { get; set; }
+    public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
 
 }
 
