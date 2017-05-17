@@ -17,7 +17,7 @@ namespace RinconArtesano.Controllers
                              orderby p.DateAdd descending
                              select p);
 
-            List<Products> prod = productos.Where(x => (bool)x.IsBlocked == false).Take(3).ToList();
+            List<Products> prod = productos.ToList();
             ViewBag.Productss = prod;
 
             var experiencias = (from e in db.Experiences
@@ -25,7 +25,7 @@ namespace RinconArtesano.Controllers
                                  orderby e.DateAdd descending
                                  select e);
 
-            List<Experiences> exper = experiencias.Where(x => (bool)x.IsBlocked == false).Take(3).ToList();
+            List<Experiences> exper = experiencias.ToList();
             ViewBag.Experiences = exper;
 
             return View();
