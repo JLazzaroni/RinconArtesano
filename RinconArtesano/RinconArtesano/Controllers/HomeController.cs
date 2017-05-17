@@ -12,20 +12,10 @@ namespace RinconArtesano.Controllers
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
         public ActionResult Index()
         {
-            var productos = (from p in db.Products
-                             where p.DateNull == null
-                             orderby p.DateAdd descending
-                             select p);
-
-            List<Products> prod = productos.ToList();
+            List<Products> prod = db.Products.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).Take(3).ToList();
             ViewBag.Productss = prod;
 
-            var experiencias = (from e in db.Experiences
-                                 where e.DateNull == null
-                                 orderby e.DateAdd descending
-                                 select e);
-
-            List<Experiences> exper = experiencias.ToList();
+            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).Take(3).ToList();
             ViewBag.Experiences = exper;
 
             return View();
