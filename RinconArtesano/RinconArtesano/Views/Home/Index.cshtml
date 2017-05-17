@@ -1,8 +1,9 @@
 ﻿@{
     List<Products> products = ViewBag.Productss;
-    products = products.Where(x => x.IsBlocked == false).Take(3).ToList();
+    List<Products>  produc = products.Where(x => x.IsBlocked == false).Take(3).ToList();
+    
     List<Experiences> experiences = ViewBag.Experiences;
-    experiences = experiences.Where(x => x.IsBlocked == false).Take(3).ToList();
+    List<Experiences> exper = experiences.Where(x => x.IsBlocked == false).Take(3).ToList();
 }
 
 <header class="intro-header" style="background-image: url('Content/Images/portada.jpg'); margin-top:50px;">
@@ -33,7 +34,7 @@
         <hr />
 
         <div class="row">
-            @foreach (var prod in products)
+            @foreach (var prod in produc)
             {
                 <div class="col-lg-4 col-md-4">
                     <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" width="250" height="250">
@@ -62,7 +63,7 @@
         <hr />
 
         <div class="row">
-            @foreach (var exp in experiences)
+            @foreach (var exp in exper)
             {
                 <div class="col-lg-4 col-md-4">
                     <img src="@Url.Content(@exp.Files.FirstOrDefault().FilePath)" alt="@exp.Files.FirstOrDefault().FileName" width="250" height="250">
