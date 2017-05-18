@@ -219,3 +219,4 @@ C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.O
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.dll
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache
+C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache

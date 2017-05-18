@@ -49,3 +49,17 @@
         $('.modal-backdrop').remove();
     }
 });
+
+$("input:radio").change(function () {
+    var value = $("input:radio:checked").val();
+
+    if (value == "comentario")
+    {
+        document.getElementById("denunciaRespuestaComentario").disabled = false;            
+    }
+    else
+    {
+        document.getElementById("denunciaRespuestaComentario").disabled = true;
+        document.getElementById("denunciaRespuestaComentario").value = "";
+    }
+});
