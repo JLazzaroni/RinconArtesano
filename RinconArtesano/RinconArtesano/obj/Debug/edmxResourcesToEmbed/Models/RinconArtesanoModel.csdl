@@ -166,7 +166,7 @@
     <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DateModification" Type="DateTime" Precision="3" />
     <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="IsBlocked" Type="Boolean" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="Experiences" ToRole="AspNetUsers" />
     <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Experiences" ToRole="Denuncias" />
     <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Experiences" ToRole="Files" />
@@ -231,7 +231,7 @@
     <Property Name="DateNull" Type="DateTime" Precision="3" />
     <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DateModification" Type="DateTime" Precision="3" />
-    <Property Name="IsBlocked" Type="Boolean" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Products_AspNetUsers" FromRole="Products" ToRole="AspNetUsers" />
     <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Products" FromRole="Products" ToRole="Denuncias" />
     <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Products" FromRole="Products" ToRole="Files" />

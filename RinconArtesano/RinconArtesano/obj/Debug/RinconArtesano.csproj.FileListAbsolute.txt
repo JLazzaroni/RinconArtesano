@@ -145,7 +145,6 @@ C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\Rincon
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.dll
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
-C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll.config
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.pdb
@@ -219,3 +218,4 @@ C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.O
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.dll
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache

@@ -12,10 +12,10 @@ namespace RinconArtesano.Controllers
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
         public ActionResult Index()
         {
-            List<Products> prod = db.Products.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).ToList();
+            List<Products> prod = db.Products.Where(x => x.DateNull == null && x.IsBlocked == false).OrderBy(x => x.DateAdd).Take(3).ToList();
             ViewBag.Productss = prod;
 
-            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null).OrderBy(x => x.DateAdd).ToList();
+            List<Experiences> exper = db.Experiences.Where(x => x.DateNull == null && x.IsBlocked == false).OrderBy(x => x.DateAdd).Take(3).ToList();
             ViewBag.Experiences = exper;
 
             return View();

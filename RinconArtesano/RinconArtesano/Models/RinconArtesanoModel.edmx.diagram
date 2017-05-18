@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3b075a0e43fd47c4a2720213bb2431b3" Name="Diagram1" ZoomLevel="34">
+      <Diagram DiagramId="3b075a0e43fd47c4a2720213bb2431b3" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="RinconArtesanoModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetRoles" Width="1.5" PointX="3.375" PointY="13.25" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserClaims" Width="1.5" PointX="7.875" PointY="12.25" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserLogins" Width="1.5" PointX="7.875" PointY="22.75" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserClaims" Width="1.5" PointX="7.875" PointY="26" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserLogins" Width="1.5" PointX="7.875" PointY="8" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUsers" Width="1.5" PointX="5.625" PointY="11.625" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.Denuncias" Width="1.5" PointX="13.125" PointY="15.25" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.Experiences" Width="1.5" PointX="7.875" PointY="18.625" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.Files" Width="1.5" PointX="16.125" PointY="14.875" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Denuncias" Width="1.5" PointX="10.125" PointY="15.25" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Experiences" Width="1.5" PointX="7.875" PointY="18.5" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Files" Width="1.5" PointX="13.125" PointY="14.875" />
         <EntityTypeShape EntityType="RinconArtesanoModel.MessagesHijos" Width="1.5" PointX="10.125" PointY="20.25" />
         <EntityTypeShape EntityType="RinconArtesanoModel.MessagesPadres" Width="1.5" PointX="7.875" PointY="28.75" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.Products" Width="1.5" PointX="10.875" PointY="12.375" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.ProductsCategories" Width="1.5" PointX="8.625" PointY="15" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Products" Width="1.5" PointX="7.875" PointY="12.375" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.ProductsCategories" Width="1.5" PointX="5.625" PointY="8" />
         <AssociationConnector Association="RinconArtesanoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="RinconArtesanoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_AspNetUsers" />
