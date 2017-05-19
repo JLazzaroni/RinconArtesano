@@ -178,7 +178,7 @@ namespace RinconArtesano.Controllers
                     .Skip(intSkip)
                     .Take(intPageSize)
                     .ToList();
-                
+
                 ViewBag.Products = result;
 
                 return View();
@@ -192,7 +192,7 @@ namespace RinconArtesano.Controllers
                 return View();
             }
         }
-        
+
         // Users *****************************
 
         // GET: /Admin/Edit/Create 
@@ -558,7 +558,7 @@ namespace RinconArtesano.Controllers
                 var UsersInRole = roleManager.FindByName(RoleName).Users.Count();
                 if (UsersInRole > 0)
                 {
-                    throw new Exception( String.Format("No se pudo eliminar el Rol {0} porque el mismo aun tiene usuarios asignados.",RoleName));
+                    throw new Exception(String.Format("No se pudo eliminar el Rol {0} porque el mismo aun tiene usuarios asignados.", RoleName));
                 }
 
                 var objRoleToDelete = (from objRole in roleManager.Roles
@@ -647,11 +647,11 @@ namespace RinconArtesano.Controllers
 
             var colRoleSelectList = roleManager.Roles.OrderBy(x => x.Name).ToList();
 
-            SelectRoleListItems.Add( new SelectListItem { Text = "Select", Value = "0" });
+            SelectRoleListItems.Add(new SelectListItem { Text = "Select", Value = "0" });
 
             foreach (var item in colRoleSelectList)
             {
-                SelectRoleListItems.Add( new SelectListItem { Text = item.Name.ToString(), Value = item.Name.ToString() });
+                SelectRoleListItems.Add(new SelectListItem { Text = item.Name.ToString(), Value = item.Name.ToString() });
             }
 
             return SelectRoleListItems;
@@ -709,7 +709,7 @@ namespace RinconArtesano.Controllers
                 if (removePassword.Succeeded)
                 {
                     // Agregar nueva contraseña
-                    var AddPassword = UserManager.AddPassword( result.Id, vm.Password );
+                    var AddPassword = UserManager.AddPassword(result.Id, vm.Password);
 
                     if (AddPassword.Errors.Count() > 0)
                     {
@@ -782,8 +782,8 @@ namespace RinconArtesano.Controllers
 
             var listaRolesForUser = UserManager.GetRoles(user.Id).ToList();
             var listaRolesUserInNotIn = (from objRole in listaAllRoles
-                                       where !listaRolesForUser.Contains(objRole)
-                                       select objRole).ToList();
+                                         where !listaRolesForUser.Contains(objRole)
+                                         select objRole).ToList();
 
             if (listaRolesUserInNotIn.Count() == 0)
             {
@@ -793,5 +793,177 @@ namespace RinconArtesano.Controllers
             return listaRolesUserInNotIn;
         }
 
+        //CATEGORIAS
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        public ActionResult GestionarCategorias()
+        {
+            List<ProductsCategories> listaProductsCategories = (from category in db.ProductsCategories
+                                                                where category.DateNull == null
+                                                                select category).ToList();
+
+            return View(listaProductsCategories);
+        }
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        public ActionResult AddCategory()
+        {
+            ProductsCategories pc = new ProductsCategories();
+
+            return View(pc);
+        }
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCategory(ProductsCategories pc)
+        {
+            try
+            {
+                if (pc == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                if ((from x in db.ProductsCategories where x.ProductCategoryName == pc.ProductCategoryName select x).Any())
+                {
+                    ModelState.AddModelError("ProductCategoryName", "Ya existe una categoría con este nombre.");
+                }
+                if (String.IsNullOrWhiteSpace(pc.ProductCategoryName))
+                    ModelState.AddModelError("ProductCategoryName", "En el campo Nombre no puede estar vacio.");
+                if (String.IsNullOrWhiteSpace(pc.ProductCategoryDescriptions))
+                    ModelState.AddModelError("ProductCategoryDescriptions", "En el campo Descripción no puede estar vacio.");
+
+                if (!ModelState.IsValid)
+                {
+                    return View(pc);
+                }
+                else
+                {
+                    ProductsCategories productsCategories = new ProductsCategories();
+                    productsCategories.ProductCategoryName = pc.ProductCategoryName;
+                    productsCategories.ProductCategoryDescriptions = pc.ProductCategoryDescriptions;
+                    productsCategories.DateAdd = DateTime.Now;
+                    db.ProductsCategories.Add(productsCategories);
+                    db.SaveChanges();
+
+                    List<ProductsCategories> listaProductsCategories = (from category in db.ProductsCategories
+                                                                        where category.DateNull == null
+                                                                        select category).ToList();
+
+                    return View("GestionarCategorias", listaProductsCategories);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+                ProductsCategories cat = new ProductsCategories();
+                return View("AddCategory", cat);
+            }
+        }
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        public ActionResult DeleteCategory(int ProductCategoryId)
+        {
+            try
+            {
+                ProductsCategories pc = db.ProductsCategories.Where(x => x.ProductCategoryId == ProductCategoryId).Single();
+
+                if ((from x in db.Products where x.ProductsCategories.ProductCategoryId == ProductCategoryId select x).Any())
+                {
+                    ModelState.AddModelError("", String.Format("No se pudo eliminar la categoria \"{0}\" ya que esta asignada a una publicación.", pc.ProductCategoryName));
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    List<ProductsCategories> listaProductsCategories = (from category in db.ProductsCategories
+                                                                        where category.DateNull == null
+                                                                        select category).ToList();
+
+                    return View("GestionarCategorias", listaProductsCategories);
+                }
+                else
+                {
+                    pc.DateNull = DateTime.Now;
+                    db.SaveChanges();
+
+                    List<ProductsCategories> listaProductsCategories = (from category in db.ProductsCategories
+                                                                        where category.DateNull == null
+                                                                        select category).ToList();
+
+                    return View("GestionarCategorias", listaProductsCategories);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+
+                List<ProductsCategories> listaProductsCategories = (from category in db.ProductsCategories
+                                                                    where category.DateNull == null
+                                                                    select category).ToList();
+
+                return View("GestionarCategorias", listaProductsCategories);
+            }
+        }
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        public ActionResult EditCategory(int ProductCategoryId)
+        {
+            ProductsCategories pc = db.ProductsCategories.Where(x => x.ProductCategoryId == ProductCategoryId).Single();
+            if (pc == null)
+            {
+                return HttpNotFound();
+            }
+            return View(pc);
+        }
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCategory(ProductsCategories pc)
+        {
+            try
+            {
+                if (pc == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                if ((from x in db.ProductsCategories where x.ProductCategoryName == pc.ProductCategoryName select x).Any())
+                {
+                    ModelState.AddModelError("ProductCategoryName", "Ya existe una categoría con este nombre.");
+                }
+                if (String.IsNullOrWhiteSpace(pc.ProductCategoryName))
+                    ModelState.AddModelError("ProductCategoryName", "En el campo Nombre no puede estar vacio.");
+                if (String.IsNullOrWhiteSpace(pc.ProductCategoryDescriptions))
+                    ModelState.AddModelError("ProductCategoryDescriptions", "En el campo Descripción no puede estar vacio.");
+
+                if (!ModelState.IsValid)
+                {
+                    return View(pc);
+                }
+                else
+                {
+
+                    ProductsCategories productsCategories = db.ProductsCategories.Where(x => x.ProductCategoryId == pc.ProductCategoryId).Single();
+                    productsCategories.ProductCategoryName = pc.ProductCategoryName;
+                    productsCategories.ProductCategoryDescriptions = pc.ProductCategoryDescriptions;
+                    db.SaveChanges();
+
+                    List<ProductsCategories> listaProductsCategories = (from category in db.ProductsCategories
+                                                                        where category.DateNull == null
+                                                                        select category).ToList();
+
+                    return View("GestionarCategorias", listaProductsCategories);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+
+                ProductsCategories category = db.ProductsCategories.Where(x => x.ProductCategoryId == pc.ProductCategoryId).Single();
+                return View("EditCategory", category);
+            }
+        }
     }
 }

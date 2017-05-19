@@ -1,0 +1,34 @@
+﻿@model RinconArtesano.Models.ProductsCategories
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 class="form__titulo">Editar Categoría</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Nombre:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ProductCategoryName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductCategoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+           @Html.Label("Descripción:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ProductCategoryDescriptions, new { @class = "form-control", style = "max-width: none" })
+                @Html.ValidationMessageFor(model => model.ProductCategoryDescriptions, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+                @Html.ActionLink("Volver al listado", "GestionarCategorias", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
