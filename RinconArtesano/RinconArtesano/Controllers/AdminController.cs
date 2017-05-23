@@ -647,7 +647,7 @@ namespace RinconArtesano.Controllers
 
             var colRoleSelectList = roleManager.Roles.OrderBy(x => x.Name).ToList();
 
-            SelectRoleListItems.Add(new SelectListItem { Text = "Select", Value = "0" });
+            SelectRoleListItems.Add(new SelectListItem { Text = "Seleccione un rol", Value = "0" });
 
             foreach (var item in colRoleSelectList)
             {

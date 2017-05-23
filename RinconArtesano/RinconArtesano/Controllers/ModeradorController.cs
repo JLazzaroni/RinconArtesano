@@ -198,9 +198,6 @@ namespace RinconArtesano.Controllers
         public ActionResult Create()
         {
             ExpandedUserViewModel nvm = new ExpandedUserViewModel();
-
-            ViewBag.Roles = GetAllRolesAsSelectList();
-
             return View(nvm);
         }
 
@@ -254,7 +251,6 @@ namespace RinconArtesano.Controllers
                 }
                 else
                 {
-                    ViewBag.Roles = GetAllRolesAsSelectList();
                     ModelState.AddModelError(string.Empty,
                         "Error: Error al crear el usuario. Comprobar los requisitos del password.");
                     return View(vm);

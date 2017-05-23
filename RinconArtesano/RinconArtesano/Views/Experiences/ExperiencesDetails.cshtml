@@ -55,19 +55,19 @@
                                         <span>
                                             @if (Model.IsBlocked == true && !Model.DateNull.HasValue)
                                             {
-                                                <a id="manualUnblockBtn" class="btn btn-primary" style="position: absolute;right: 0;top: 24px;margin-right: 35px;padding: 2px 12px;width: 140px;">DESBLOQUEAR</a>
+                                                <a id="manualUnblockBtn" class="btn btn-primary" style="padding: 2px 12px;width: 140px;">DESBLOQUEAR</a>
                                             }
                                             else if (!Model.DateNull.HasValue)
                                             {
-                                                <a id="manualBlockBtn" class="btn btn-warning" style="position: absolute;right: 0;top: 24px;margin-right: 35px;padding: 2px 12px;width: 140px;">BLOQUEAR</a>
+                                                <a id="manualBlockBtn" class="btn btn-warning" style="padding: 2px 12px;width: 140px;">BLOQUEAR</a>
                                             }
                                             @if (Model.DateNull.HasValue)
                                             {
-                                                <a id="manualActivateBtn" class="btn btn-success" style="position: absolute;right: 0;top: 24px;margin-right: 35px;padding: 2px 12px;width: 140px;">ACTIVAR</a>
+                                                <a id="manualActivateBtn" class="btn btn-success" style="padding: 2px 12px;width: 140px;">ACTIVAR</a>
                                             }
                                             else if (!Model.DateNull.HasValue)
                                             {
-                                                <a id="manualDeleteBtn" class="btn btn-danger" style="position: absolute;right: 0;top: 52px;margin-right: 35px;padding: 2px 12px;width: 140px;">ELIMINAR</a>
+                                                <a id="manualDeleteBtn" class="btn btn-danger" style="padding: 2px 12px;width: 140px;">ELIMINAR</a>
                                             }
                                         </span>
                                     }
