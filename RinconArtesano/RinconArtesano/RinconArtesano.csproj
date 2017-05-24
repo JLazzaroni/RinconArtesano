@@ -220,12 +220,19 @@
     <Compile Include="Models\MessagesPadres.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NoVigentesExperiences.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoVigentesProducts.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Products.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductsCategories.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductsViewModel.cs" />
     <Compile Include="Models\RinconArtesanoModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +252,12 @@
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRolesViewModel.cs" />
+    <Compile Include="Models\VigentesExperiences.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VigentesProducts.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -219,3 +219,4 @@ C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtes
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache

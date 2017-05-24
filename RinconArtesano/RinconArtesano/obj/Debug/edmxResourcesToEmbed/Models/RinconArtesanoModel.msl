@@ -163,5 +163,65 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NoVigentesExperiences">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.NoVigentesExperiences">
+        <MappingFragment StoreEntitySet="NoVigentesExperiences">
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
+          <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
+          <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoVigentesProducts">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.NoVigentesProducts">
+        <MappingFragment StoreEntitySet="NoVigentesProducts">
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VigentesExperiences">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.VigentesExperiences">
+        <MappingFragment StoreEntitySet="VigentesExperiences">
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
+          <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
+          <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VigentesProducts">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.VigentesProducts">
+        <MappingFragment StoreEntitySet="VigentesProducts">
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

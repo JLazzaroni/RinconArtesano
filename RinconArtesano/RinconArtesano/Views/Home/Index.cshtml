@@ -1,7 +1,10 @@
 ﻿@{
     List<Products> products = ViewBag.Productss;
 
-    List<Experiences> experiences = ViewBag.Experiences;
+    //List<Experiences> experiences = ViewBag.Experiences;
+    //List<VigentesProducts> products = ViewBag.Productss;
+
+    //List<VigentesExperiences> experiences = ViewBag.Experiences;
 }
 
 <header class="intro-header" style="background-image: url('Content/Images/portada.jpg'); margin-top:50px;">
@@ -55,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div>
+    @*<div>
         <br />
         <h4 class="form__titulo">Experiencias - Publicaciones de usuarios donde expresan sus distintas experiencias</h4>
         <hr />
@@ -84,5 +87,5 @@
                 <a href=@Url.Action("Home", "Experiences") class="btn btn-default">Ver mas</a>
             </div>
         </div>
-    </div>
+    </div>*@
 </body>

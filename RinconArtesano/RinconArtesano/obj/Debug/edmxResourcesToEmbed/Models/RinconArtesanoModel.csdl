@@ -73,6 +73,10 @@
       <End Role="MessagesPadres" EntitySet="MessagesPadres" />
       <End Role="MessagesHijos" EntitySet="MessagesHijos" />
     </AssociationSet>
+    <EntitySet Name="NoVigentesExperiences" EntityType="RinconArtesanoModel.NoVigentesExperiences" />
+    <EntitySet Name="NoVigentesProducts" EntityType="RinconArtesanoModel.NoVigentesProducts" />
+    <EntitySet Name="VigentesExperiences" EntityType="RinconArtesanoModel.VigentesExperiences" />
+    <EntitySet Name="VigentesProducts" EntityType="RinconArtesanoModel.VigentesProducts" />
   </EntityContainer>
   <EntityType Name="AspNetRoles">
     <Key>
@@ -424,4 +428,82 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="NoVigentesExperiences">
+    <Key>
+      <PropertyRef Name="ExperienceId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ExperienceTitle" />
+      <PropertyRef Name="ExperienceDescription" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ExperienceTitle" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="ExperienceDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DateNull" Type="DateTime" Precision="3" />
+    <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModification" Type="DateTime" Precision="3" />
+    <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NoVigentesProducts">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ProductTitle" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="IdCategory" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IdCategory" Type="Int32" Nullable="false" />
+    <Property Name="DateNull" Type="DateTime" Precision="3" />
+    <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModification" Type="DateTime" Precision="3" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VigentesExperiences">
+    <Key>
+      <PropertyRef Name="ExperienceId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ExperienceTitle" />
+      <PropertyRef Name="ExperienceDescription" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ExperienceTitle" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
+    <Property Name="ExperienceDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DateNull" Type="DateTime" Precision="3" />
+    <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModification" Type="DateTime" Precision="3" />
+    <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VigentesProducts">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ProductTitle" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="IdCategory" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IdCategory" Type="Int32" Nullable="false" />
+    <Property Name="DateNull" Type="DateTime" Precision="3" />
+    <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateModification" Type="DateTime" Precision="3" />
+    <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+  </EntityType>
 </Schema>

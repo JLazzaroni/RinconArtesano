@@ -152,6 +152,92 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.NoVigentesExperiences' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="NoVigentesExperiences">
+    <Key>
+      <PropertyRef Name="ExperienceId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ExperienceTitle" />
+      <PropertyRef Name="ExperienceDescription" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ExperienceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ExperienceTitle" Type="varchar" MaxLength="55" Nullable="false" />
+    <Property Name="ExperienceDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateModification" Type="datetime" />
+    <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.NoVigentesProducts' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="NoVigentesProducts">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ProductTitle" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="IdCategory" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProductTitle" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ProductDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="IdCategory" Type="int" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateModification" Type="datetime" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.VigentesExperiences' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="VigentesExperiences">
+    <Key>
+      <PropertyRef Name="ExperienceId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ExperienceTitle" />
+      <PropertyRef Name="ExperienceDescription" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ExperienceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ExperienceTitle" Type="varchar" MaxLength="55" Nullable="false" />
+    <Property Name="ExperienceDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateModification" Type="datetime" />
+    <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.VigentesProducts' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="VigentesProducts">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="UsersId" />
+      <PropertyRef Name="ProductTitle" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="IdCategory" />
+      <PropertyRef Name="DateAdd" />
+      <PropertyRef Name="IsBlocked" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProductTitle" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="ProductDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="IdCategory" Type="int" Nullable="false" />
+    <Property Name="DateNull" Type="datetime" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateModification" Type="datetime" />
+    <Property Name="IsBlocked" Type="bit" Nullable="false" />
+  </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -366,6 +452,58 @@
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NoVigentesExperiences" EntityType="Self.NoVigentesExperiences" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NoVigentesExperiences].[ExperienceId] AS [ExperienceId], 
+    [NoVigentesExperiences].[UsersId] AS [UsersId], 
+    [NoVigentesExperiences].[ExperienceTitle] AS [ExperienceTitle], 
+    [NoVigentesExperiences].[ExperienceDescription] AS [ExperienceDescription], 
+    [NoVigentesExperiences].[DateNull] AS [DateNull], 
+    [NoVigentesExperiences].[DateAdd] AS [DateAdd], 
+    [NoVigentesExperiences].[DateModification] AS [DateModification], 
+    [NoVigentesExperiences].[YoutubePath] AS [YoutubePath], 
+    [NoVigentesExperiences].[IsBlocked] AS [IsBlocked]
+    FROM [dbo].[NoVigentesExperiences] AS [NoVigentesExperiences]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="NoVigentesProducts" EntityType="Self.NoVigentesProducts" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NoVigentesProducts].[ProductId] AS [ProductId], 
+    [NoVigentesProducts].[UsersId] AS [UsersId], 
+    [NoVigentesProducts].[ProductTitle] AS [ProductTitle], 
+    [NoVigentesProducts].[ProductDescription] AS [ProductDescription], 
+    [NoVigentesProducts].[IdCategory] AS [IdCategory], 
+    [NoVigentesProducts].[DateNull] AS [DateNull], 
+    [NoVigentesProducts].[DateAdd] AS [DateAdd], 
+    [NoVigentesProducts].[DateModification] AS [DateModification], 
+    [NoVigentesProducts].[IsBlocked] AS [IsBlocked]
+    FROM [dbo].[NoVigentesProducts] AS [NoVigentesProducts]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VigentesExperiences" EntityType="Self.VigentesExperiences" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VigentesExperiences].[ExperienceId] AS [ExperienceId], 
+    [VigentesExperiences].[UsersId] AS [UsersId], 
+    [VigentesExperiences].[ExperienceTitle] AS [ExperienceTitle], 
+    [VigentesExperiences].[ExperienceDescription] AS [ExperienceDescription], 
+    [VigentesExperiences].[DateNull] AS [DateNull], 
+    [VigentesExperiences].[DateAdd] AS [DateAdd], 
+    [VigentesExperiences].[DateModification] AS [DateModification], 
+    [VigentesExperiences].[YoutubePath] AS [YoutubePath], 
+    [VigentesExperiences].[IsBlocked] AS [IsBlocked]
+    FROM [dbo].[VigentesExperiences] AS [VigentesExperiences]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VigentesProducts" EntityType="Self.VigentesProducts" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VigentesProducts].[ProductId] AS [ProductId], 
+    [VigentesProducts].[UsersId] AS [UsersId], 
+    [VigentesProducts].[ProductTitle] AS [ProductTitle], 
+    [VigentesProducts].[ProductDescription] AS [ProductDescription], 
+    [VigentesProducts].[IdCategory] AS [IdCategory], 
+    [VigentesProducts].[DateNull] AS [DateNull], 
+    [VigentesProducts].[DateAdd] AS [DateAdd], 
+    [VigentesProducts].[DateModification] AS [DateModification], 
+    [VigentesProducts].[IsBlocked] AS [IsBlocked]
+    FROM [dbo].[VigentesProducts] AS [VigentesProducts]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
