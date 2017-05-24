@@ -1,5 +1,4 @@
 ﻿@model RinconArtesano.Models.Products
-
 @{
     ViewBag.Title = "ProductsDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,7 +10,6 @@
         <br />
         <h4 class="form__titulo">Productos</h4>
         <hr />
-
         @Html.HiddenFor(model => model.ProductId)
         <div class="container-fluid">
             <div class="row">
@@ -72,7 +70,7 @@
                                         </span>
                                     }
                                 </h4>
-                                
+
                             </li>
                             <li style="display: inline-flex;">
                                 <div data-toggle="modal" data-target=".modalDenuncias" class="button btn-default" style="display: inline-flex;padding: 10px;">
@@ -93,20 +91,16 @@
                                 <p>
                                     @Html.DisplayFor(model => model.ProductDescription)
                                 </p>
-
                             </li>
                         </ul>
                     </section>
                 </div>
-
             </div>
-
         </div>
     </div>
     @Html.Partial("~/Views/Shared/_DenunciasModal.cshtml")
-        <p>
-            @Html.ActionLink("Volver", "Home")
-        </p>
+    <p>
+        @Html.ActionLink("Volver", "Home")
+    </p>
 </body>
-
 @Html.Partial("~/Views/Shared/_Messages.cshtml", Messages)

@@ -53,12 +53,13 @@
             <dd>
                 @Html.DisplayFor(model => model.DateModification)
             </dd>
-    
+
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
+
             <div class="form-actions no-color">
                 <input type="submit" value="Eliminar" class="btn btn-default" /> |
                 @Html.ActionLink("Volver", "Index")

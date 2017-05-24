@@ -145,77 +145,77 @@ C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\Rincon
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.dll
 C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
-C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll.config
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.pdb
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Antlr3.Runtime.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\EntityFramework.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\EntityFramework.SqlServer.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Core.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Cookies.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Facebook.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Google.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.OAuth.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Twitter.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Web.Infrastructure.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Newtonsoft.Json.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Owin.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Helpers.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Mvc.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Optimization.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Razor.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Deployment.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Razor.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\WebGrease.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Helpers.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Mvc.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Optimization.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.Razor.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Deployment.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Razor.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Antlr3.Runtime.pdb
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Newtonsoft.Json.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\EntityFramework.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\EntityFramework.SqlServer.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Core.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Facebook.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Cookies.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.OAuth.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Google.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Twitter.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\System.Web.Helpers.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\System.Web.Mvc.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\System.Web.Optimization.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\System.Web.Razor.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\System.Web.WebPages.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\System.Web.WebPages.Deployment.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\EntityFramework.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\EntityFramework.SqlServer.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.Google.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.dll
-C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll.config
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\RinconArtesano.pdb
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Antlr3.Runtime.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\EntityFramework.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\EntityFramework.SqlServer.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Newtonsoft.Json.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Owin.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Helpers.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Mvc.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Optimization.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Razor.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Deployment.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Razor.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\WebGrease.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Helpers.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Mvc.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Optimization.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.Razor.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Deployment.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\System.Web.WebPages.Razor.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Antlr3.Runtime.pdb
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Newtonsoft.Json.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\EntityFramework.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\EntityFramework.SqlServer.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\System.Web.Helpers.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\System.Web.Mvc.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\System.Web.Optimization.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\System.Web.Razor.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\System.Web.WebPages.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\EntityFramework.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.pdb
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\Nuevo\RinconArtesano\RinconArtesano\obj\Debug\RinconArtesano.csprojResolveAssemblyReference.cache

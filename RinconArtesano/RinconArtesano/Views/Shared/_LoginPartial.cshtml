@@ -3,30 +3,30 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav navbar-nav navbar-right", @style = "margin: 0px;" }))//"navbar-right" }))
     {
-    @Html.AntiForgeryToken()
-    
-    if (User.IsInRole("Administrador"))
-    {
-        <li>
-            <a style="color:#F44336" href=@Url.Action("Index", "Admin")>Administracion</a>
-        </li>
-    }
-    else
-    {
-        if (User.IsInRole("Moderador"))
+        @Html.AntiForgeryToken()
+
+        if (User.IsInRole("Administrador"))
         {
             <li>
-                <a style="color:#F44336" href=@Url.Action("Index", "Moderador")>Moderador</a>
+                <a style="color:#F44336" href=@Url.Action("Index", "Admin")>Administracion</a>
             </li>
         }
-        <li>
-            @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-    }
+        else
+        {
+            if (User.IsInRole("Moderador"))
+            {
+                <li>
+                    <a style="color:#F44336" href=@Url.Action("Index", "Moderador")>Moderador</a>
+                </li>
+            }
+            <li>
+                @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+        }
 
-    <li>
-        <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
-    </li>
+        <li>
+            <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+        </li>
     }
 }
 else

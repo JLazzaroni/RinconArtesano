@@ -32,9 +32,9 @@ namespace RinconArtesano.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -331,7 +331,7 @@ namespace RinconArtesano.Controllers
             base.Dispose(disposing);
         }
 
-#region Aplicaciones auxiliares
+        #region Aplicaciones auxiliares
         // Se usan para protección XSRF al agregar inicios de sesión externos
         private const string XsrfKey = "XsrfId";
 
@@ -382,6 +382,6 @@ namespace RinconArtesano.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

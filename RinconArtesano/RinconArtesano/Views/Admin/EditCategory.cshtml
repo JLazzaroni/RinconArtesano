@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="form-group">
-           @Html.Label("Descripción:", new { @class = "control-label col-md-2" })
+            @Html.Label("Descripción:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.ProductCategoryDescriptions, new { @class = "form-control", style = "max-width: none" })
                 @Html.ValidationMessageFor(model => model.ProductCategoryDescriptions, "", new { @class = "text-danger" })

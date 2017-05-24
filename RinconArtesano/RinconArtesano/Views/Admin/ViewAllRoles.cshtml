@@ -27,13 +27,13 @@
             <td>
                 @if (item.RoleName.ToLower() != "administrador")
                 {
-                    @Html.ActionLink("Eliminar", "DeleteUserRole", new { RoleName = item.RoleName }, new {
-                       onclick = "return confirm('¿Esta seguro que desea eliminar este Rol?');",
-                       @class = "btn btn-danger"
-                   })
+                    @Html.ActionLink("Eliminar", "DeleteUserRole", new { RoleName = item.RoleName }, new
+               {
+                   onclick = "return confirm('¿Esta seguro que desea eliminar este Rol?');",
+                   @class = "btn btn-danger"
+               })
                 }
             </td>
         </tr>
     }
 </table>
-

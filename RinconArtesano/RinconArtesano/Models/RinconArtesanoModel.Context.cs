@@ -25,17 +25,17 @@ namespace RinconArtesano.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<Denuncias> Denuncias { get; set; }
-        public virtual DbSet<Experiences> Experiences { get; set; }
-        public virtual DbSet<Files> Files { get; set; }
-        public virtual DbSet<MessagesHijos> MessagesHijos { get; set; }
-        public virtual DbSet<MessagesPadres> MessagesPadres { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProductsCategories> ProductsCategories { get; set; }
+        public virtual DbSet<Experiences> Experiences { get; set; }
+        public virtual DbSet<Files> Files { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Denuncias> Denuncias { get; set; }
+        public virtual DbSet<MessagesHijos> MessagesHijos { get; set; }
+        public virtual DbSet<MessagesPadres> MessagesPadres { get; set; }
     }
 }

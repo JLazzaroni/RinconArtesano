@@ -202,8 +202,6 @@
     <Compile Include="Models\Denuncias.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MessagePadreViewModels.cs" />
-    <Compile Include="Models\MessageHijoViewModels.cs" />
     <Compile Include="Models\DenunciasViewModel.cs" />
     <Compile Include="Models\Experiences.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
@@ -214,6 +212,8 @@
     <Compile Include="Models\FileTypes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessageHijoViewModels.cs" />
+    <Compile Include="Models\MessagePadreViewModels.cs" />
     <Compile Include="Models\MessagesHijos.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
@@ -402,26 +402,26 @@
     <Content Include="Views\Experiences\Details.cshtml" />
     <Content Include="Views\Experiences\Edit.cshtml" />
     <Content Include="Views\Experiences\Index.cshtml" />
-    <Content Include="Views\Products\Home.cshtml" />
-    <Content Include="Views\Products\ProductsDetails.cshtml" />
-    <Content Include="Views\Experiences\Home.cshtml" />
-    <Content Include="Views\Experiences\ExperiencesDetails.cshtml" />
-    <Content Include="Views\Shared\PermissionsError.cshtml" />
-    <Content Include="Views\Shared\_DenunciasModal.cshtml" />
-    <Content Include="Views\Moderador\Index.cshtml" />
-    <Content Include="Views\Admin\_UsuariosBuscar.cshtml" />
-    <Content Include="Views\Moderador\Create.cshtml" />
-    <Content Include="Views\Moderador\EditUser.cshtml" />
     <Content Include="Views\Admin\_MenuGestion.cshtml" />
-    <Content Include="Views\Moderador\GestionarExperiencias.cshtml" />
+    <Content Include="Views\Admin\_UsuariosBuscar.cshtml" />
+    <Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Admin\EditCategory.cshtml" />
+    <Content Include="Views\Admin\GestionarCategorias.cshtml" />
     <Content Include="Views\Admin\GestionarExperiencias.cshtml" />
     <Content Include="Views\Admin\GestionarProductos.cshtml" />
+    <Content Include="Views\Experiences\ExperiencesDetails.cshtml" />
+    <Content Include="Views\Experiences\Home.cshtml" />
+    <Content Include="Views\Moderador\Create.cshtml" />
+    <Content Include="Views\Moderador\EditUser.cshtml" />
+    <Content Include="Views\Moderador\GestionarExperiencias.cshtml" />
     <Content Include="Views\Moderador\GestionarProductos.cshtml" />
-    <Content Include="Views\Shared\_Messages.cshtml" />
+    <Content Include="Views\Moderador\Index.cshtml" />
     <Content Include="Views\Products\_ProductCategoryDescriptions.cshtml" />
-    <Content Include="Views\Admin\GestionarCategorias.cshtml" />
-    <Content Include="Views\Admin\EditCategory.cshtml" />
-    <Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Products\Home.cshtml" />
+    <Content Include="Views\Products\ProductsDetails.cshtml" />
+    <Content Include="Views\Shared\_DenunciasModal.cshtml" />
+    <Content Include="Views\Shared\_Messages.cshtml" />
+    <Content Include="Views\Shared\PermissionsError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

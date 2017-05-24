@@ -4,7 +4,6 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -13,7 +12,6 @@
 <body>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
-
 
     @using (Html.BeginForm("Edit", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -25,7 +23,6 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ProductId)
-
             <div class="form-group">
                 @Html.LabelFor(model => model.ProductTitle, "Título:", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -33,7 +30,6 @@
                     @Html.ValidationMessageFor(model => model.ProductTitle, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.ProductDescription, "Descripción:", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -41,7 +37,6 @@
                     @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.Label("Categoria:", new { @class = "control-label col-md-2" })
                 <div class="col-md-3">
@@ -58,9 +53,8 @@
             <br />
             <h4 class="form__titulo">Archivos</h4>
             <hr />
-
             <div class="form-group">
-    @{
+                @{
         int contador = 0;
         foreach (var item in Model.Files.OrderBy(f => f.FileId).ToList())
         {
@@ -75,8 +69,8 @@
             </div>
             contador++;
         }
-    }
-    @{
+                }
+                @{
         int cantMax = 3;
         int cantColl = Model.Files.Count();
         if (cantColl != cantMax)
@@ -103,9 +97,8 @@
                     </div>
                 </div>
             }
-         }
-    }
-
+        }
+                }
             </div>
         </div>
         <hr />

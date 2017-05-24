@@ -68,77 +68,77 @@
                         </ul>
                     </section>
                 </div>
-                
+
             </div>
-            
+
         </div>
 
         @*<dl class="dl-horizontal">
-            <dt>
-                Título:
-            </dt>
-
-            <dd>
-                
-            </dd>
-
-            <dt>
-                Descripción:
-            </dt>
-
-            <dd>
-                
-            </dd>
-
-            <dt>
-                Categoria:
-            </dt>
-
-            <dd>
-                
-            </dd>
-
-            <dt>
-                Fecha alta:
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DateAdd)
-            </dd>
-
-            <dt>
-                Fecha modificación:
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DateModification)
-            </dd>
-
-            @if (Model.DateNull.HasValue)
-            {
                 <dt>
-                    Fecha baja:
+                    Título:
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.DateNull)
-                </dd>
-            }
-        </dl>*@
-        </div>
-        @if (!Model.DateNull.HasValue)
-        {
-            <p>
 
-                @Html.ActionLink("Editar", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-info" }) |
-                @Html.ActionLink("Volver", "Index")
-            </p>
-        }
-        else
-        {
-            <p>
-                @Html.ActionLink("Volver", "Index")
-            </p>
-        }
-    </body>
+                </dd>
+
+                <dt>
+                    Descripción:
+                </dt>
+
+                <dd>
+
+                </dd>
+
+                <dt>
+                    Categoria:
+                </dt>
+
+                <dd>
+
+                </dd>
+
+                <dt>
+                    Fecha alta:
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DateAdd)
+                </dd>
+
+                <dt>
+                    Fecha modificación:
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DateModification)
+                </dd>
+
+                @if (Model.DateNull.HasValue)
+                {
+                    <dt>
+                        Fecha baja:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DateNull)
+                    </dd>
+                }
+            </dl>*@
+    </div>
+    @if (!Model.DateNull.HasValue)
+    {
+        <p>
+
+            @Html.ActionLink("Editar", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Volver", "Index")
+        </p>
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Volver", "Index")
+        </p>
+    }
+</body>
 </html>

@@ -302,7 +302,7 @@ namespace RinconArtesano.Controllers
                     return HttpNotFound();
                 }
 
-                    return Redirect("~/Moderador");
+                return Redirect("~/Moderador");
             }
             catch (Exception ex)
             {
@@ -340,7 +340,7 @@ namespace RinconArtesano.Controllers
                     DeleteUser(nvm);
                 }
 
-                    return Redirect("~/Moderador");
+                return Redirect("~/Moderador");
             }
             catch (Exception ex)
             {
@@ -349,7 +349,7 @@ namespace RinconArtesano.Controllers
             }
         }
 
-        
+
 
 
 

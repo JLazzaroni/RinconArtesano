@@ -21,8 +21,8 @@ namespace RinconArtesano.Models
         }
     
         public int ProductCategoryId { get; set; }
-        public string ProductCategoryName { get; set; }
         public string ProductCategoryDescriptions { get; set; }
+        public string ProductCategoryName { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateNull { get; set; }
     

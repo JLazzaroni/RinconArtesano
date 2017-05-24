@@ -1,17 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="RinconArtesanoModelStoreContainer" CdmEntityContainer="RinconArtesanoEntities">
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="RinconArtesanoModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AspNetRoles">
       <EntityTypeMapping TypeName="RinconArtesanoModel.AspNetRoles">
         <MappingFragment StoreEntitySet="AspNetRoles">
@@ -57,16 +46,37 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Denuncias">
-      <EntityTypeMapping TypeName="RinconArtesanoModel.Denuncias">
-        <MappingFragment StoreEntitySet="Denuncias">
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="RinconArtesanoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+          <ScalarProperty Name="DateModification" ColumnName="DateModification" />
           <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
           <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-          <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
           <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
-          <ScalarProperty Name="DenunciaId" ColumnName="DenunciaId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductsCategories">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
+        <MappingFragment StoreEntitySet="ProductsCategories">
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+          <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
+          <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -102,6 +112,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Denuncias">
+      <EntityTypeMapping TypeName="RinconArtesanoModel.Denuncias">
+        <MappingFragment StoreEntitySet="Denuncias">
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+          <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="DenunciaId" ColumnName="DenunciaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="MessagesHijos">
       <EntityTypeMapping TypeName="RinconArtesanoModel.MessagesHijos">
         <MappingFragment StoreEntitySet="MessagesHijos">
@@ -129,39 +163,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="RinconArtesanoModel.Products">
-        <MappingFragment StoreEntitySet="Products">
-          <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-          <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-          <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-          <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProductsCategories">
-      <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
-        <MappingFragment StoreEntitySet="ProductsCategories">
-          <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-          <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
-          <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
-          <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="AspNetUserRoles" TypeName="RinconArtesanoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-      <EndProperty Name="AspNetUsers">
-        <ScalarProperty Name="Id" ColumnName="UserId" />
-      </EndProperty>
-      <EndProperty Name="AspNetRoles">
-        <ScalarProperty Name="Id" ColumnName="RoleId" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

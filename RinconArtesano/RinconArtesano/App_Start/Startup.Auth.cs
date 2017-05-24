@@ -20,7 +20,7 @@ namespace RinconArtesano
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
             //Roles
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-            
+
             // Permitir que la aplicación use una cookie para almacenar información para el usuario que inicia sesión
             // y una cookie para almacenar temporalmente información sobre un usuario que inicia sesión con un proveedor de inicio de sesión de terceros
             // Configurar cookie de inicio de sesión
@@ -36,7 +36,7 @@ namespace RinconArtesano
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Permite que la aplicación almacene temporalmente la información del usuario cuando se verifica el segundo factor en el proceso de autenticación de dos factores.

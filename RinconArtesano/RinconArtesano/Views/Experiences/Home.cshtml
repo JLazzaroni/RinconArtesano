@@ -20,13 +20,13 @@
                     </h3>
                     <p>
                         @exp.ExperienceDescription.Substring(0, exp.ExperienceDescription.Length <= 150 ? exp.ExperienceDescription.Length : 150)
-                    @{if (exp.ExperienceDescription.Length > 150)
-                    {@("...")}
-                    }
-                </p>
+                        @{if (exp.ExperienceDescription.Length > 150)
+                        {@("...")}
+                        }
+                    </p>
 
-                <a>@exp.AspNetUsers.UserName</a>
-            </div>
+                    <a>@exp.AspNetUsers.UserName</a>
+                </div>
             }
         </div>
     </div>

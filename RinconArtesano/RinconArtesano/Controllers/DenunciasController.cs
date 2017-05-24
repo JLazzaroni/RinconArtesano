@@ -16,7 +16,7 @@ namespace RinconArtesano.Controllers
     public class DenunciasController : Controller
     {
         private RinconArtesanoEntities db = new RinconArtesanoEntities();
-        
+
         [Authorize]
         // POST: Experiences/Create
         [HttpPost]
@@ -28,7 +28,7 @@ namespace RinconArtesano.Controllers
                 ModelState.AddModelError("Comentario", "Error en el campo Comentario, debe ingresar un texto.");
             else if (denuncias.Comentario.Length > 1000)
                 ModelState.AddModelError("Comentario", "Error en el campo Comentario, el mismo no puede superar los 1000 caracteres.");
-            
+
             if (!ModelState.IsValid)
             {
                 var m = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();

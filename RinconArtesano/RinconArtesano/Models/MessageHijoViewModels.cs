@@ -9,6 +9,6 @@ namespace RinconArtesano.Models
     {
         public int? MessageHijoId { get; set; }
         public int MessagePadreId { get; set; }
-        public string Comentario { get; set; }        
+        public string Comentario { get; set; }
     }
 }
