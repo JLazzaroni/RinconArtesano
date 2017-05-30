@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RinconArtesano.Models;
+using Datos;
 
 namespace RinconArtesano.Controllers
 {

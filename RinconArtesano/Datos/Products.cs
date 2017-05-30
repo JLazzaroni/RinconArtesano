@@ -7,30 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RinconArtesano.Models
+namespace Datos
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class MessagesPadres
+    public partial class Products
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MessagesPadres()
+        public Products()
         {
-            this.MessagesHijos = new HashSet<MessagesHijos>();
+            this.Denuncias = new HashSet<Denuncias>();
+            this.Files = new HashSet<Files>();
         }
     
-        public int IdMessagePadre { get; set; }
-        public int Category { get; set; }
-        public int CategoryId { get; set; }
+        public int ProductId { get; set; }
         public string UsersId { get; set; }
-        public string Message { get; set; }
-        public Nullable<int> DenounceCount { get; set; }
-        public System.DateTime DateAdd { get; set; }
+        public string ProductTitle { get; set; }
+        public string ProductDescription { get; set; }
+        public int IdCategory { get; set; }
         public Nullable<System.DateTime> DateNull { get; set; }
+        public System.DateTime DateAdd { get; set; }
+        public Nullable<System.DateTime> DateModification { get; set; }
+        public bool IsBlocked { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MessagesHijos> MessagesHijos { get; set; }
+        public virtual ICollection<Denuncias> Denuncias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Files> Files { get; set; }
+        public virtual ProductsCategories ProductsCategories { get; set; }
     }
 }

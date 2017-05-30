@@ -187,77 +187,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Denuncias.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DenunciasViewModel.cs" />
-    <Compile Include="Models\Experiences.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Files.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\FileTypes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageHijoViewModels.cs" />
     <Compile Include="Models\MessagePadreViewModels.cs" />
-    <Compile Include="Models\MessagesHijos.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MessagesPadres.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NoVigentesExperiences.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NoVigentesProducts.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Products.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProductsCategories.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ProductsViewModel.cs" />
-    <Compile Include="Models\RinconArtesanoModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RinconArtesanoModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RinconArtesanoModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RinconArtesanoModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RinconArtesanoModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UserRolesViewModel.cs" />
-    <Compile Include="Models\VigentesExperiences.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\VigentesProducts.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -280,23 +217,6 @@
     <Content Include="Scripts\clean-blog.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\RinconArtesanoModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RinconArtesanoModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\RinconArtesanoModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RinconArtesanoModel.edmx</DependentUpon>
-      <LastGenOutput>RinconArtesanoModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\RinconArtesanoModel.edmx.diagram">
-      <DependentUpon>RinconArtesanoModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\RinconArtesanoModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RinconArtesanoModel.edmx</DependentUpon>
-      <LastGenOutput>RinconArtesanoModel.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -448,6 +368,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{5fa7a563-d5c0-493c-9840-a8519c96fe1b}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

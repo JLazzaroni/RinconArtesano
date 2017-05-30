@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fffe584bacca40ff995194531e8bbf04" Name="Diagram1">
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUsers" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Denuncias" Width="1.5" PointX="7.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Experiences" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Files" Width="1.5" PointX="10.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.MessagesHijos" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.MessagesPadres" Width="1.5" PointX="5.25" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Products" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.ProductsCategories" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.NoVigentesExperiences" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.NoVigentesProducts" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.VigentesExperiences" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.VigentesProducts" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Experiences_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Files_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Products_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_Experiences" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Files_Experiences" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Files_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Products_ProductsCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="RinconArtesanoModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

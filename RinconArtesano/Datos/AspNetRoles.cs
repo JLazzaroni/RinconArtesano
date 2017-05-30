@@ -7,26 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RinconArtesano.Models
+namespace Datos
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductsCategories
+    public partial class AspNetRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductsCategories()
+        public AspNetRoles()
         {
-            this.Products = new HashSet<Products>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public int ProductCategoryId { get; set; }
-        public string ProductCategoryDescriptions { get; set; }
-        public string ProductCategoryName { get; set; }
-        public System.DateTime DateAdd { get; set; }
-        public Nullable<System.DateTime> DateNull { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Products> Products { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

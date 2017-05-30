@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RinconArtesano.Models
+namespace Datos
 {
     using System;
     using System.Collections.Generic;

@@ -7,23 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RinconArtesano.Models
+namespace Datos
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRoles
+    public partial class MessagesPadres
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetRoles()
+        public MessagesPadres()
         {
-            this.AspNetUsers = new HashSet<AspNetUsers>();
+            this.MessagesHijos = new HashSet<MessagesHijos>();
         }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public int IdMessagePadre { get; set; }
+        public int Category { get; set; }
+        public int CategoryId { get; set; }
+        public string UsersId { get; set; }
+        public string Message { get; set; }
+        public Nullable<int> DenounceCount { get; set; }
+        public System.DateTime DateAdd { get; set; }
+        public Nullable<System.DateTime> DateNull { get; set; }
     
+        public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
+        public virtual ICollection<MessagesHijos> MessagesHijos { get; set; }
     }
 }

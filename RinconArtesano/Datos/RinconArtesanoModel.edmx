@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RinconArtesanoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RinconArtesanoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -146,6 +146,7 @@
           <Property Name="ProductCategoryDescriptions" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="DateAdd" Type="datetime" Nullable="false" />
           <Property Name="DateNull" Type="datetime" />
+          <Property Name="FilePath" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -574,105 +575,28 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RinconArtesanoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="RinconArtesanoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AspNetRoles" EntityType="RinconArtesanoModel.AspNetRoles" />
-          <EntitySet Name="AspNetUserClaims" EntityType="RinconArtesanoModel.AspNetUserClaims" />
-          <EntitySet Name="AspNetUserLogins" EntityType="RinconArtesanoModel.AspNetUserLogins" />
-          <EntitySet Name="AspNetUsers" EntityType="RinconArtesanoModel.AspNetUsers" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="RinconArtesanoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="RinconArtesanoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="RinconArtesanoModel.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="Products" EntityType="RinconArtesanoModel.Products" />
-          <EntitySet Name="ProductsCategories" EntityType="RinconArtesanoModel.ProductsCategories" />
-          <AssociationSet Name="FK_Products_AspNetUsers" Association="RinconArtesanoModel.FK_Products_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_ProductsCategories" Association="RinconArtesanoModel.FK_Products_ProductsCategories">
-            <End Role="ProductsCategories" EntitySet="ProductsCategories" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <EntitySet Name="Experiences" EntityType="RinconArtesanoModel.Experiences" />
-          <EntitySet Name="Files" EntityType="RinconArtesanoModel.Files" />
-          <EntitySet Name="sysdiagrams" EntityType="RinconArtesanoModel.sysdiagrams" />
-          <AssociationSet Name="FK_Experiences_AspNetUsers" Association="RinconArtesanoModel.FK_Experiences_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Experiences" EntitySet="Experiences" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Files_AspNetUsers" Association="RinconArtesanoModel.FK_Files_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Files" EntitySet="Files" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Files_Experiences" Association="RinconArtesanoModel.FK_Files_Experiences">
-            <End Role="Experiences" EntitySet="Experiences" />
-            <End Role="Files" EntitySet="Files" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Files_Products" Association="RinconArtesanoModel.FK_Files_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Files" EntitySet="Files" />
-          </AssociationSet>
-          <EntitySet Name="Denuncias" EntityType="RinconArtesanoModel.Denuncias" />
-          <EntitySet Name="MessagesHijos" EntityType="RinconArtesanoModel.MessagesHijos" />
-          <EntitySet Name="MessagesPadres" EntityType="RinconArtesanoModel.MessagesPadres" />
-          <AssociationSet Name="FK_Denuncias_AspNetUsers" Association="RinconArtesanoModel.FK_Denuncias_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Denuncias" EntitySet="Denuncias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessagesHijos_AspNetUsers" Association="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessagesPadres_AspNetUsers" Association="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Denuncias_Experiences" Association="RinconArtesanoModel.FK_Denuncias_Experiences">
-            <End Role="Experiences" EntitySet="Experiences" />
-            <End Role="Denuncias" EntitySet="Denuncias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Denuncias_Products" Association="RinconArtesanoModel.FK_Denuncias_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Denuncias" EntitySet="Denuncias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MessagesHijos_MessagesPadres" Association="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres">
-            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
-            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
-          </AssociationSet>
-          <EntitySet Name="NoVigentesExperiences" EntityType="RinconArtesanoModel.NoVigentesExperiences" />
-          <EntitySet Name="NoVigentesProducts" EntityType="RinconArtesanoModel.NoVigentesProducts" />
-          <EntitySet Name="VigentesExperiences" EntityType="RinconArtesanoModel.VigentesExperiences" />
-          <EntitySet Name="VigentesProducts" EntityType="RinconArtesanoModel.VigentesProducts" />
-        </EntityContainer>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUserLogins">
           <Key>
@@ -680,16 +604,16 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -700,118 +624,48 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="RinconArtesanoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="RinconArtesanoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="AspNetRoles" Relationship="RinconArtesanoModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_AspNetUsers" FromRole="AspNetUsers" ToRole="Products" />
-          <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="AspNetUsers" ToRole="Experiences" />
-          <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_AspNetUsers" FromRole="AspNetUsers" ToRole="Files" />
-          <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_AspNetUsers" FromRole="AspNetUsers" ToRole="Denuncias" />
-          <NavigationProperty Name="MessagesHijos" Relationship="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesHijos" />
-          <NavigationProperty Name="MessagesPadres" Relationship="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesPadres" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_AspNetUsers" FromRole="AspNetUsers" ToRole="Denuncias" />
+          <NavigationProperty Name="Experiences" Relationship="Self.FK_Experiences_AspNetUsers" FromRole="AspNetUsers" ToRole="Experiences" />
+          <NavigationProperty Name="Files" Relationship="Self.FK_Files_AspNetUsers" FromRole="AspNetUsers" ToRole="Files" />
+          <NavigationProperty Name="MessagesHijos" Relationship="Self.FK_MessagesHijos_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesHijos" />
+          <NavigationProperty Name="MessagesPadres" Relationship="Self.FK_MessagesPadres_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesPadres" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_AspNetUsers" FromRole="AspNetUsers" ToRole="Products" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="RinconArtesanoModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="RinconArtesanoModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Type="RinconArtesanoModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
-        </Association>
-        <EntityType Name="Products">
+        <EntityType Name="Denuncias">
           <Key>
-            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="DenunciaId" />
           </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="IdCategory" Type="Int32" Nullable="false" />
+          <Property Name="DenunciaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comentario" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="ExperienceId" Type="Int32" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateModification" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Products_AspNetUsers" FromRole="Products" ToRole="AspNetUsers" />
-          <NavigationProperty Name="ProductsCategories" Relationship="RinconArtesanoModel.FK_Products_ProductsCategories" FromRole="Products" ToRole="ProductsCategories" />
-          <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Products" FromRole="Products" ToRole="Files" />
-          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Products" FromRole="Products" ToRole="Denuncias" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Denuncias_AspNetUsers" FromRole="Denuncias" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Experiences" Relationship="Self.FK_Denuncias_Experiences" FromRole="Denuncias" ToRole="Experiences" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Denuncias_Products" FromRole="Denuncias" ToRole="Products" />
         </EntityType>
-        <EntityType Name="ProductsCategories">
-          <Key>
-            <PropertyRef Name="ProductCategoryId" />
-          </Key>
-          <Property Name="ProductCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductCategoryDescriptions" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Products_ProductsCategories" FromRole="ProductsCategories" ToRole="Products" />
-          <Property Name="ProductCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateNull" Type="DateTime" Precision="3" />
-        </EntityType>
-        <Association Name="FK_Products_AspNetUsers">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_ProductsCategories">
-          <End Type="RinconArtesanoModel.ProductsCategories" Role="ProductsCategories" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductsCategories">
-              <PropertyRef Name="ProductCategoryId" />
-            </Principal>
-            <Dependent Role="Products">
-              <PropertyRef Name="IdCategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Experiences">
           <Key>
             <PropertyRef Name="ExperienceId" />
           </Key>
           <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ExperienceTitle" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
-          <Property Name="ExperienceDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceTitle" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExperienceDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModification" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Experiences_AspNetUsers" FromRole="Experiences" ToRole="AspNetUsers" />
-          <NavigationProperty Name="Files" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Experiences" ToRole="Files" />
           <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Denuncias" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Experiences" ToRole="Denuncias" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Experiences_AspNetUsers" FromRole="Experiences" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Experiences" FromRole="Experiences" ToRole="Denuncias" />
+          <NavigationProperty Name="Files" Relationship="Self.FK_Files_Experiences" FromRole="Experiences" ToRole="Files" />
         </EntityType>
         <EntityType Name="Files">
           <Key>
@@ -822,88 +676,15 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <Property Name="ContentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="FileType" Type="Int16" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProductId" Type="Int32" />
           <Property Name="ExperienceId" Type="Int32" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModification" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Files_AspNetUsers" FromRole="Files" ToRole="AspNetUsers" />
-          <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Files_Experiences" FromRole="Files" ToRole="Experiences" />
-          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Files_Products" FromRole="Files" ToRole="Products" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Experiences_AspNetUsers">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Experiences">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Files_AspNetUsers">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.Files" Role="Files" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Files">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Files_Experiences">
-          <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="0..1" />
-          <End Type="RinconArtesanoModel.Files" Role="Files" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Experiences">
-              <PropertyRef Name="ExperienceId" />
-            </Principal>
-            <Dependent Role="Files">
-              <PropertyRef Name="ExperienceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Files_Products">
-          <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="0..1" />
-          <End Type="RinconArtesanoModel.Files" Role="Files" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="Files">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Denuncias">
-          <Key>
-            <PropertyRef Name="DenunciaId" />
-          </Key>
-          <Property Name="DenunciaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Comentario" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProductId" Type="Int32" />
-          <Property Name="ExperienceId" Type="Int32" />
-          <Property Name="DateNull" Type="DateTime" Precision="3" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Denuncias_AspNetUsers" FromRole="Denuncias" ToRole="AspNetUsers" />
-          <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Denuncias_Experiences" FromRole="Denuncias" ToRole="Experiences" />
-          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Denuncias_Products" FromRole="Denuncias" ToRole="Products" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Files_AspNetUsers" FromRole="Files" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Experiences" Relationship="Self.FK_Files_Experiences" FromRole="Files" ToRole="Experiences" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Files_Products" FromRole="Files" ToRole="Products" />
         </EntityType>
         <EntityType Name="MessagesHijos">
           <Key>
@@ -911,13 +692,13 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           </Key>
           <Property Name="IdMessageHijo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdMessagePadre" Type="Int32" Nullable="false" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DenounceCount" Type="Int32" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_MessagesHijos_AspNetUsers" FromRole="MessagesHijos" ToRole="AspNetUsers" />
-          <NavigationProperty Name="MessagesPadres" Relationship="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres" FromRole="MessagesHijos" ToRole="MessagesPadres" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_MessagesHijos_AspNetUsers" FromRole="MessagesHijos" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MessagesPadres" Relationship="Self.FK_MessagesHijos_MessagesPadres" FromRole="MessagesHijos" ToRole="MessagesPadres" />
         </EntityType>
         <EntityType Name="MessagesPadres">
           <Key>
@@ -926,86 +707,54 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <Property Name="IdMessagePadre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Category" Type="Int32" Nullable="false" />
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DenounceCount" Type="Int32" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_MessagesPadres_AspNetUsers" FromRole="MessagesPadres" ToRole="AspNetUsers" />
-          <NavigationProperty Name="MessagesHijos" Relationship="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres" FromRole="MessagesPadres" ToRole="MessagesHijos" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_MessagesPadres_AspNetUsers" FromRole="MessagesPadres" ToRole="AspNetUsers" />
+          <NavigationProperty Name="MessagesHijos" Relationship="Self.FK_MessagesHijos_MessagesPadres" FromRole="MessagesPadres" ToRole="MessagesHijos" />
         </EntityType>
-        <Association Name="FK_Denuncias_AspNetUsers">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.Denuncias" Role="Denuncias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Denuncias">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MessagesHijos_AspNetUsers">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.MessagesHijos" Role="MessagesHijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MessagesHijos">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MessagesPadres_AspNetUsers">
-          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.MessagesPadres" Role="MessagesPadres" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MessagesPadres">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Denuncias_Experiences">
-          <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="0..1" />
-          <End Type="RinconArtesanoModel.Denuncias" Role="Denuncias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Experiences">
-              <PropertyRef Name="ExperienceId" />
-            </Principal>
-            <Dependent Role="Denuncias">
-              <PropertyRef Name="ExperienceId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Denuncias_Products">
-          <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="0..1" />
-          <End Type="RinconArtesanoModel.Denuncias" Role="Denuncias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="Denuncias">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MessagesHijos_MessagesPadres">
-          <End Type="RinconArtesanoModel.MessagesPadres" Role="MessagesPadres" Multiplicity="1" />
-          <End Type="RinconArtesanoModel.MessagesHijos" Role="MessagesHijos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MessagesPadres">
-              <PropertyRef Name="IdMessagePadre" />
-            </Principal>
-            <Dependent Role="MessagesHijos">
-              <PropertyRef Name="IdMessagePadre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdCategory" Type="Int32" Nullable="false" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Products_AspNetUsers" FromRole="Products" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Products" FromRole="Products" ToRole="Denuncias" />
+          <NavigationProperty Name="Files" Relationship="Self.FK_Files_Products" FromRole="Products" ToRole="Files" />
+          <NavigationProperty Name="ProductsCategories" Relationship="Self.FK_Products_ProductsCategories" FromRole="Products" ToRole="ProductsCategories" />
+        </EntityType>
+        <EntityType Name="ProductsCategories">
+          <Key>
+            <PropertyRef Name="ProductCategoryId" />
+          </Key>
+          <Property Name="ProductCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductCategoryDescriptions" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductsCategories" FromRole="ProductsCategories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="NoVigentesExperiences">
           <Key>
             <PropertyRef Name="ExperienceId" />
@@ -1016,9 +765,9 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <PropertyRef Name="IsBlocked" />
           </Key>
           <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ExperienceTitle" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
-          <Property Name="ExperienceDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceTitle" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExperienceDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModification" Type="DateTime" Precision="3" />
@@ -1036,9 +785,9 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <PropertyRef Name="IsBlocked" />
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
@@ -1055,9 +804,9 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <PropertyRef Name="IsBlocked" />
           </Key>
           <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ExperienceTitle" Type="String" Nullable="false" MaxLength="55" FixedLength="false" Unicode="false" />
-          <Property Name="ExperienceDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExperienceTitle" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExperienceDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModification" Type="DateTime" Precision="3" />
@@ -1075,15 +824,269 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <PropertyRef Name="IsBlocked" />
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ProductDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModification" Type="DateTime" Precision="3" />
           <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Denuncias_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Denuncias">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experiences_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Experiences" Type="Self.Experiences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Experiences">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesHijos_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesHijos">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesPadres_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MessagesPadres">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Denuncias_Experiences">
+          <End Role="Experiences" Type="Self.Experiences" Multiplicity="0..1" />
+          <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experiences">
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="Denuncias">
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Denuncias_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Denuncias">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_Experiences">
+          <End Role="Experiences" Type="Self.Experiences" Multiplicity="0..1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experiences">
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MessagesHijos_MessagesPadres">
+          <End Role="MessagesPadres" Type="Self.MessagesPadres" Multiplicity="1" />
+          <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MessagesPadres">
+              <PropertyRef Name="IdMessagePadre" />
+            </Principal>
+            <Dependent Role="MessagesHijos">
+              <PropertyRef Name="IdMessagePadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductsCategories">
+          <End Role="ProductsCategories" Type="Self.ProductsCategories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsCategories">
+              <PropertyRef Name="ProductCategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="IdCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RinconArtesanoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Denuncias" EntityType="Self.Denuncias" />
+          <EntitySet Name="Experiences" EntityType="Self.Experiences" />
+          <EntitySet Name="Files" EntityType="Self.Files" />
+          <EntitySet Name="MessagesHijos" EntityType="Self.MessagesHijos" />
+          <EntitySet Name="MessagesPadres" EntityType="Self.MessagesPadres" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="NoVigentesExperiences" EntityType="Self.NoVigentesExperiences" />
+          <EntitySet Name="NoVigentesProducts" EntityType="Self.NoVigentesProducts" />
+          <EntitySet Name="VigentesExperiences" EntityType="Self.VigentesExperiences" />
+          <EntitySet Name="VigentesProducts" EntityType="Self.VigentesProducts" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Denuncias_AspNetUsers" Association="Self.FK_Denuncias_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Denuncias" EntitySet="Denuncias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experiences_AspNetUsers" Association="Self.FK_Experiences_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Experiences" EntitySet="Experiences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_AspNetUsers" Association="Self.FK_Files_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesHijos_AspNetUsers" Association="Self.FK_MessagesHijos_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesPadres_AspNetUsers" Association="Self.FK_MessagesPadres_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_AspNetUsers" Association="Self.FK_Products_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Denuncias_Experiences" Association="Self.FK_Denuncias_Experiences">
+            <End Role="Experiences" EntitySet="Experiences" />
+            <End Role="Denuncias" EntitySet="Denuncias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Denuncias_Products" Association="Self.FK_Denuncias_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Denuncias" EntitySet="Denuncias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_Experiences" Association="Self.FK_Files_Experiences">
+            <End Role="Experiences" EntitySet="Experiences" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_Products" Association="Self.FK_Files_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MessagesHijos_MessagesPadres" Association="Self.FK_MessagesHijos_MessagesPadres">
+            <End Role="MessagesPadres" EntitySet="MessagesPadres" />
+            <End Role="MessagesHijos" EntitySet="MessagesHijos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductsCategories" Association="Self.FK_Products_ProductsCategories">
+            <End Role="ProductsCategories" EntitySet="ProductsCategories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1093,226 +1096,227 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="RinconArtesanoModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
             <EntityTypeMapping TypeName="RinconArtesanoModel.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
             <EntityTypeMapping TypeName="RinconArtesanoModel.AspNetUserLogins">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="RinconArtesanoModel.AspNetUsers">
               <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="RinconArtesanoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.Products">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductsCategories">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
-              <MappingFragment StoreEntitySet="ProductsCategories">
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
-                <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
-                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Experiences">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.Experiences">
-              <MappingFragment StoreEntitySet="Experiences">
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-                <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
-                <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Files">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.Files">
-              <MappingFragment StoreEntitySet="Files">
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="FileType" ColumnName="FileType" />
-                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
-                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="FileId" ColumnName="FileId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Denuncias">
             <EntityTypeMapping TypeName="RinconArtesanoModel.Denuncias">
               <MappingFragment StoreEntitySet="Denuncias">
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="DenunciaId" ColumnName="DenunciaId" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experiences">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.Experiences">
+              <MappingFragment StoreEntitySet="Experiences">
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
+                <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.Files">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MessagesHijos">
             <EntityTypeMapping TypeName="RinconArtesanoModel.MessagesHijos">
               <MappingFragment StoreEntitySet="MessagesHijos">
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
                 <ScalarProperty Name="IdMessageHijo" ColumnName="IdMessageHijo" />
+                <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MessagesPadres">
             <EntityTypeMapping TypeName="RinconArtesanoModel.MessagesPadres">
               <MappingFragment StoreEntitySet="MessagesPadres">
+                <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
                 <ScalarProperty Name="DateNull" ColumnName="DateNull" />
                 <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DenounceCount" ColumnName="DenounceCount" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="IdMessagePadre" ColumnName="IdMessagePadre" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsCategories">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.ProductsCategories">
+              <MappingFragment StoreEntitySet="ProductsCategories">
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+                <ScalarProperty Name="ProductCategoryDescriptions" ColumnName="ProductCategoryDescriptions" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NoVigentesExperiences">
             <EntityTypeMapping TypeName="RinconArtesanoModel.NoVigentesExperiences">
               <MappingFragment StoreEntitySet="NoVigentesExperiences">
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-                <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
-                <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
                 <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
+                <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NoVigentesProducts">
             <EntityTypeMapping TypeName="RinconArtesanoModel.NoVigentesProducts">
               <MappingFragment StoreEntitySet="NoVigentesProducts">
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VigentesExperiences">
             <EntityTypeMapping TypeName="RinconArtesanoModel.VigentesExperiences">
               <MappingFragment StoreEntitySet="VigentesExperiences">
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-                <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
-                <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
                 <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ExperienceTitle" ColumnName="ExperienceTitle" />
+                <ScalarProperty Name="ExperienceDescription" ColumnName="ExperienceDescription" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VigentesProducts">
             <EntityTypeMapping TypeName="RinconArtesanoModel.VigentesProducts">
               <MappingFragment StoreEntitySet="VigentesProducts">
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="RinconArtesanoModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

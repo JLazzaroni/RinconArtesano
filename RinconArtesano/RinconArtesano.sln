@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DF7CC0
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj", "{5FA7A563-D5C0-493C-9840-A8519C96FE1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{5857FFF9-21FA-4758-A838-A58F211A1BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5857FFF9-21FA-4758-A838-A58F211A1BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5857FFF9-21FA-4758-A838-A58F211A1BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA7A563-D5C0-493C-9840-A8519C96FE1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA7A563-D5C0-493C-9840-A8519C96FE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA7A563-D5C0-493C-9840-A8519C96FE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA7A563-D5C0-493C-9840-A8519C96FE1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

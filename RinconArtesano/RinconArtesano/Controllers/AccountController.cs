@@ -12,6 +12,7 @@ using RinconArtesano.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Configuration;
 using System.Web.UI;
+using Datos;
 
 namespace RinconArtesano.Controllers
 {

@@ -7,27 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RinconArtesano.Models
+namespace Datos
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Files
+    public partial class NoVigentesExperiences
     {
-        public int FileId { get; set; }
-        public string FileName { get; set; }
-        public string ContentType { get; set; }
-        public string FilePath { get; set; }
-        public Nullable<short> FileType { get; set; }
+        public int ExperienceId { get; set; }
         public string UsersId { get; set; }
-        public Nullable<int> ProductId { get; set; }
-        public Nullable<int> ExperienceId { get; set; }
+        public string ExperienceTitle { get; set; }
+        public string ExperienceDescription { get; set; }
         public Nullable<System.DateTime> DateNull { get; set; }
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateModification { get; set; }
-    
-        public virtual AspNetUsers AspNetUsers { get; set; }
-        public virtual Experiences Experiences { get; set; }
-        public virtual Products Products { get; set; }
+        public string YoutubePath { get; set; }
+        public bool IsBlocked { get; set; }
     }
 }

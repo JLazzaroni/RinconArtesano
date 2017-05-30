@@ -10,6 +10,7 @@ using RinconArtesano.Models;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using System.IO;
+using Datos;
 
 namespace RinconArtesano.Controllers
 {
