@@ -51,7 +51,6 @@ textarea {
     border-top: 1px solid #34a782;
     border-bottom: 1px solid #1b926c;
     margin-bottom: 0;
-    padding: 50px;
-    text-shadow: 4px 3px 0 #1d9d74, 9px 8px 0 rgba(0,0,0,0.15);
+    padding: 25px;
     color: white;
 }
