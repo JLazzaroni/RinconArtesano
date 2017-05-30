@@ -214,7 +214,7 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="RinconArtesanoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
