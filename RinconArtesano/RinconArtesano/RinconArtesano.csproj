@@ -205,6 +205,13 @@
     <Content Include="Content\clean-blog.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\arte.jpg" />
+    <Content Include="Content\Images\cosmetica.jpg" />
+    <Content Include="Content\Images\esoterismo.jpg" />
+    <Content Include="Content\Images\hogar.jpg" />
+    <Content Include="Content\Images\juguetes.jpg" />
+    <Content Include="Content\Images\otrasCategorias.jpg" />
+    <Content Include="Content\Images\textilycalzado.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -357,6 +364,7 @@
     <Content Include="Views\Shared\_DenunciasModal.cshtml" />
     <Content Include="Views\Shared\_Messages.cshtml" />
     <Content Include="Views\Shared\PermissionsError.cshtml" />
+    <Content Include="Views\Products\ProductsByCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

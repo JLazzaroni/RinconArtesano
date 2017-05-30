@@ -20,8 +20,17 @@ namespace RinconArtesano.Controllers
 
         public ActionResult Home()
         {
-            List<Products> prod = db.Products.Include("Files").Where(x => x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).ToList();
+            List<ProductsCategories> prodCat = db.ProductsCategories.Where(x => x.DateNull == null).OrderBy(x => x.ProductCategoryName).ToList();
+            ViewBag.Categorias = prodCat;
+            return View();
+        }
+
+        public ActionResult ProductsByCategory(int? id)
+        {
+            List<Products> prod = db.Products.Where(x => x.IdCategory == id & x.DateNull == null & x.IsBlocked == false).OrderBy(x => x.DateAdd).ToList();
             ViewBag.Productss = prod;
+            ViewBag.CategoryName = db.ProductsCategories.Find(id).ProductCategoryName;
+            ViewBag.NoHayProductos = (prod.Count() == 0) ? "No hay productos cargados para esta categoría" : "";
             return View();
         }
 

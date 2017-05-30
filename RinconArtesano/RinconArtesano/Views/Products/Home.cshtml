@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<Products> products = ViewBag.Productss;
+    List<ProductsCategories> prodCat = ViewBag.Categorias;
 }
 
 <body>
@@ -11,24 +11,21 @@
         <br />
         <h4 class="form__titulo">Productos - @Html.ActionLink("Administrar mis productos", "Index", null, new { style = "color: aquamarine;" })</h4>
         <hr />
-
-        <div class="row">
-            @foreach (var prod in products)
+        <div class="categoriasGrid">
+            @foreach (var cat in prodCat)
             {
-                <div class="col-lg-4 col-md-4">
-                    <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" width="250" height="250">
-                    <h3>
-                        <a href=@Url.Action("ProductsDetails", "Products", new { id = prod.ProductId })>@prod.ProductTitle</a>
-                    </h3>
-                    <p>
-                        @prod.ProductDescription.Substring(0, prod.ProductDescription.Length <= 150 ? prod.ProductDescription.Length : 150)
-                        @{if (prod.ProductDescription.Length > 150)
-                        {@("...")}
-                        }
-                    </p>
-                    <a>@prod.AspNetUsers.UserName</a>
-                </div>
+                <a class="categoriasLink" href="@Url.Action("ProductsByCategory", "Products", new { id = cat.ProductCategoryId })">
+                    <figure class="categoriasFigure">
+                        <img class="categoriasImg" src="@Url.Content(@cat.FilePath)" alt="" style="cursor: pointer;">
+                        <figcaption class="categoriasFigCaption">
+                            <h3 class="text-center">
+                                @cat.ProductCategoryName
+                            </h3>
+                        </figcaption>
+                    </figure>
+                </a>
             }
         </div>
+        <br />
     </div>
 </body>

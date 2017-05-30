@@ -1,0 +1,34 @@
+﻿@using Datos
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Products> products = ViewBag.Productss;
+}
+
+<body>
+    <div>
+        <br />
+        <h4 class="form__titulo">Productos - @ViewBag.CategoryName</h4>
+        <hr />
+        <h1>@ViewBag.NoHayProductos</h1>
+        <div class="row">
+            @foreach (var prod in products)
+            {
+                <div class="col-lg-4 col-md-4">
+                    <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" width="250" height="250">
+                    <h3>
+                        <a href=@Url.Action("ProductsDetails", "Products", new { id = prod.ProductId })>@prod.ProductTitle</a>
+                    </h3>
+                    <p>
+                        @prod.ProductDescription.Substring(0, prod.ProductDescription.Length <= 150 ? prod.ProductDescription.Length : 150)
+                        @{if (prod.ProductDescription.Length > 150)
+                        {@("...")}
+                        }
+                    </p>
+                    <a>@prod.AspNetUsers.UserName</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
