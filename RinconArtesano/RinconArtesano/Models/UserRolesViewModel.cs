@@ -18,6 +18,8 @@ namespace RinconArtesano.Models
         public DateTime? LockoutEndDateUtc { get; set; }
         public int AccessFailedCount { get; set; }
         public string PhoneNumber { get; set; }
+        [Display(Name = "Rol")]
+        public string RoleName { get; set; }
         public IEnumerable<UserRolesViewModel> Roles { get; set; }
     }
 
