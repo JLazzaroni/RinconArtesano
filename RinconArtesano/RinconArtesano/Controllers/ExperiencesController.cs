@@ -34,6 +34,8 @@ namespace RinconArtesano.Controllers
             }
             Experiences experiences = db.Experiences.SingleOrDefault(s => s.ExperienceId == id);
             ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 2 && x.CategoryId == id && x.DateNull == null).ToList();
+            string userId = User.Identity.GetUserId();
+            ViewBag.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ExperienceId == id).Any();
             if (experiences == null)
             {
                 return HttpNotFound();

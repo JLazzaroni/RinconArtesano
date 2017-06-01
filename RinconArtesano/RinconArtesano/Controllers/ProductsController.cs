@@ -62,6 +62,8 @@ namespace RinconArtesano.Controllers
                 Files = products.Files,
                 ProductsCategories = products.ProductsCategories
             };
+            string userId = User.Identity.GetUserId();
+            ViewBag.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ProductId == id).Any();
             if (products == null)
             {
                 return HttpNotFound();

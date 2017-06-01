@@ -15,10 +15,17 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>@Html.DisplayFor(model => model.ExperienceTitle)</h1>
-                <div data-toggle="modal" data-target=".modalDenuncias" class="btn btn-default">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto; float: left; margin-top: 3px;"></i>
-                    <a style="padding-left: 10px;">Denunciar</a>
-                </div>
+                @if (@ViewBag.UsuarioDenuncio == false)
+                {
+                    <div data-toggle="modal" data-target=".modalDenuncias" class="btn btn-default">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto; float: left; margin-top: 3px;"></i>
+                        <a style="padding-left: 10px;">Denunciar</a>
+                    </div>
+                }
+                else
+                {
+                    <b>Usted ya ha denunciado este producto.</b>
+                }
                 @if (User.IsInRole("Moderador") || User.IsInRole("Administrador"))
                 {
                     <span>
