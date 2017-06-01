@@ -6,29 +6,46 @@
     List<Products> products = ViewBag.Productss;
 }
 
-<body>
-    <div>
-        <br />
-        <h4 class="form__titulo">Productos - @ViewBag.CategoryName</h4>
-        <hr />
-        <h1>@ViewBag.NoHayProductos</h1>
-        <div class="row">
-            @foreach (var prod in products)
-            {
-                <div class="col-lg-4 col-md-4">
-                    <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" width="250" height="250">
-                    <h3>
-                        <a href=@Url.Action("ProductsDetails", "Products", new { id = prod.ProductId })>@prod.ProductTitle</a>
-                    </h3>
-                    <p>
-                        @prod.ProductDescription.Substring(0, prod.ProductDescription.Length <= 150 ? prod.ProductDescription.Length : 150)
-                        @{if (prod.ProductDescription.Length > 150)
-                        {@("...")}
-                        }
-                    </p>
-                    <a>@prod.AspNetUsers.UserName</a>
+<br />
+<h4 class="form__titulo">Productos - @ViewBag.CategoryName</h4>
+<hr />
+<h1>@ViewBag.NoHayProductos</h1>
+<section class="wrapper">
+    <div class="container-big">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    @foreach (var prod in products)
+                    {
+
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="carbox">
+                                <div class="img-carbox">
+                                    <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" />
+                                </div>
+                                <div class="carbox-content">
+                                    <h4 class="carbox-title">
+                                        <a href="@Url.Action("ProductsDetails", "Products", new { id = prod.ProductId })">
+                                            @prod.ProductTitle
+                                        </a>
+                                    </h4>
+                                    <p class="">
+                                        @prod.ProductDescription.Substring(0, prod.ProductDescription.Length <= 150 ? prod.ProductDescription.Length : 150)
+                                        @{if (prod.ProductDescription.Length > 150)
+                                        {@("...")}
+                                        }
+                                    </p>
+                                </div>
+                                <div class="carbox-read-more">
+                                    <a href="" class="btn btn-link btn-block">
+                                        @prod.AspNetUsers.UserName
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-            }
+            </div>
         </div>
     </div>
-</body>
+</section>

@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Datos.UsersInfo>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Provincia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Intereses)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rubro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateNull)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAdd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsBlocked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Edad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Intereses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rubro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateNull)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBlocked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.UsersId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.UsersId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.UsersId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

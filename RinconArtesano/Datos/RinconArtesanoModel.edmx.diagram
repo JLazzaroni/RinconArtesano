@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fffe584bacca40ff995194531e8bbf04" Name="Diagram1">
+      <Diagram DiagramId="fffe584bacca40ff995194531e8bbf04" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="RinconArtesanoModel.MessagesHijos" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.MessagesPadres" Width="1.5" PointX="5.25" PointY="24.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.Products" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.ProductsCategories" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.ProductsCategories" Width="1.5" PointX="7.125" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.NoVigentesExperiences" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.NoVigentesProducts" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
@@ -36,6 +36,8 @@
         <AssociationConnector Association="RinconArtesanoModel.FK_MessagesHijos_MessagesPadres" ManuallyRouted="false" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Products_ProductsCategories" ManuallyRouted="false" />
         <AssociationConnector Association="RinconArtesanoModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.UsersInfo" Width="1.5" PointX="4.75" PointY="0.5" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_UsersInfo_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

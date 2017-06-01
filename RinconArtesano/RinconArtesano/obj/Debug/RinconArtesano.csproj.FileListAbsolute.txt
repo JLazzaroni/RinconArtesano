@@ -296,3 +296,5 @@ C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\obj\Debug\RinconAr
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll.config
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.dll
 C:\IngenieriaWEB\RinconArtesano\RinconArtesano\RinconArtesano\bin\RinconArtesano.pdb
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\bin\Datos.dll
+C:\Users\josel_000\Desktop\INGENIERÍA\2do año\Ingenieria Web\RepoGitHub\RinconArtesano\RinconArtesano\RinconArtesano\bin\Datos.pdb

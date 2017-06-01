@@ -28,7 +28,7 @@
 
 function buttonMessageHijo(messagePadreId, comentario) {
     var data = {
-        Comentario: comentario.textContent,
+        Comentario: comentario.value,
         MessagePadreId: messagePadreId
     };
 

@@ -43,11 +43,30 @@ namespace RinconArtesano.Controllers
             }
             Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
             ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();
+            var artesano = db.UsersInfo.Where(x => x.UsersId.Equals(products.UsersId)).ToList();
+            ProductDetailsViewModel pd = new ProductDetailsViewModel
+            {
+                //ArtesanoApellido = artesano[0].Apellido,
+                //ArtesanoNombre = artesano[0].Nombre,
+                //ArtesanoFoto = artesano[0].FilePath,
+                Artesano = artesano[0],
+                ProductId = products.ProductId,
+                UsersId = products.UsersId,
+                ProductTitle = products.ProductTitle,
+                ProductDescription = products.ProductDescription,
+                IdCategory = products.IdCategory,
+                IsBlocked = products.IsBlocked,
+                DateNull = products.DateNull,
+                DateAdd = products.DateAdd,
+                DateModification = products.DateModification,
+                Files = products.Files,
+                ProductsCategories = products.ProductsCategories
+            };
             if (products == null)
             {
                 return HttpNotFound();
             }
-            return View(products);
+            return View(pd);//products);
         }
 
         // GET: Products

@@ -1,0 +1,52 @@
+﻿@using Datos;
+@model AspNetUsers
+
+<div class="profile-sidebar">
+    <div class="profile-userpic">
+        <img src="@Url.Content(@Model.UsersInfo.FilePath)" class="img-responsive" alt="">
+    </div>
+    <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+            @Model.UserName
+        </div>
+        <div class="profile-usertitle-job">
+            <ul style="list-style-type: none; padding-left: 0px;">
+                @foreach (var item in Model.AspNetRoles)
+                {
+                    <li>
+                        @item.Name
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="profile-usermenu">
+        <ul class="nav">
+            <li class="active">
+                <a href="#">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Perfil
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Account Settings
+                </a>
+            </li>
+            <li>
+                <a href="#" target="_blank">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    Tasks
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-flag"></i>
+                    Help
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+

@@ -200,6 +200,9 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsersInfo.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VigentesExperiences.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RinconArtesanoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RinconArtesanoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -157,6 +157,29 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UsersInfo">
+          <Key>
+            <PropertyRef Name="UsersId" />
+          </Key>
+          <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Apellido" Type="varchar" MaxLength="500" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="Sexo" Type="varchar" MaxLength="10" />
+          <Property Name="Pais" Type="varchar" MaxLength="500" />
+          <Property Name="Provincia" Type="varchar" MaxLength="500" />
+          <Property Name="Localidad" Type="varchar" MaxLength="500" />
+          <Property Name="Direccion" Type="varchar" MaxLength="500" />
+          <Property Name="Telefono" Type="varchar" MaxLength="100" />
+          <Property Name="Intereses" Type="varchar" MaxLength="1000" />
+          <Property Name="Rubro" Type="varchar" MaxLength="1000" />
+          <Property Name="FilePath" Type="varchar" MaxLength="500" />
+          <Property Name="DateNull" Type="datetime" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" />
+          <Property Name="IsBlocked" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.NoVigentesExperiences' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -444,6 +467,18 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UsersInfo_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersInfo" Type="Self.UsersInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersInfo">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RinconArtesanoModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -458,6 +493,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersInfo" EntityType="Self.UsersInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NoVigentesExperiences" EntityType="Self.NoVigentesExperiences" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [NoVigentesExperiences].[ExperienceId] AS [ExperienceId], 
@@ -574,9 +610,12 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="ProductsCategories" EntitySet="ProductsCategories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_UsersInfo_AspNetUsers" Association="Self.FK_UsersInfo_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersInfo" EntitySet="UsersInfo" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RinconArtesanoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -634,6 +673,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <NavigationProperty Name="MessagesPadres" Relationship="Self.FK_MessagesPadres_AspNetUsers" FromRole="AspNetUsers" ToRole="MessagesPadres" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_AspNetUsers" FromRole="AspNetUsers" ToRole="Products" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="UsersInfo" Relationship="RinconArtesanoModel.FK_UsersInfo_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersInfo" />
         </EntityType>
         <EntityType Name="Denuncias">
           <Key>
@@ -1086,7 +1126,48 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="UsersInfo" EntityType="RinconArtesanoModel.UsersInfo" />
+          <AssociationSet Name="FK_UsersInfo_AspNetUsers" Association="RinconArtesanoModel.FK_UsersInfo_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersInfo" EntitySet="UsersInfo" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="UsersInfo">
+          <Key>
+            <PropertyRef Name="UsersId" />
+          </Key>
+          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Pais" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Localidad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Intereses" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Rubro" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModification" Type="DateTime" Precision="3" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_UsersInfo_AspNetUsers" FromRole="UsersInfo" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="FK_UsersInfo_AspNetUsers">
+          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="RinconArtesanoModel.UsersInfo" Role="UsersInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersInfo">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1316,6 +1397,30 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="UsersInfo">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.UsersInfo">
+              <MappingFragment StoreEntitySet="UsersInfo">
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Rubro" ColumnName="Rubro" />
+                <ScalarProperty Name="Intereses" ColumnName="Intereses" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

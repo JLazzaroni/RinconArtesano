@@ -59,5 +59,6 @@ namespace Datos
         public virtual ICollection<Products> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+        public virtual UsersInfo UsersInfo { get; set; }
     }
 }

@@ -41,5 +41,6 @@ namespace Datos
         public virtual DbSet<NoVigentesProducts> NoVigentesProducts { get; set; }
         public virtual DbSet<VigentesExperiences> VigentesExperiences { get; set; }
         public virtual DbSet<VigentesProducts> VigentesProducts { get; set; }
+        public virtual DbSet<UsersInfo> UsersInfo { get; set; }
     }
 }

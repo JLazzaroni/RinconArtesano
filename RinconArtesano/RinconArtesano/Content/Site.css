@@ -123,3 +123,244 @@ textarea {
   font-size: 13px;
   padding-top: 100px;
 }
+
+
+
+
+
+/*Perfil*/
+
+
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+
+/*Detalle productos*/
+
+.product-detail-2 .vendor-feedback {
+    color: #A31C49;
+    font-weight: bold;
+}
+.product-detail-2 .product-price,
+.product-detail-2 h2,
+.product-detail-2 h3,
+.product-detail-2 .vendor-reject {
+    color: #0F960B;
+    font-weight: bold;
+}
+.product-detail-2 .vendor-logo img {
+    width: 100px;
+    height: 100px;
+}
+.product-detail-2 .vendor-logo {
+    margin: 13px 20px;
+}
+.product-detail-2 .product-price {
+    font-size: 18px;
+}
+.product-detail-2 .product-price span {
+    font-weight: normal;
+}
+.product-detail-2 .btn-success {
+    background: #99CC00;
+    border: 1px solid #99CC00;
+}
+.product-detail-2 .carousel-inner{
+  width:100%;
+  max-height: 300px !important;
+}
+.product-detail-2 .product-descriptions {
+    word-wrap: break-word;
+}
+
+
+
+
+/*Listado Experiencias o Productos por Categoria*/
+.wrapper {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.container-big {
+  display: table-cell;
+  padding: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+.big-logo {
+  width: 100px;
+  margin-bottom:15px
+}
+h1.heading {
+  color: #fff;
+  font-size: 1.15em;
+  font-weight: 900;
+  margin: 0 0 0.5em;
+  color: #505050;
+}
+@media (min-width: 450px) {
+  h1.heading {
+    font-size: 3.55em;
+  }
+}
+@media (min-width: 760px) {
+  h1.heading {
+    font-size: 3.05em;
+  }
+}
+@media (min-width: 900px) {
+  h1.heading {
+    font-size: 3.25em;
+    margin: 0 0 0.3em;
+  }
+} 
+.carbox {
+  display: block; 
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12); 
+    transition: box-shadow .25s; 
+}
+.carbox:hover {
+  box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.img-carbox {
+  width: 100%;
+  height:200px;
+  border-top-left-radius:2px;
+  border-top-right-radius:2px;
+  display:block;
+    overflow: hidden;
+}
+.img-carbox img{
+  width: 100%;
+  height: 200px;
+  object-fit:cover; 
+  transition: all .25s ease;
+} 
+.carbox-content {
+  padding:15px;
+  text-align:left;
+}
+.carbox-title {
+  margin-top:0px;
+  font-weight: 700;
+  font-size: 1.65em;
+}
+.carbox-title a {
+  color: #000;
+  text-decoration: none !important;
+}
+.carbox-read-more {
+  border-top: 1px solid #D4D4D4;
+}
+.carbox-read-more a {
+  text-decoration: none !important;
+  padding:10px;
+  font-weight:600;
+  text-transform: uppercase
+}

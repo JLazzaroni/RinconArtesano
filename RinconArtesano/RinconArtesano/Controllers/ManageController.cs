@@ -51,6 +51,8 @@ namespace RinconArtesano.Controllers
             }
         }
 
+        RinconArtesanoEntities db = new RinconArtesanoEntities();
+
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
@@ -73,6 +75,9 @@ namespace RinconArtesano.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            ViewBag.InfoUsuario = db.AspNetUsers.Find(userId);
+
             return View(model);
         }
 
