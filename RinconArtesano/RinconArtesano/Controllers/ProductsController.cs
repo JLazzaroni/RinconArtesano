@@ -42,7 +42,6 @@ namespace RinconArtesano.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
-            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();
             var artesano = db.UsersInfo.Where(x => x.UsersId.Equals(products.UsersId)).ToList();
             ProductDetailsViewModel pd = new ProductDetailsViewModel
             {
@@ -63,7 +62,9 @@ namespace RinconArtesano.Controllers
                 ProductsCategories = products.ProductsCategories
             };
             string userId = User.Identity.GetUserId();
-            ViewBag.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ProductId == id).Any();
+            pd.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ProductId == id).Any();
+
+            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();
             if (products == null)
             {
                 return HttpNotFound();
@@ -305,6 +306,10 @@ namespace RinconArtesano.Controllers
             if (products == null)
             {
                 return HttpNotFound();
+            }
+            else if (products.UsersId != User.Identity.GetUserId())
+            {
+                return View("PermissionsError");
             }
             return View(products);
         }

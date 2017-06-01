@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DenunciasViewModel.cs" />
+    <Compile Include="Models\ExperiencesViewModel.cs" />
     <Compile Include="Models\FileTypes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

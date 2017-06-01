@@ -33,14 +33,29 @@ namespace RinconArtesano.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Experiences experiences = db.Experiences.SingleOrDefault(s => s.ExperienceId == id);
-            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 2 && x.CategoryId == id && x.DateNull == null).ToList();
+            ExperiencesViewModel experienceViewModel = new ExperiencesViewModel()
+            {
+                ExperienceId = experiences.ExperienceId,
+                UsersId = experiences.UsersId,
+                ExperienceTitle = experiences.ExperienceTitle,
+                ExperienceDescription = experiences.ExperienceDescription,
+                DateNull = experiences.DateNull,
+                DateAdd = experiences.DateAdd,
+                DateModification = experiences.DateModification,
+                IsBlocked = experiences.IsBlocked,
+                AspNetUsers = experiences.AspNetUsers,
+                Denuncias = experiences.Denuncias,
+                Files = experiences.Files,
+            };
             string userId = User.Identity.GetUserId();
-            ViewBag.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ExperienceId == id).Any();
+            experienceViewModel.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ExperienceId == id).Any();
+            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 2 && x.CategoryId == id && x.DateNull == null).ToList();
+
             if (experiences == null)
             {
                 return HttpNotFound();
             }
-            return View(experiences);
+            return View(experienceViewModel);
         }
 
         // GET: Experiences
@@ -271,6 +286,11 @@ namespace RinconArtesano.Controllers
             {
                 return HttpNotFound();
             }
+            else if (Experiences.UsersId != User.Identity.GetUserId())
+            {
+                return View("PermissionsError");
+            }
+
             return View(Experiences);
         }
 

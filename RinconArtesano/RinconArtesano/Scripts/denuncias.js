@@ -33,6 +33,7 @@
         success: function (data) {
             alert(data.message);
             init();
+            location.reload();
         },
         error: function (data) {
             alert(data.message);

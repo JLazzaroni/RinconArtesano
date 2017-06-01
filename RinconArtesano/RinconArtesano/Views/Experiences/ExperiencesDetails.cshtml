@@ -1,5 +1,5 @@
 ﻿@using Datos;
-@model Experiences
+@model ExperiencesViewModel 
 @{
     ViewBag.Title = "ExperiencesDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>@Html.DisplayFor(model => model.ExperienceTitle)</h1>
-                @if (@ViewBag.UsuarioDenuncio == false)
+                @if (Model.UsuarioDenuncio == false)
                 {
                     <div data-toggle="modal" data-target=".modalDenuncias" class="btn btn-default">
                         <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto; float: left; margin-top: 3px;"></i>
