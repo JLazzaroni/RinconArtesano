@@ -1,11 +1,14 @@
 ﻿@using Datos;
-@model Products
+
+@model ProductsViewModel
 @{
     ViewBag.Title = "ProductsDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     List<MessagesPadres> Messages = ViewBag.Messages;
+
 }
+
 <body>
     <div>
         <br />
@@ -73,14 +76,24 @@
                                 </h4>
 
                             </li>
-                            <li style="display: inline-flex;">
-                                <div data-toggle="modal" data-target=".modalDenuncias" class="button btn-default" style="display: inline-flex;padding: 10px;">
-                                    <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: left;"></i>
-                                    <h4 style="padding-left: 10px;">
-                                        Denunciar
-                                    </h4>
-                                </div>
-                            </li>
+                            @if (Model.Denuncia == false)
+                            {
+                                <li style="display: inline-flex;">
+                                    <div data-toggle="modal" data-target=".modalDenuncias" class="button btn-default" style="display: inline-flex;padding: 10px;">
+                                        <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: left;"></i>
+                                        <h4 style="padding-left: 10px;">
+                                            Denunciar
+                                        </h4>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <b>Usted ya ha denunciado este producto.</b>
+                                </li>
+                            }
+                            <br />
                             <li>
                                 <b>Categoría:</b>
                                 <p>

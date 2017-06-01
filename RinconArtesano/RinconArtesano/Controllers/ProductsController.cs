@@ -42,12 +42,31 @@ namespace RinconArtesano.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
+            ProductsViewModel productsViewModel = new ProductsViewModel()
+            {
+                ProductId = products.ProductId,
+                UsersId = products.UsersId,
+                ProductTitle = products.ProductTitle,
+                ProductDescription = products.ProductDescription,
+                IdCategory = products.IdCategory,
+                DateNull = products.DateNull,
+                DateAdd = products.DateAdd,
+                DateModification = products.DateModification,
+                IsBlocked = products.IsBlocked,
+                AspNetUsers = products.AspNetUsers,
+                Denuncias = products.Denuncias,
+                Files = products.Files,
+                ProductsCategories = products.ProductsCategories
+            };
+            string userId = User.Identity.GetUserId();
+            productsViewModel.Denuncia = db.Denuncias.Where(x => x.UsersId == userId && x.ProductId == id).Any();
+
             ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();
             if (products == null)
             {
                 return HttpNotFound();
             }
-            return View(products);
+            return View(productsViewModel);
         }
 
         // GET: Products
