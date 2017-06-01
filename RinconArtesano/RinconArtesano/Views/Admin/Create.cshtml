@@ -1,4 +1,10 @@
 ﻿@model RinconArtesano.Models.ExpandedUserViewModel
+
+@{
+    List<SelectListItem> lista = new List<SelectListItem>();
+    lista = ViewBag.Roles;
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -29,9 +35,10 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Roles, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoleName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Roles", null, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.RoleName, lista, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">

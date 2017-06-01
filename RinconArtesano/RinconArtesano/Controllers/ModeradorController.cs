@@ -216,52 +216,48 @@ namespace RinconArtesano.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                var Email = vm.Email.Trim();
-                var UserName = vm.UserName.Trim();
-                var Password = vm.Password.Trim();
+                //Validaciones
+                if (String.IsNullOrWhiteSpace(vm.UserName))
+                    ModelState.AddModelError("UserName", "Error en el campo Nombre de usuario.");
+                if (String.IsNullOrWhiteSpace(vm.Email))
+                    ModelState.AddModelError("Email", "Error en el campo Email.");
+                if (String.IsNullOrWhiteSpace(vm.Password))
+                    ModelState.AddModelError("Password", "Error en el campo Contraseña.");
 
-                if (Email == "")
+                if (!ModelState.IsValid)
                 {
-                    throw new Exception("No Email");
-                }
-
-                if (Password == "")
-                {
-                    throw new Exception("No Password");
-                }
-
-                // UserName es el mail en minusculas
-                //UserName = Email.ToLower();
-
-                // Create de usuario
-
-                var nAdminUser = new ApplicationUser { UserName = UserName, Email = Email };
-                var AdminUserCreateResult = UserManager.Create(nAdminUser, Password);
-
-                if (AdminUserCreateResult.Succeeded == true)
-                {
-                    string strNewRole = "ArtesanoUsuario";//Convert.ToString(Request.Form["Roles"]);
-
-                    if (strNewRole != "0")
-                    {
-                        // Asignar rol a usuario
-                        UserManager.AddToRole(nAdminUser.Id, strNewRole);
-                    }
-
-                    return Redirect("~/Moderador");
+                    return View(vm);
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty,
-                        "Error: Error al crear el usuario. Comprobar los requisitos del password.");
-                    return View(vm);
+                    var Email = vm.Email.Trim();
+                    var UserName = vm.UserName.Trim();
+                    var Password = vm.Password.Trim();
+
+                    // Create de usuario
+                    var nAdminUser = new ApplicationUser { UserName = UserName, Email = Email };
+                    var AdminUserCreateResult = UserManager.Create(nAdminUser, Password);
+
+                    if (AdminUserCreateResult.Succeeded == true)
+                    {
+                        string strNewRole = "ArtesanoUsuario";
+                        // Asignar rol a usuario
+                        UserManager.AddToRole(nAdminUser.Id, strNewRole);
+
+                        return Redirect("~/Moderador");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty,
+                            "Error: Error al crear el usuario. Comprobar los requisitos del password.");
+                        return View(vm);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                ViewBag.Roles = GetAllRolesAsSelectList();
                 ModelState.AddModelError(string.Empty, "Error: " + ex);
-                return View("Create");
+                return View(vm);
             }
         }
 

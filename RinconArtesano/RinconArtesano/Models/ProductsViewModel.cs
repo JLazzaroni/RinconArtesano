@@ -23,6 +23,7 @@ namespace RinconArtesano.Models
         public System.DateTime DateAdd { get; set; }
         public Nullable<System.DateTime> DateModification { get; set; }
         public bool IsBlocked { get; set; }
+        public bool Denuncia { get; set; }
 
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual ProductsCategories ProductsCategories { get; set; }
