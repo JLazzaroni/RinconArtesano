@@ -29,21 +29,15 @@
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li class="active">
-                            <a href="@Url.Action("Index", "Manage")">
+                            <a href="@Url.Action("Details", "UsersInfo", new { id = @u.UsersId })">
                                 <i class="glyphicon glyphicon-home"></i>
                                 Perfil
                             </a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Edit", "UsersInfo", new { id = @u.UsersId })">
-                                <i class="glyphicon glyphicon-user"></i>
-                                Editar Perfil
-                            </a>
-                        </li>
-                        <li>
                             <a href="@Url.Action("ChangePassword", "Manage")">
-                                <i class="glyphicon glyphicon-wrench"></i>
-                                Cambiar contraseña
+                                <i class="fa fa-exclamation-triangle"></i>
+                                Denunciar
                             </a>
                         </li>
                     </ul>

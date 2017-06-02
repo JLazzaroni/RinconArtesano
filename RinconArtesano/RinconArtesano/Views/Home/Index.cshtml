@@ -56,9 +56,18 @@
                                             </p>
                                         </div>
                                         <div class="carbox-read-more">
-                                            <a href="@Url.Action("Details", "UsersInfo", new { id = prod.UsersId })" class=" btn btn-link btn-block">
-                                                @prod.AspNetUsers.UserName
-                                            </a>
+                                            @if (User.Identity.Name.Equals(@prod.AspNetUsers.UserName))
+                                            {
+                                                <a href="@Url.Action("Index", "Manage")" class="btn btn-link btn-block">
+                                                    @prod.AspNetUsers.UserName
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("Details", "UsersInfo", new { id = prod.UsersId })" class=" btn btn-link btn-block">
+                                                    @prod.AspNetUsers.UserName
+                                                </a>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -104,9 +113,18 @@
                                             </p>
                                         </div>
                                         <div class="carbox-read-more">
-                                            <a href="@Url.Action("Details", "UsersInfo", new { id = exp.UsersId })" class="btn btn-link btn-block">
-                                                @exp.AspNetUsers.UserName
-                                            </a>
+                                            @if (User.Identity.Name.Equals(@exp.AspNetUsers.UserName))
+                                            {
+                                                <a href="@Url.Action("Index", "Manage")" class="btn btn-link btn-block">
+                                                    @exp.AspNetUsers.UserName
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("Details", "UsersInfo", new { id = exp.UsersId })" class="btn btn-link btn-block">
+                                                    @exp.AspNetUsers.UserName
+                                                </a>
+                                            }
                                         </div>
                                     </div>
                                 </div>
