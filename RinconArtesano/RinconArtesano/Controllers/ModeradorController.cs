@@ -199,6 +199,7 @@ namespace RinconArtesano.Controllers
         public ActionResult Create()
         {
             ExpandedUserViewModel nvm = new ExpandedUserViewModel();
+            ViewBag.Roles = GetAllRolesAsSelectList();
             return View(nvm);
         }
 
@@ -219,13 +220,21 @@ namespace RinconArtesano.Controllers
                 //Validaciones
                 if (String.IsNullOrWhiteSpace(vm.UserName))
                     ModelState.AddModelError("UserName", "Error en el campo Nombre de usuario.");
+                if (AccountController.existUserNameBoolean(vm.UserName))
+                    ModelState.AddModelError("UserName", "Este nombre de usuario ya existe.");
                 if (String.IsNullOrWhiteSpace(vm.Email))
                     ModelState.AddModelError("Email", "Error en el campo Email.");
                 if (String.IsNullOrWhiteSpace(vm.Password))
                     ModelState.AddModelError("Password", "Error en el campo Contraseña.");
+                string validacionPass = AccountController.IsValidPassword(vm.Password);
+                if (validacionPass != "")
+                    ModelState.AddModelError("Password", validacionPass);
+                if (String.IsNullOrWhiteSpace(vm.RoleName) || vm.RoleName == "0")
+                    ModelState.AddModelError("RoleName", "Error en el campo Rol.");
 
                 if (!ModelState.IsValid)
                 {
+                    ViewBag.Roles = GetAllRolesAsSelectList();
                     return View(vm);
                 }
                 else
@@ -240,14 +249,20 @@ namespace RinconArtesano.Controllers
 
                     if (AdminUserCreateResult.Succeeded == true)
                     {
-                        string strNewRole = "ArtesanoUsuario";
-                        // Asignar rol a usuario
-                        UserManager.AddToRole(nAdminUser.Id, strNewRole);
+                        string strNewRole = vm.RoleName;
+
+                        if (strNewRole != "0")
+                        {
+                            // Asignar rol a usuario
+                            UserManager.AddToRole(nAdminUser.Id, strNewRole);
+                        }
+                        UsersInfoController.CreateEmptyUsersInfo(nAdminUser.Id);
 
                         return Redirect("~/Moderador");
                     }
                     else
                     {
+                        ViewBag.Roles = GetAllRolesAsSelectList();
                         ModelState.AddModelError(string.Empty,
                             "Error: Error al crear el usuario. Comprobar los requisitos del password.");
                         return View(vm);
@@ -256,6 +271,7 @@ namespace RinconArtesano.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Roles = GetAllRolesAsSelectList();
                 ModelState.AddModelError(string.Empty, "Error: " + ex);
                 return View(vm);
             }
@@ -390,11 +406,13 @@ namespace RinconArtesano.Controllers
 
             var colRoleSelectList = roleManager.Roles.OrderBy(x => x.Name).ToList();
 
-            SelectRoleListItems.Add(new SelectListItem { Text = "Select", Value = "0" });
+            SelectRoleListItems.Add(new SelectListItem { Text = "Seleccione un rol", Value = "0" });
 
             foreach (var item in colRoleSelectList)
             {
-                SelectRoleListItems.Add(new SelectListItem { Text = item.Name.ToString(), Value = item.Name.ToString() });
+                //Agrega los roles distintos a Administrador (para que Moderador no se pueda asignar ese rol)
+                if (item.Id != "83ef9766-0cb6-472d-961a-b2d280c4adf9")
+                    SelectRoleListItems.Add(new SelectListItem { Text = item.Name.ToString(), Value = item.Name.ToString() });
             }
 
             return SelectRoleListItems;

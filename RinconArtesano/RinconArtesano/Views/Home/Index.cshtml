@@ -28,61 +28,98 @@
 <body>
     <div>
         <br />
-        <h4 class="form__titulo">Productos - Artículos publicados por usuarios que los exponen para su venta</h4>
+        <h4 class="form__titulo">Productos - Artesanias publicadas por nuestros usuarios.</h4>
         <hr />
-
-        <div class="row">
-            @foreach (var prod in products)
-            {
-                <div class="col-lg-4 col-md-4">
-                    <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" width="250" height="250">
-                    <h3>
-                        <a href=@Url.Action("ProductsDetails", "Products", new { id = prod.ProductId })>@prod.ProductTitle</a>
-                    </h3>
-                    <p>
-                        @prod.ProductDescription.Substring(0, prod.ProductDescription.Length <= 150 ? prod.ProductDescription.Length : 150)
-                        @{if (prod.ProductDescription.Length > 150)
-                        {@("...")}
-                        }
-                    </p>
-                    <a>@prod.AspNetUsers.UserName</a>
+        <section class="wrapper">
+            <div class="container-big">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            @foreach (var prod in products)
+                            {
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="carbox">
+                                        <div class="img-carbox">
+                                            <img src="@Url.Content(@prod.Files.FirstOrDefault().FilePath)" alt="@prod.Files.FirstOrDefault().FileName" />
+                                        </div>
+                                        <div class="carbox-content">
+                                            <h4 class="carbox-title">
+                                                <a href="@Url.Action("ProductsDetails", "Products", new { id = prod.ProductId })">
+                                                    @prod.ProductTitle
+                                                </a>
+                                            </h4>
+                                            <p class="">
+                                                @prod.ProductDescription.Substring(0, prod.ProductDescription.Length <= 150 ? prod.ProductDescription.Length : 150)
+                                                @{if (prod.ProductDescription.Length > 150)
+                                                {@("...")}
+                                                }
+                                            </p>
+                                        </div>
+                                        <div class="carbox-read-more">
+                                            <a href="@Url.Action("Details", "UsersInfo", new { id = prod.UsersId })" class=" btn btn-link btn-block">
+                                                @prod.AspNetUsers.UserName
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-10 col-md-2">
+                                <a href=@Url.Action("Home", "Products") class="btn btn-default">Ver mas</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            }
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-10 col-md-2">
-                <a href=@Url.Action("Home", "Products") class="btn btn-default">Ver mas</a>
             </div>
-        </div>
+        </section>
     </div>
     <div>
         <br />
-        <h4 class="form__titulo">Experiencias - Publicaciones de usuarios donde expresan sus distintas experiencias</h4>
+        <h4 class="form__titulo">Experiencias - Tutoriales sobre artesanias publicados por nuestros usuarios.</h4>
         <hr />
-
-        <div class="row">
-            @foreach (var exp in experiences)
-            {
-                <div class="col-lg-4 col-md-4">
-                    <img src="@Url.Content(@exp.Files.FirstOrDefault().FilePath)" alt="@exp.Files.FirstOrDefault().FileName" width="250" height="250">
-                    <h3>
-                        <a href=@Url.Action("ExperiencesDetails", "Experiences", new { id = exp.ExperienceId })>@exp.ExperienceTitle</a>
-                    </h3>
-                    <p>
-                        @exp.ExperienceDescription.Substring(0, exp.ExperienceDescription.Length <= 150 ? exp.ExperienceDescription.Length : 150)
-                        @{if (exp.ExperienceDescription.Length > 150)
-                        {@("...")}
-                        }
-                    </p>
-
-                    <a>@exp.AspNetUsers.UserName</a>
+        <section class="wrapper">
+            <div class="container-big">
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            @foreach (var exp in experiences)
+                            {
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="carbox">
+                                        <div class="img-carbox">
+                                            <img src="@Url.Content(@exp.Files.FirstOrDefault().FilePath)" alt="@exp.Files.FirstOrDefault().FileName" />
+                                        </div>
+                                        <div class="carbox-content">
+                                            <h4 class="carbox-title">
+                                                <a href="@Url.Action("ExperiencesDetails", "Experiences", new { id = exp.ExperienceId })">
+                                                    @exp.ExperienceTitle
+                                                </a>
+                                            </h4>
+                                            <p class="">
+                                                @exp.ExperienceDescription.Substring(0, exp.ExperienceDescription.Length <= 150 ? exp.ExperienceDescription.Length : 150)
+                                                @{if (exp.ExperienceDescription.Length > 150)
+                                                {@("...")}
+                                                }
+                                            </p>
+                                        </div>
+                                        <div class="carbox-read-more">
+                                            <a href="@Url.Action("Details", "UsersInfo", new { id = exp.UsersId })" class="btn btn-link btn-block">
+                                                @exp.AspNetUsers.UserName
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-10 col-md-2">
+                                <a href=@Url.Action("Home", "Experiences") class="btn btn-default">Ver mas</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            }
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-10 col-md-2">
-                <a href=@Url.Action("Home", "Experiences") class="btn btn-default">Ver mas</a>
             </div>
-        </div>
+        </section>
     </div>
 </body>

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RinconArtesano.Models;
 using Datos;
+using System.IO;
 
 namespace RinconArtesano.Controllers
 {
@@ -222,12 +223,17 @@ namespace RinconArtesano.Controllers
                 //Validaciones
                 if (String.IsNullOrWhiteSpace(vm.UserName))
                     ModelState.AddModelError("UserName", "Error en el campo Nombre de usuario.");
+                if (AccountController.existUserNameBoolean(vm.UserName))
+                    ModelState.AddModelError("UserName", "Este nombre de usuario ya existe.");
                 if (String.IsNullOrWhiteSpace(vm.Email))
                     ModelState.AddModelError("Email", "Error en el campo Email.");
                 if (String.IsNullOrWhiteSpace(vm.Password))
                     ModelState.AddModelError("Password", "Error en el campo Contraseña.");
-                if (String.IsNullOrWhiteSpace(vm.RoleName))
-                    ModelState.AddModelError("RoleName", "Error en el campo RoleName.");
+                string validacionPass = AccountController.IsValidPassword(vm.Password);
+                if (validacionPass != "")
+                    ModelState.AddModelError("Password", validacionPass);
+                if (String.IsNullOrWhiteSpace(vm.RoleName) || vm.RoleName == "0")
+                    ModelState.AddModelError("RoleName", "Error en el campo Role.");
 
                 if (!ModelState.IsValid)
                 {
@@ -253,6 +259,7 @@ namespace RinconArtesano.Controllers
                             // Asignar rol a usuario
                             UserManager.AddToRole(nAdminUser.Id, strNewRole);
                         }
+                        UsersInfoController.CreateEmptyUsersInfo(nAdminUser.Id);
 
                         return Redirect("~/Admin");
                     }
@@ -311,10 +318,7 @@ namespace RinconArtesano.Controllers
                     return HttpNotFound();
                 }
 
-                if (User.IsInRole("Moderador"))
-                    return Redirect("~/Moderador");
-                else
-                    return Redirect("~/Admin");
+                return Redirect("~/Admin");
             }
             catch (Exception ex)
             {
@@ -352,10 +356,7 @@ namespace RinconArtesano.Controllers
                     DeleteUser(nvm);
                 }
 
-                if (User.IsInRole("Moderador"))
-                    return Redirect("~/Moderador");
-                else
-                    return Redirect("~/Admin");
+                return Redirect("~/Admin");
             }
             catch (Exception ex)
             {
@@ -819,7 +820,7 @@ namespace RinconArtesano.Controllers
         [Authorize(Roles = "Administrador, Moderador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCategory(ProductsCategories pc)
+        public ActionResult AddCategory(ProductsCategories pc, HttpPostedFileBase uploadedFile)
         {
             try
             {
@@ -836,6 +837,9 @@ namespace RinconArtesano.Controllers
                     ModelState.AddModelError("ProductCategoryName", "En el campo Nombre no puede estar vacio.");
                 if (String.IsNullOrWhiteSpace(pc.ProductCategoryDescriptions))
                     ModelState.AddModelError("ProductCategoryDescriptions", "En el campo Descripción no puede estar vacio.");
+                if (uploadedFile == null || uploadedFile.ContentLength == 0)
+                    ModelState.AddModelError("FilePath", "Es obligatoria la carga de una imagen");
+
 
                 if (!ModelState.IsValid)
                 {
@@ -844,6 +848,17 @@ namespace RinconArtesano.Controllers
                 else
                 {
                     ProductsCategories productsCategories = new ProductsCategories();
+                    if (uploadedFile != null && uploadedFile.ContentLength > 0)
+                    {
+                        string rutaServer = @"~\Content\Images";
+                        string rutaSource = @"~/Content/Images/";
+                        var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(uploadedFile.FileName);
+                        var pathServer = Path.Combine(Server.MapPath(rutaServer), nombreArchivo);
+                        var pathSource = rutaSource + nombreArchivo;
+                        uploadedFile.SaveAs(pathServer);
+
+                        productsCategories.FilePath = pathSource;
+                    }
                     productsCategories.ProductCategoryName = pc.ProductCategoryName;
                     productsCategories.ProductCategoryDescriptions = pc.ProductCategoryDescriptions;
                     productsCategories.DateAdd = DateTime.Now;
@@ -923,7 +938,7 @@ namespace RinconArtesano.Controllers
         [Authorize(Roles = "Administrador, Moderador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCategory(ProductsCategories pc)
+        public ActionResult EditCategory(ProductsCategories pc, HttpPostedFileBase uploadedFile)
         {
             try
             {
@@ -949,6 +964,17 @@ namespace RinconArtesano.Controllers
                 {
 
                     ProductsCategories productsCategories = db.ProductsCategories.Where(x => x.ProductCategoryId == pc.ProductCategoryId).Single();
+                    if (uploadedFile != null && uploadedFile.ContentLength > 0)
+                    {
+                        string rutaServer = @"~\Content\Images";
+                        string rutaSource = @"~/Content/Images/";
+                        var nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(uploadedFile.FileName);
+                        var pathServer = Path.Combine(Server.MapPath(rutaServer), nombreArchivo);
+                        var pathSource = rutaSource + nombreArchivo;
+                        uploadedFile.SaveAs(pathServer);
+
+                        productsCategories.FilePath = pathSource;
+                    }
                     productsCategories.ProductCategoryName = pc.ProductCategoryName;
                     productsCategories.ProductCategoryDescriptions = pc.ProductCategoryDescriptions;
                     db.SaveChanges();

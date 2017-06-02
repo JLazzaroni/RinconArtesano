@@ -30,6 +30,8 @@ namespace RinconArtesano.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             UsersInfo usersInfo = db.UsersInfo.Find(id);
+            
+            ViewBag.InfoUsuario = db.UsersInfo.Find(id);
             if (usersInfo == null)
             {
                 return HttpNotFound();
@@ -60,6 +62,21 @@ namespace RinconArtesano.Controllers
 
             ViewBag.UsersId = new SelectList(db.AspNetUsers, "Id", "Email", usersInfo.UsersId);
             return View(usersInfo);
+        }
+
+
+        public static void CreateEmptyUsersInfo(string id)
+        {
+            RinconArtesanoEntities db = new RinconArtesanoEntities();
+            UsersInfo u = new UsersInfo() { 
+                UsersId = id,
+                FechaNacimiento = DateTime.Now,
+                FilePath = "~/Content/Images/defaultUser.gif",
+                DateAdd = DateTime.Now
+            };
+            
+            db.UsersInfo.Add(u);
+            db.SaveChanges();
         }
 
         // GET: UsersInfo/Edit/5

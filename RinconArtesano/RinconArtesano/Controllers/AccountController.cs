@@ -25,6 +25,31 @@ namespace RinconArtesano.Controllers
         public AccountController()
         {
         }
+        static bool IsLetter(char c)
+        {
+            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+        }
+
+        static bool IsDigit(char c)
+        {
+            return c >= '0' && c <= '9';
+        }
+
+        static bool IsSymbol(char c)
+        {
+            return c > 32 && c < 127 && !IsDigit(c) && !IsLetter(c);
+        }
+
+        public static string IsValidPassword(string password)
+        {
+            if (!password.Any(char.IsUpper))
+                return "Las contraseñas deben tener al menos una letra en mayúscula ('A'-'Z').";
+            else if (!password.Any(c => IsDigit(c)))
+                return "Las contraseñas deben tener al menos un dígito ('0'-'9').";
+            else if (!password.Any(c => IsSymbol(c)))
+                return "Las contraseñas deben tener al menos un carácter que no sea una letra ni un dígito.";
+            return "";
+        }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -75,10 +100,17 @@ namespace RinconArtesano.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            var user = await UserManager.FindByNameAsync(model.UserName);
+            if (!await UserManager.IsEmailConfirmedAsync(user.Id))
+            {
+                ModelState.AddModelError("", "Necesitas confirmar el mail enviado a " + user.Email + ".");
+                return View(model);
+            }
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+            
 
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
@@ -156,6 +188,15 @@ namespace RinconArtesano.Controllers
             var check = CheckUserNameExist(userName);
             return check ? Json(false) : Json(true);
         }
+        public static Boolean existUserNameBoolean(string userName)
+        {
+            RinconArtesanoEntities db = new RinconArtesanoEntities();
+            if (db.AspNetUsers.Any(u => u.UserName.ToUpper().Equals(userName.ToUpper())))
+                return true;
+            else
+                return false;
+        }
+
         //[HttpPost]
         //public JsonResult existsUserName(string UserName)
         //{
@@ -182,17 +223,22 @@ namespace RinconArtesano.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };//new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email};//new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //Comento la linea de abajo para que no inicie sesión despues del login y tenga que hacerlo por la accion Login, la cual obliga a confirmar el mail.
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+
+                    UsersInfoController.CreateEmptyUsersInfo(user.Id);
+
+                    UserManager.AddToRole(user.Id, "ArtesanoUsuario");
 
                     return RedirectToAction("Index", "Home");
                 }

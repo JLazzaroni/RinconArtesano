@@ -15,7 +15,6 @@
                 <div class="row">
                     @foreach (var exp in experiences)
                     {
-                        
                         <div class="col-xs-12 col-sm-4">
                             <div class="carbox">
                                 <div class="img-carbox">
@@ -35,7 +34,7 @@
                                     </p>
                                 </div>
                                 <div class="carbox-read-more">
-                                    <a href="" class="btn btn-link btn-block">
+                                    <a href="@Url.Action("Details", "UsersInfo", new { id = exp.UsersId })" class="btn btn-link btn-block">
                                         @exp.AspNetUsers.UserName
                                     </a>
                                 </div>
