@@ -19,6 +19,7 @@ namespace RinconArtesano.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private RinconArtesanoEntities db = new RinconArtesanoEntities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -106,6 +107,13 @@ namespace RinconArtesano.Controllers
                 ModelState.AddModelError("", "Necesitas confirmar el mail enviado a " + user.Email + ".");
                 return View(model);
             }
+            else
+            {
+                UsersInfo u = db.UsersInfo.Find(user.Id);
+                if (u.IsBlocked)
+                    ModelState.AddModelError("", "Esta cuenta se encuentra bloqueada.");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);

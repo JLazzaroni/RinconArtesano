@@ -1,0 +1,85 @@
+﻿@using Datos
+@model DenunciasViewModel
+@{
+    UsersInfo u = ViewBag.InfoUsuario;
+}
+
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <img src="@Url.Content(@u.FilePath)" class="img-responsive" alt="">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        @u.AspNetUsers.UserName
+                    </div>
+                    <div class="profile-usertitle-job">
+                        <ul style="list-style-type: none; padding-left: 0px;">
+                            @foreach (var item in u.AspNetUsers.AspNetRoles)
+                            {
+                                <li>
+                                    @item.Name
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li>
+                            <a href="@Url.Action("Details", "UsersInfo", new { id = @u.UsersId })">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Perfil
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="@Url.Action("Denunciar", "UsersInfo", new { id = @u.UsersId })">
+                                <i class="fa fa-exclamation-triangle"></i>
+                                Denunciar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm("Denunciar", "UsersInfo", new { userIdPerfil = @u.UsersId }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-9">
+                <div class="profile-content">
+                    <div class="form-horizontal">
+                        <h4>Denunciar</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div style="color:#5cb85c">
+                            <h4>@ViewBag.Mensaje</h4>
+                        </div>
+                        @if (ViewBag.Mensaje == null)
+                        {
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <div>
+                                            @Html.TextAreaFor(model => model.Comentario, new { @class = "form-control", cols = "40", rows = "10", style = "margin-bottom:10px;max-width:100%;" })
+                                            @Html.ValidationMessageFor(model => model.Comentario, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-9">
+                                            <input type="submit" value="Enviar denuncia" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<br>
+<br>

@@ -676,6 +676,7 @@ namespace RinconArtesano.Controllers
             nvm.LockoutEndDateUtc = result.LockoutEndDateUtc;
             nvm.AccessFailedCount = result.AccessFailedCount;
             nvm.PhoneNumber = result.PhoneNumber;
+            nvm.IsBlocked = db.UsersInfo.Where(x => x.UsersId == result.Id).Select(x => x.IsBlocked).ToList()[0];
 
             return nvm;
         }
@@ -721,6 +722,21 @@ namespace RinconArtesano.Controllers
                     }
                 }
             }
+
+            UsersInfo u = db.UsersInfo.Find(result.Id);  //.Where(x => x.UsersId == result.Id)
+
+            if (u.IsBlocked == true && vm.IsBlocked == false)
+            {
+                List<Denuncias> listaDenuncias = db.Denuncias.Where(x => !x.DateNull.HasValue && x.UsersIdDenunciado == u.UsersId).ToList();
+                foreach (var denuncia in listaDenuncias)
+                {
+                    denuncia.DateNull = DateTime.Now;
+                }
+            }
+            
+            u.IsBlocked = vm.IsBlocked;
+
+            db.SaveChanges();
 
             return vm;
         }

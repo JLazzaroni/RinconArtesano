@@ -26,6 +26,7 @@ namespace Datos
             this.MessagesPadres = new HashSet<MessagesPadres>();
             this.Products = new HashSet<Products>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
+            this.Denuncias1 = new HashSet<Denuncias>();
         }
     
         public string Id { get; set; }
@@ -60,5 +61,7 @@ namespace Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
         public virtual UsersInfo UsersInfo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Denuncias> Denuncias1 { get; set; }
     }
 }

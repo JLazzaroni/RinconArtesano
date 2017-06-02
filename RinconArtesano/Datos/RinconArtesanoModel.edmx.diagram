@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fffe584bacca40ff995194531e8bbf04" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="fffe584bacca40ff995194531e8bbf04" Name="Diagram1" ZoomLevel="83">
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.AspNetUsers" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RinconArtesanoModel.Denuncias" Width="1.5" PointX="7.5" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Denuncias" Width="1.5" PointX="7.875" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.Experiences" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.Files" Width="1.5" PointX="10.5" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="RinconArtesanoModel.MessagesHijos" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
@@ -38,6 +38,7 @@
         <AssociationConnector Association="RinconArtesanoModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="RinconArtesanoModel.UsersInfo" Width="1.5" PointX="4.75" PointY="0.5" />
         <AssociationConnector Association="RinconArtesanoModel.FK_UsersInfo_AspNetUsers" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_UsuarioDenunciado_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

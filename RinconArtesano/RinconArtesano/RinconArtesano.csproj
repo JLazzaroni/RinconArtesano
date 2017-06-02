@@ -376,6 +376,7 @@
     <Content Include="Views\UsersInfo\Edit.cshtml" />
     <Content Include="Views\UsersInfo\Index.cshtml" />
     <Content Include="Views\UsersInfo\_ProfileMenu.cshtml" />
+    <Content Include="Views\UsersInfo\Denunciar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

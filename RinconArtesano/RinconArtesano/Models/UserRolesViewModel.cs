@@ -31,6 +31,9 @@ namespace RinconArtesano.Models
         public string PhoneNumber { get; set; }
         [Display(Name = "Rol")]
         public string RoleName { get; set; }
+
+        public bool IsBlocked { get; set; }
+
         public IEnumerable<UserRolesViewModel> Roles { get; set; }
     }
 

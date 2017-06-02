@@ -67,6 +67,7 @@
           <Property Name="ExperienceId" Type="int" />
           <Property Name="DateNull" Type="datetime" />
           <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="UsersIdDenunciado" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Experiences">
           <Key>
@@ -359,6 +360,18 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Denuncias_UsuarioDenunciado_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Denuncias" Type="Self.Denuncias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Denuncias">
+              <PropertyRef Name="UsersIdDenunciado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Experiences_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Experiences" Type="Self.Experiences" Multiplicity="*" />
@@ -574,6 +587,10 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="Products" EntitySet="Products" />
             <End Role="Denuncias" EntitySet="Denuncias" />
           </AssociationSet>
+          <AssociationSet Name="FK_Denuncias_UsuarioDenunciado_AspNetUsers" Association="Self.FK_Denuncias_UsuarioDenunciado_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Denuncias" EntitySet="Denuncias" />
+          </AssociationSet>
           <AssociationSet Name="FK_Experiences_AspNetUsers" Association="Self.FK_Experiences_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Experiences" EntitySet="Experiences" />
@@ -674,6 +691,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_AspNetUsers" FromRole="AspNetUsers" ToRole="Products" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="UsersInfo" Relationship="RinconArtesanoModel.FK_UsersInfo_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersInfo" />
+          <NavigationProperty Name="Denuncias1" Relationship="RinconArtesanoModel.FK_Denuncias_UsuarioDenunciado_AspNetUsers" FromRole="AspNetUsers" ToRole="Denuncias" />
         </EntityType>
         <EntityType Name="Denuncias">
           <Key>
@@ -689,6 +707,8 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Denuncias_AspNetUsers" FromRole="Denuncias" ToRole="AspNetUsers" />
           <NavigationProperty Name="Experiences" Relationship="Self.FK_Denuncias_Experiences" FromRole="Denuncias" ToRole="Experiences" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Denuncias_Products" FromRole="Denuncias" ToRole="Products" />
+          <Property Name="UsersIdDenunciado" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="RinconArtesanoModel.FK_Denuncias_UsuarioDenunciado_AspNetUsers" FromRole="Denuncias" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="Experiences">
           <Key>
@@ -1131,6 +1151,10 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UsersInfo" EntitySet="UsersInfo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Denuncias_UsuarioDenunciado_AspNetUsers" Association="RinconArtesanoModel.FK_Denuncias_UsuarioDenunciado_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Denuncias" EntitySet="Denuncias" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersInfo">
           <Key>
@@ -1165,6 +1189,18 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             </Principal>
             <Dependent Role="UsersInfo">
               <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Denuncias_UsuarioDenunciado_AspNetUsers">
+          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="RinconArtesanoModel.Denuncias" Role="Denuncias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Denuncias">
+              <PropertyRef Name="UsersIdDenunciado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1222,6 +1258,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <EntitySetMapping Name="Denuncias">
             <EntityTypeMapping TypeName="RinconArtesanoModel.Denuncias">
               <MappingFragment StoreEntitySet="Denuncias">
+                <ScalarProperty Name="UsersIdDenunciado" ColumnName="UsersIdDenunciado" />
                 <ScalarProperty Name="DenunciaId" ColumnName="DenunciaId" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="UsersId" ColumnName="UsersId" />

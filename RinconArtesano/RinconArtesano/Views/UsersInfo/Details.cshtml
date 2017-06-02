@@ -34,12 +34,15 @@
                                 Perfil
                             </a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("ChangePassword", "Manage")">
-                                <i class="fa fa-exclamation-triangle"></i>
-                                Denunciar
-                            </a>
-                        </li>
+                        @if (@u.IsBlocked == false)
+                        {
+                            <li>
+                                <a href="@Url.Action("Denunciar", "UsersInfo", new { id = @u.UsersId })">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                    Denunciar
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -47,7 +50,14 @@
         <div class="col-md-9">
             <div class="profile-content">
                 <div class="form-horizontal">
-                    <h4>Perfil</h4>
+                    @if (@u.IsBlocked == false)
+                    {
+                        <h4>Perfil</h4>
+                    }
+                    else
+                    {
+                        <h4>Perfil - <span style="color:red">Usuario bloqueado</span></h4>
+                    }
                     <hr />
                     <div class="row">
 

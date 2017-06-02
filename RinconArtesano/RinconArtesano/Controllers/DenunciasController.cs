@@ -53,7 +53,7 @@ namespace RinconArtesano.Controllers
                     automaticBlock(denuncias);
 
                 db.SaveChanges();
-                return Json(new { message = "Su denuncia fue enviada exitosamente.", status = "OK" });
+                return Json(new { message = "Su denuncia fue enviada exitosamente, nuestro equipo la analizara y tomara las medidas necesarias.", status = "OK" });
             }
         }
 
@@ -64,6 +64,8 @@ namespace RinconArtesano.Controllers
                 _tipoContenido = "experiencia";
             else if (denuncia.ProductId != 0)
                 _tipoContenido = "producto";
+            else if (String.IsNullOrWhiteSpace(denuncia.UserIdDenunciado))
+                _tipoContenido = "usuario";
             return (_tipoContenido);
         }
 
@@ -71,6 +73,7 @@ namespace RinconArtesano.Controllers
         {
             Experiences e = new Experiences();
             Products p = new Products();
+            UsersInfo u = new UsersInfo();
             string _tipoContenido = contentType(denuncia);
             if (_tipoContenido.Equals("experiencia"))
             {
@@ -81,6 +84,11 @@ namespace RinconArtesano.Controllers
             {
                 p = db.Products.Find(denuncia.ProductId);
                 p.IsBlocked = true;
+            }
+            else if (_tipoContenido.Equals("usuario"))
+            {
+                u = db.UsersInfo.Find(denuncia.UserIdDenunciado);
+                u.IsBlocked = true;
             }
         }
 
@@ -131,6 +139,8 @@ namespace RinconArtesano.Controllers
             if (_tipoContenido.Equals("experiencia"))
                 cant = db.Denuncias.Where(d => d.ExperienceId == denuncia.ExperienceId && !d.DateNull.HasValue).Count();
             else if (_tipoContenido.Equals("producto"))
+                cant = db.Denuncias.Where(d => d.ProductId == denuncia.ProductId && !d.DateNull.HasValue).Count();
+            else if (_tipoContenido.Equals("usuario"))
                 cant = db.Denuncias.Where(d => d.ProductId == denuncia.ProductId && !d.DateNull.HasValue).Count();
 
             cant++;
