@@ -27,7 +27,8 @@ namespace RinconArtesano
                       "~/Scripts/admin.js",
                       "~/Scripts/messages.js",
                       "~/Scripts/manualBlock.js",
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/search.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

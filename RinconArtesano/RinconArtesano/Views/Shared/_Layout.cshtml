@@ -31,26 +31,37 @@
                     <li>
                         <a href=@Url.Action("Home", "Products" )>Productos</a>
                     </li>
+                    <li>
+                        <a id="btn-search" class="btn btn--search"><i class="glyphicon glyphicon-search"></i>Buscar</a>
+                    </li>
                     @Html.Partial("_LoginPartial")
                 </ul>
             </div>
         </div>
     </nav>
-
-    <div class="container body-content">
-        @RenderBody()
-        <br />
-        <br />
-        <footer style="background-color:gainsboro; padding:25px">
-            <div>
-                <p class="copyright text-muted">IW 2017   Gueli - Lazzaroni - Mayer</p>
-            </div>
-        </footer>
+    <div class="main-wrap">
+        <div class="container body-content">
+            @RenderBody()
+            <br />
+            <br />
+            <footer style="background-color:gainsboro; padding:25px">
+                <div>
+                    <p class="copyright text-muted">IW 2017   Gueli - Lazzaroni - Mayer</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <div class="search">
+        <button id="btn-search-close" class="btn btn--search-close" aria-label="Close search form"><svg class="icon icon--cross"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-cross"></use></svg></button>
+        <form id="searchForm" class="search__form" action="">
+            <input id="searchContent" class="search__input">
+            <span class="search__info">Presione Enter para buscar o ESC para cerrar</span>
+        </form>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/vendor/js")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/vendor/js")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

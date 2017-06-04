@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 
 namespace RinconArtesano.Controllers
 {
+    [Authorize]
     public class UsersInfoController : Controller
     {
         private RinconArtesanoEntities db = new RinconArtesanoEntities();

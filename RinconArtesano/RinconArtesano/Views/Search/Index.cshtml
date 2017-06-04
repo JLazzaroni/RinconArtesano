@@ -1,0 +1,142 @@
+﻿@using Datos;
+@model SearchViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SearchMessagesProducts> messagesProducts = ViewBag.MessagesProducts;
+    List<SearchMessagesExperiences> messagesExperiences = ViewBag.MessagesExperiences;
+    
+}
+<br />
+<h4 class="form__titulo">Resultados de búsqueda</h4>
+<hr />
+<div class="container">
+    <div class="row product-detail-2">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h1>Productos:</h1>
+            @if (@Model.Products.Count == 0)
+            { <p style="color: red">No se encontraron resultados.</p> }
+            <ul>
+                @foreach (var item in @Model.Products)
+                {
+                    <li>
+                        <a href="@Url.Action("ProductsDetails", "Products", new { id = item.ProductId })">@item.ProductTitle</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h1>Categorias de productos:</h1>
+            @if (@Model.ProductsCategories.Count == 0)
+            { <p style="color: red">No se encontraron resultados.</p> }
+            <ul>
+                @foreach (var item in @Model.ProductsCategories)
+                {
+                    <li>
+                        <a href="@Url.Action("ProductsByCategory", "Products", new { id = item.ProductCategoryId })">@item.ProductCategoryName</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h1>Experiencias:</h1>
+            @if (@Model.Experiences.Count == 0)
+            { <p style="color: red">No se encontraron resultados.</p> }
+            <ul>
+                @foreach (var item in @Model.Experiences)
+                {
+                    <li>
+                        <a href="@Url.Action("ExperiencesDetails", "Experiences", new { id = item.ExperienceId })">@item.ExperienceTitle</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h1>Nombres de usuarios:</h1>
+            @if (@Model.AspNetUsers.Count == 0)
+            { <p style="color: red">No se encontraron resultados.</p> }
+            <ul>
+                @foreach (var item in @Model.AspNetUsers)
+                {
+                    <li>
+                        @if (User.Identity.Name.Equals(@item.UserName))
+                        {
+                            <a href="@Url.Action("Index", "Manage")">@item.UserName</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Details", "UsersInfo", new { id = item.Id })">@item.UserName</a>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h1>Perfiles de usuarios:</h1>
+            @if (@Model.UsersInfo.Count == 0)
+            { <p style="color: red">No se encontraron resultados.</p> }
+            <ul>
+                @foreach (var item in @Model.UsersInfo)
+                {
+                    <li>
+                        @if (User.Identity.Name.Equals(@item.UserName))
+                        {
+                            <a href="@Url.Action("Index", "Manage")">@item.UserName</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Details", "UsersInfo", new { id = item.UsersId })">@item.UserName</a>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h1>Comentarios:</h1>
+            @if (@Model.Messages.Count == 0)
+            { <p style="color: red">No se encontraron resultados.</p> }
+
+            @if (@Model.Messages.Where(x => x.Category == 1).Count() > 0)
+            {
+                <h2>Productos</h2>
+                <ul>
+                    @foreach (var item in @Model.Messages.Where(x => x.Category == 1))
+                    {
+                        <li>
+                            <div>
+                                @{
+                                    var p = messagesProducts.Where(x => x.Id == item.CategoryId).FirstOrDefault();
+                                    <strong>@p.UserName</strong>
+                                    <a href="@Url.Action("ProductsDetails", "Products", new { id = item.CategoryId })">@p.Title</a>
+                                    <div class="container">
+                                        @item.Message
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+            @if (@Model.Messages.Where(x => x.Category == 2).Count() > 0)
+            {
+                <h2>Experiencias</h2>
+                <ul>
+                    @foreach (var item in @Model.Messages.Where(x => x.Category == 2))
+                    {
+                        <li>
+                            <div>
+                                @{
+                                    var e = messagesExperiences.Where(x => x.Id == item.CategoryId).FirstOrDefault();
+                                    <strong>@e.UserName</strong>
+                                    <a href="@Url.Action("ProductsDetails", "Products", new { id = item.CategoryId })">@e.Title</a>
+                                    <div class="container">
+                                        @item.Message
+                                    </div>
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>
