@@ -194,6 +194,7 @@
     <Compile Include="Models\FileTypes.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessageViewModels.cs" />
     <Compile Include="Models\MessageHijoViewModels.cs" />
     <Compile Include="Models\MessagePadreViewModels.cs" />
     <Compile Include="Models\ProductDetailsViewModel.cs" />

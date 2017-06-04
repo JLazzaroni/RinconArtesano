@@ -99,6 +99,20 @@
           <Property Name="DateAdd" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdComentarioPadre" Type="int" />
+          <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Category" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Message" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsBlocked" Type="bit" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+          <Property Name="DateNull" Type="datetime" />
+        </EntityType>
         <EntityType Name="MessagesHijos">
           <Key>
             <PropertyRef Name="IdMessageHijo" />
@@ -432,6 +446,30 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Messages_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Messages">
+          <End Role="Messages" Type="Self.Messages" Multiplicity="0..1" />
+          <End Role="Messages1" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="IdComentario" />
+            </Principal>
+            <Dependent Role="Messages1">
+              <PropertyRef Name="IdComentarioPadre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MessagesHijos_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="MessagesHijos" Type="Self.MessagesHijos" Multiplicity="*" />
@@ -561,6 +599,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <EntitySet Name="Denuncias" EntityType="Self.Denuncias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Experiences" EntityType="Self.Experiences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessagesHijos" EntityType="Self.MessagesHijos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MessagesPadres" EntityType="Self.MessagesPadres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
@@ -668,6 +707,14 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="Products" EntitySet="Products" />
             <End Role="Files" EntitySet="Files" />
           </AssociationSet>
+          <AssociationSet Name="FK_Messages_AspNetUsers" Association="Self.FK_Messages_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Messages" Association="Self.FK_Messages_Messages">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Messages1" EntitySet="Messages" />
+          </AssociationSet>
           <AssociationSet Name="FK_MessagesHijos_AspNetUsers" Association="Self.FK_MessagesHijos_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="MessagesHijos" EntitySet="MessagesHijos" />
@@ -771,6 +818,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <NavigationProperty Name="Denuncias1" Relationship="RinconArtesanoModel.FK_Denuncias_UsuarioDenunciado_AspNetUsers" FromRole="AspNetUsers" ToRole="Denuncias" />
           <NavigationProperty Name="Ratings" Relationship="RinconArtesanoModel.FK_Ratings_AspNetUsers" FromRole="AspNetUsers" ToRole="Ratings" />
           <NavigationProperty Name="Ratings1" Relationship="RinconArtesanoModel.FK_Ratings_AspNetUsers1" FromRole="AspNetUsers" ToRole="Ratings" />
+          <NavigationProperty Name="Messages" Relationship="RinconArtesanoModel.FK_Messages_AspNetUsers" FromRole="AspNetUsers" ToRole="Messages" />
         </EntityType>
         <EntityType Name="Denuncias">
           <Key>
@@ -1253,6 +1301,15 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="Products" EntitySet="Products" />
             <End Role="Ratings" EntitySet="Ratings" />
           </AssociationSet>
+          <EntitySet Name="Messages" EntityType="RinconArtesanoModel.Messages" />
+          <AssociationSet Name="FK_Messages_AspNetUsers" Association="RinconArtesanoModel.FK_Messages_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Messages" Association="RinconArtesanoModel.FK_Messages_Messages">
+            <End Role="Messages" EntitySet="Messages" />
+            <End Role="Messages1" EntitySet="Messages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersInfo">
           <Key>
@@ -1363,6 +1420,47 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             </Principal>
             <Dependent Role="Ratings">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="IdComentario" />
+          </Key>
+          <Property Name="IdComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdComentarioPadre" Type="Int32" />
+          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsBlocked" Type="Boolean" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateNull" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Messages_AspNetUsers" FromRole="Messages" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Messages1" Relationship="RinconArtesanoModel.FK_Messages_Messages" FromRole="Messages" ToRole="Messages1" />
+          <NavigationProperty Name="Messages2" Relationship="RinconArtesanoModel.FK_Messages_Messages" FromRole="Messages1" ToRole="Messages" />
+        </EntityType>
+        <Association Name="FK_Messages_AspNetUsers">
+          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="RinconArtesanoModel.Messages" Role="Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Messages">
+          <End Type="RinconArtesanoModel.Messages" Role="Messages" Multiplicity="0..1" />
+          <End Type="RinconArtesanoModel.Messages" Role="Messages1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Messages">
+              <PropertyRef Name="IdComentario" />
+            </Principal>
+            <Dependent Role="Messages1">
+              <PropertyRef Name="IdComentarioPadre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1630,6 +1728,21 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="UsersId" ColumnName="UsersId" />
                 <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="IdComentarioPadre" ColumnName="IdComentarioPadre" />
+                <ScalarProperty Name="IdComentario" ColumnName="IdComentario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

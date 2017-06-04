@@ -101,5 +101,82 @@ namespace RinconArtesano.Controllers
                 }
             }
         }
+
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateMessage(MessageViewModels model)
+        {
+            //Validaciones
+            if (String.IsNullOrWhiteSpace(model.Message))
+                ModelState.AddModelError("Comentario", "Error en el campo Comentario, debe ingresar un texto.");
+            else if (model.Message.Length > 1000)
+                ModelState.AddModelError("Comentario", "Error en el campo Comentario, el mismo no puede superar los 1000 caracteres.");
+
+            if (!ModelState.IsValid)
+            {
+                var m = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                return Json(new { message = m, status = "Error" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                try
+                {
+                    string userId = User.Identity.GetUserId();
+
+                    if (!model.IdComentarioPadre.HasValue)
+                    {
+                        Messages _messages = new Messages();
+                        _messages.UsersId = userId;
+                        _messages.Message = model.Message;
+                        if (model.ProductId.HasValue)
+                        {
+                            _messages.Category = 1;
+                            _messages.CategoryId = model.ProductId.Value;
+                        }
+                        else
+                        {
+                            _messages.Category = 2;
+                            _messages.CategoryId = model.ExperienceId.Value;
+                        }
+
+                        _messages.IsBlocked = false;
+                        _messages.DateAdd = DateTime.Now;
+
+                        db.Messages.Add(_messages);
+                        db.SaveChanges();
+                        return Json(new { result = "OK" });
+                    }
+                    else
+                    {
+                        Messages _messages = new Messages();
+                        _messages.IdComentarioPadre = model.IdComentarioPadre;
+                        _messages.UsersId = userId;
+                        _messages.Message = model.Message;
+                        if (model.ProductId.HasValue)
+                        {
+                            _messages.Category = 1;
+                            _messages.CategoryId = model.ProductId.Value;
+                        }
+                        else
+                        {
+                            _messages.Category = 2;
+                            _messages.CategoryId = model.ExperienceId.Value;
+                        }
+
+                        _messages.IsBlocked = false;
+                        _messages.DateAdd = DateTime.Now;
+
+                        db.Messages.Add(_messages);
+                        db.SaveChanges();
+                        return Json(new { result = "OK" });
+                    }
+                }
+                catch
+                {
+                    return Json(new { result = "ERROR" });
+                }
+            }
+        }
     }
 }

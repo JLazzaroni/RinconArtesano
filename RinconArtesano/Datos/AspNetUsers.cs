@@ -29,6 +29,7 @@ namespace Datos
             this.Denuncias1 = new HashSet<Denuncias>();
             this.Ratings = new HashSet<Ratings>();
             this.Ratings1 = new HashSet<Ratings>();
+            this.Messages = new HashSet<Messages>();
         }
     
         public string Id { get; set; }
@@ -69,5 +70,7 @@ namespace Datos
         public virtual ICollection<Ratings> Ratings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ratings> Ratings1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Messages> Messages { get; set; }
     }
 }

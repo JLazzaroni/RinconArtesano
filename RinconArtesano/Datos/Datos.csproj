@@ -163,6 +163,9 @@
     <Compile Include="Files.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Messages.cs">
+      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MessagesHijos.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>

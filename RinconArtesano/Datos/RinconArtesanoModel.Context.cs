@@ -43,5 +43,6 @@ namespace Datos
         public virtual DbSet<VigentesProducts> VigentesProducts { get; set; }
         public virtual DbSet<UsersInfo> UsersInfo { get; set; }
         public virtual DbSet<Ratings> Ratings { get; set; }
+        public virtual DbSet<Messages> Messages { get; set; }
     }
 }

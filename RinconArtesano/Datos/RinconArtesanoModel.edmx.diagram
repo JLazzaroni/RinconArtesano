@@ -44,6 +44,9 @@
         <AssociationConnector Association="RinconArtesanoModel.FK_Ratings_AspNetUsers1" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Ratings_Experiences" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Ratings_Products" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Messages" Width="1.5" PointX="5.25" PointY="29" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Messages_AspNetUsers" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Messages_Messages" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
