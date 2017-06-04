@@ -1,0 +1,9 @@
+User-Agent: *
+Disallow: /Account
+Disallow: /Admin
+Disallow: /Moderador
+Disallow: /Manage/AddPhoneNumber
+Disallow: /Manage/ChangePassword
+Disallow: /Manage/ManageLogins
+Disallow: /Manage/SetPassword
+Disallow: /Manage/VerifyPhoneNumber

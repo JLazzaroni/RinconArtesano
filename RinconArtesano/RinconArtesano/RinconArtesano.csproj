@@ -229,6 +229,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Images\portada.jpg" />
+    <Content Include="Robots.txt" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\clean-blog.js" />
     <Content Include="Scripts\clean-blog.min.js" />
