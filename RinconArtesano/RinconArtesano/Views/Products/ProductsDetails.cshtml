@@ -118,6 +118,7 @@
         </div>
     </div>
     @Html.Partial("~/Views/Shared/_DenunciasModal.cshtml")
+    @Html.Partial("~/Views/Shared/_Rating.cshtml", Model.Rating)
     @Html.Partial("~/Views/Shared/_Messages.cshtml", Messages)
     <p>
         @Html.ActionLink("Volver", "Home")

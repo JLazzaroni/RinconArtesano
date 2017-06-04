@@ -18,6 +18,7 @@ namespace RinconArtesano.Models
         public Nullable<System.DateTime> DateModification { get; set; }
         public bool IsBlocked { get; set; }
         public bool UsuarioDenuncio { get; set; }
+        public RatingViewModel Rating { get; set; }
         //public string ArtesanoFoto { get; set; }
         //public string ArtesanoNombre { get; set; }
         //public string ArtesanoApellido { get; set; }

@@ -1,8 +1,12 @@
 ﻿$('#denunciasBtn').click(function (e) {
     e.preventDefault();
 
-    var productId = $('#ProductId').val();
-    var experienceId = $('#ExperienceId').val();
+    var messageId = $('#messageId').val();
+    if (messageId == 0) {
+        var productId = $('#ProductId').val();
+        var experienceId = $('#ExperienceId').val();
+    }
+
     var _comentario = $('input:radio[name=denunciaRespuesta]:checked').val();
     var comentario = null;
 
@@ -23,7 +27,9 @@
     var data = {
         Comentario: comentario,
         ProductId: productId,
-        ExperienceId: experienceId
+        ExperienceId: experienceId,
+        MessageId: messageId
+
     };
     $.ajax({
         url: '/Denuncias/Create',
@@ -56,11 +62,29 @@ $("input:radio").change(function () {
 
     if (value == "comentario")
     {
-        document.getElementById("denunciaRespuestaComentario").disabled = false;            
+        document.getElementById("denunciaRespuestaComentario").disabled = false;
     }
     else
     {
         document.getElementById("denunciaRespuestaComentario").disabled = true;
         document.getElementById("denunciaRespuestaComentario").value = "";
     }
+});
+
+$(document).ready(function (e) {
+    $('body').on('click', '#messagePadre', function () {
+        if (typeof $(this).data('id') !== 'undefined') {
+            var data_id = '';
+            data_id = $(this).data('id');
+            document.getElementById("messageId").value = data_id;
+        }
+    })
+
+    $('body').on('click', '#messageHijo', function () {
+        if (typeof $(this).data('id') !== 'undefined') {
+            var data_id = '';
+            data_id = $(this).data('id');
+            document.getElementById("messageId").value = data_id;
+        }
+    })
 });

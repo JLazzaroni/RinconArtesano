@@ -39,6 +39,11 @@
         <EntityTypeShape EntityType="RinconArtesanoModel.UsersInfo" Width="1.5" PointX="4.75" PointY="0.5" />
         <AssociationConnector Association="RinconArtesanoModel.FK_UsersInfo_AspNetUsers" />
         <AssociationConnector Association="RinconArtesanoModel.FK_Denuncias_UsuarioDenunciado_AspNetUsers" />
+        <EntityTypeShape EntityType="RinconArtesanoModel.Ratings" Width="1.5" PointX="13.5" PointY="13.375" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Ratings_AspNetUsers" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Ratings_AspNetUsers1" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Ratings_Experiences" />
+        <AssociationConnector Association="RinconArtesanoModel.FK_Ratings_Products" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

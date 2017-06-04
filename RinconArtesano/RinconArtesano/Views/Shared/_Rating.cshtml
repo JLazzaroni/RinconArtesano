@@ -1,0 +1,30 @@
+﻿@model RatingViewModel
+@Html.HiddenFor(model => model.RatingSelect)
+<hr />
+<div class="row product-detail-2">
+    <div class="col-lg-12">
+        <div class="product-descriptions" id="ratingDiv">
+            <h3>Clasificar</h3>
+            <h4>Puntaje promedio: @Model.RatingPromedio</h4>
+
+            <ul class="rate-area" id="rating">
+                <input type="radio" id="5-star" name="rating" value="5" onclick="sendRating(5); " />
+                <label for="5-star" title="Excelente">5 estrellas</label>
+
+                <input type="radio" id="4-star" name="rating" value="4" onclick="sendRating(4);" />
+                <label for="4-star" title="Muy Bueno">4 estrellas</label>
+
+                <input type="radio" id="3-star" name="rating" value="3" onclick="sendRating(3);" />
+                <label for="3-star" title="Bueno">3 estrellas</label>
+
+                <input type="radio" id="2-star" name="rating" value="2" onclick="sendRating(2);" />
+                <label for="2-star" title="Regular">2 estrellas</label>
+
+                <input type="radio" id="1-star" name="rating" value="1" onclick="sendRating(1);" />
+                <label for="1-star" title="Malo">1 estrella</label>
+            </ul>
+        </div>
+    </div>
+
+</div>
+

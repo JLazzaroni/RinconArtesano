@@ -20,7 +20,7 @@
                         <a data-toggle="collapse" data-parent="#accordion1" href="#collapse_@i" aria-expanded="true" class="trigger collapsed" aria-controls="collapse_@i">
                             @item.AspNetUsers.UserName - @item.DateAdd
                         </a>
-                        @*<i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right;" title="Denunciar comentario"></i>*@
+                        <i id="messagePadre" data-toggle="modal" data-target=".modalDenuncias" data-id="5" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
                     </h4>
                 </div>
 
@@ -39,7 +39,7 @@
                                                 <a data-toggle="collapse" data-parent="#accordion_@b" href="#collapse2_@a">
                                                     @item1.AspNetUsers.UserName - @item1.DateAdd
                                                 </a>
-                                                @*<i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right;" title="Denunciar comentario"></i>*@
+                                                <i id="messageHijo" data-toggle="modal" data-target=".modalDenuncias" data-id="15" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
                                             </h4>
                                         </div>
                                         <div id="collapse2_@a" class="panel-collapse collapse in">

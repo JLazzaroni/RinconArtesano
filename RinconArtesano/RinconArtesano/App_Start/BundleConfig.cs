@@ -19,20 +19,22 @@ namespace RinconArtesano
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(                      
                       "~/Scripts/respond.js",
                       "~/Scripts/clean-blog.min.js",
+                      "~/Scripts/rating.js",
                       "~/Scripts/denuncias.js",
                       "~/Scripts/messages.js",
-                      "~/Scripts/manualBlock.js"));
+                      "~/Scripts/manualBlock.js",
+                      "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/clean-blog.css",
                       "~/Content/font-awesome.css",
-                      "~/Content/font-awesome.min.css"
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/5star.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/vendor/js").Include(

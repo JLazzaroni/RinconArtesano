@@ -41,8 +41,22 @@ namespace RinconArtesano.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            string userId = User.Identity.GetUserId();
+
             Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
             var artesano = db.UsersInfo.Where(x => x.UsersId.Equals(products.UsersId)).ToList();
+
+            var datos = db.Ratings.Where(x => x.ProductId == id).Select(x => x.Rating);
+            Decimal puntos = datos.Sum();
+            int cantidad = db.Ratings.Where(x => x.ProductId == id).Select(x => x.Rating).Count();
+            Decimal rating = cantidad > 0 ? (puntos / cantidad) : 0;
+
+            RatingViewModel _rating = new RatingViewModel()
+            {
+                RatingPromedio = rating,
+                RatingSelect = db.Ratings.Where(x => x.ProductId == id && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault()
+            };
+
             ProductDetailsViewModel pd = new ProductDetailsViewModel
             {
                 //ArtesanoApellido = artesano[0].Apellido,
@@ -59,9 +73,10 @@ namespace RinconArtesano.Controllers
                 DateAdd = products.DateAdd,
                 DateModification = products.DateModification,
                 Files = products.Files,
-                ProductsCategories = products.ProductsCategories
+                ProductsCategories = products.ProductsCategories,
+                Rating = _rating
             };
-            string userId = User.Identity.GetUserId();
+
             pd.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ProductId == id).Any();
 
             ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();

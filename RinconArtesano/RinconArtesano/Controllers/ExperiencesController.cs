@@ -32,7 +32,20 @@ namespace RinconArtesano.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            string userId = User.Identity.GetUserId();
             Experiences experiences = db.Experiences.SingleOrDefault(s => s.ExperienceId == id);
+
+            var datos = db.Ratings.Where(x => x.ExperienceId == id).Select(x => x.Rating);
+            Decimal puntos = datos.Sum();
+            int cantidad = db.Ratings.Where(x => x.ExperienceId == id).Select(x => x.Rating).Count();
+            Decimal rating = cantidad > 0 ? (puntos / cantidad) : 0;
+
+            RatingViewModel _rating = new RatingViewModel()
+            {
+                RatingPromedio = rating,
+                RatingSelect = db.Ratings.Where(x => x.ExperienceId == id && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault()
+            };
+
             ExperiencesViewModel experienceViewModel = new ExperiencesViewModel()
             {
                 ExperienceId = experiences.ExperienceId,
@@ -46,8 +59,8 @@ namespace RinconArtesano.Controllers
                 AspNetUsers = experiences.AspNetUsers,
                 Denuncias = experiences.Denuncias,
                 Files = experiences.Files,
+                Rating = _rating
             };
-            string userId = User.Identity.GetUserId();
             experienceViewModel.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ExperienceId == id).Any();
             ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 2 && x.CategoryId == id && x.DateNull == null).ToList();
 

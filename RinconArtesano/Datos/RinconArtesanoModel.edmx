@@ -149,6 +149,18 @@
           <Property Name="DateNull" Type="datetime" />
           <Property Name="FilePath" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="RatingId" />
+          </Key>
+          <Property Name="RatingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="ExperienceId" Type="int" />
+          <Property Name="UsId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="DateAdd" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -480,6 +492,54 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Ratings_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="UsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Experiences">
+          <End Role="Experiences" Type="Self.Experiences" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experiences">
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UsersInfo_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="UsersInfo" Type="Self.UsersInfo" Multiplicity="0..1" />
@@ -505,6 +565,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <EntitySet Name="MessagesPadres" EntityType="Self.MessagesPadres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersInfo" EntityType="Self.UsersInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NoVigentesExperiences" EntityType="Self.NoVigentesExperiences" store:Type="Views" store:Schema="dbo">
@@ -627,6 +688,22 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="ProductsCategories" EntitySet="ProductsCategories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
+          <AssociationSet Name="FK_Ratings_AspNetUsers" Association="Self.FK_Ratings_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_AspNetUsers1" Association="Self.FK_Ratings_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Experiences" Association="Self.FK_Ratings_Experiences">
+            <End Role="Experiences" EntitySet="Experiences" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Products" Association="Self.FK_Ratings_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
           <AssociationSet Name="FK_UsersInfo_AspNetUsers" Association="Self.FK_UsersInfo_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UsersInfo" EntitySet="UsersInfo" />
@@ -692,6 +769,8 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="UsersInfo" Relationship="RinconArtesanoModel.FK_UsersInfo_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersInfo" />
           <NavigationProperty Name="Denuncias1" Relationship="RinconArtesanoModel.FK_Denuncias_UsuarioDenunciado_AspNetUsers" FromRole="AspNetUsers" ToRole="Denuncias" />
+          <NavigationProperty Name="Ratings" Relationship="RinconArtesanoModel.FK_Ratings_AspNetUsers" FromRole="AspNetUsers" ToRole="Ratings" />
+          <NavigationProperty Name="Ratings1" Relationship="RinconArtesanoModel.FK_Ratings_AspNetUsers1" FromRole="AspNetUsers" ToRole="Ratings" />
         </EntityType>
         <EntityType Name="Denuncias">
           <Key>
@@ -726,6 +805,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Experiences_AspNetUsers" FromRole="Experiences" ToRole="AspNetUsers" />
           <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Experiences" FromRole="Experiences" ToRole="Denuncias" />
           <NavigationProperty Name="Files" Relationship="Self.FK_Files_Experiences" FromRole="Experiences" ToRole="Files" />
+          <NavigationProperty Name="Ratings" Relationship="RinconArtesanoModel.FK_Ratings_Experiences" FromRole="Experiences" ToRole="Ratings" />
         </EntityType>
         <EntityType Name="Files">
           <Key>
@@ -792,6 +872,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Products" FromRole="Products" ToRole="Denuncias" />
           <NavigationProperty Name="Files" Relationship="Self.FK_Files_Products" FromRole="Products" ToRole="Files" />
           <NavigationProperty Name="ProductsCategories" Relationship="Self.FK_Products_ProductsCategories" FromRole="Products" ToRole="ProductsCategories" />
+          <NavigationProperty Name="Ratings" Relationship="RinconArtesanoModel.FK_Ratings_Products" FromRole="Products" ToRole="Ratings" />
         </EntityType>
         <EntityType Name="ProductsCategories">
           <Key>
@@ -1155,6 +1236,23 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Denuncias" EntitySet="Denuncias" />
           </AssociationSet>
+          <EntitySet Name="Ratings" EntityType="RinconArtesanoModel.Ratings" />
+          <AssociationSet Name="FK_Ratings_AspNetUsers" Association="RinconArtesanoModel.FK_Ratings_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_AspNetUsers1" Association="RinconArtesanoModel.FK_Ratings_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Experiences" Association="RinconArtesanoModel.FK_Ratings_Experiences">
+            <End Role="Experiences" EntitySet="Experiences" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_Products" Association="RinconArtesanoModel.FK_Ratings_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UsersInfo">
           <Key>
@@ -1201,6 +1299,70 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
             </Principal>
             <Dependent Role="Denuncias">
               <PropertyRef Name="UsersIdDenunciado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="RatingId" />
+          </Key>
+          <Property Name="RatingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="ExperienceId" Type="Int32" />
+          <Property Name="UsId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AspNetUsers" Relationship="RinconArtesanoModel.FK_Ratings_AspNetUsers" FromRole="Ratings" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="RinconArtesanoModel.FK_Ratings_AspNetUsers1" FromRole="Ratings" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Experiences" Relationship="RinconArtesanoModel.FK_Ratings_Experiences" FromRole="Ratings" ToRole="Experiences" />
+          <NavigationProperty Name="Products" Relationship="RinconArtesanoModel.FK_Ratings_Products" FromRole="Ratings" ToRole="Products" />
+        </EntityType>
+        <Association Name="FK_Ratings_AspNetUsers">
+          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="RinconArtesanoModel.Ratings" Role="Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="UsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_AspNetUsers1">
+          <End Type="RinconArtesanoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="RinconArtesanoModel.Ratings" Role="Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Experiences">
+          <End Type="RinconArtesanoModel.Experiences" Role="Experiences" Multiplicity="0..1" />
+          <End Type="RinconArtesanoModel.Ratings" Role="Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experiences">
+              <PropertyRef Name="ExperienceId" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="ExperienceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_Products">
+          <End Type="RinconArtesanoModel.Products" Role="Products" Multiplicity="0..1" />
+          <End Type="RinconArtesanoModel.Ratings" Role="Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1455,6 +1617,19 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="RinconArtesanoModel.Ratings">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="UsId" ColumnName="UsId" />
+                <ScalarProperty Name="ExperienceId" ColumnName="ExperienceId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="RatingId" ColumnName="RatingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

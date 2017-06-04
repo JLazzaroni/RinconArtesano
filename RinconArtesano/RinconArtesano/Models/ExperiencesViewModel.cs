@@ -19,6 +19,7 @@ namespace RinconArtesano.Models
         public string YoutubePath { get; set; }
         public bool IsBlocked { get; set; }
         public bool UsuarioDenuncio { get; set; }
+        public RatingViewModel Rating { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual ICollection<Denuncias> Denuncias { get; set; }
