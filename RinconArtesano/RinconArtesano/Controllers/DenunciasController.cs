@@ -45,6 +45,9 @@ namespace RinconArtesano.Controllers
                     _denuncia.ProductId = denuncias.ProductId;
                 if (denuncias.ExperienceId != 0)
                     _denuncia.ExperienceId = denuncias.ExperienceId;
+                if (denuncias.ComentarioId != 0)
+                    _denuncia.ComentarioId = denuncias.ComentarioId;
+
                 _denuncia.DateAdd = DateTime.Now;
 
                 db.Denuncias.Add(_denuncia);
@@ -64,6 +67,8 @@ namespace RinconArtesano.Controllers
                 _tipoContenido = "experiencia";
             else if (denuncia.ProductId != 0)
                 _tipoContenido = "producto";
+            else if (denuncia.ComentarioId != 0)
+                _tipoContenido = "comentario";
             else if (String.IsNullOrWhiteSpace(denuncia.UserIdDenunciado))
                 _tipoContenido = "usuario";
             return (_tipoContenido);
@@ -74,6 +79,7 @@ namespace RinconArtesano.Controllers
             Experiences e = new Experiences();
             Products p = new Products();
             UsersInfo u = new UsersInfo();
+            Messages m = new Messages();
             string _tipoContenido = contentType(denuncia);
             if (_tipoContenido.Equals("experiencia"))
             {
@@ -90,6 +96,11 @@ namespace RinconArtesano.Controllers
                 u = db.UsersInfo.Find(denuncia.UserIdDenunciado);
                 u.IsBlocked = true;
             }
+            else if (_tipoContenido.Equals("comentario"))
+            {
+                m = db.Messages.Find(denuncia.ComentarioId);
+                m.IsBlocked = true;
+            }
         }
 
         [Authorize(Roles = "Administrador, Moderador")]
@@ -97,6 +108,7 @@ namespace RinconArtesano.Controllers
         {
             Experiences e = new Experiences();
             Products p = new Products();
+            Messages m = new Messages();
             string _tipoContenido = tipoContenido;
             if (_tipoContenido.Equals("experiencia"))
             {
@@ -108,6 +120,11 @@ namespace RinconArtesano.Controllers
                 p = db.Products.Find(id);
                 p.IsBlocked = true;
             }
+            else if (_tipoContenido.Equals("comentario"))
+            {
+                m = db.Messages.Find(id);
+                m.IsBlocked = true;
+            }
             db.SaveChanges();
             return Json(new { message = "Bloqueo exitoso.", status = "OK" });
         }
@@ -116,6 +133,7 @@ namespace RinconArtesano.Controllers
         {
             Experiences e = new Experiences();
             Products p = new Products();
+            Messages m = new Messages();
             string _tipoContenido = tipoContenido;
             if (_tipoContenido.Equals("experiencia"))
             {
@@ -126,6 +144,11 @@ namespace RinconArtesano.Controllers
             {
                 p = db.Products.Find(id);
                 p.IsBlocked = false;
+            }
+            else if (_tipoContenido.Equals("comentario"))
+            {
+                m = db.Messages.Find(id);
+                m.IsBlocked = false;
             }
             db.SaveChanges();
             return Json(new { message = "Desbloqueo exitoso.", status = "OK" });
@@ -142,6 +165,8 @@ namespace RinconArtesano.Controllers
                 cant = db.Denuncias.Where(d => d.ProductId == denuncia.ProductId && !d.DateNull.HasValue).Count();
             else if (_tipoContenido.Equals("usuario"))
                 cant = db.Denuncias.Where(d => d.ProductId == denuncia.ProductId && !d.DateNull.HasValue).Count();
+            else if (_tipoContenido.Equals("comentario"))
+                cant = db.Denuncias.Where(d => d.ComentarioId == denuncia.ComentarioId && !d.DateNull.HasValue).Count();
 
             cant++;
             if (cant >= cantBloqueo)

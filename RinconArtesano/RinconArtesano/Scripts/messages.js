@@ -1,39 +1,26 @@
-﻿$('#buttonMessagePadre').click(function (e) {
-
+﻿function messageAdd(messagePadreId, comentario) {
+    var comentario;
+    var padreId;
     var productId = $('#ProductId').val();
     var experienceId = $('#ExperienceId').val();
-    var comentario = $('#MessagePadre').val();
+
+    if (messagePadreId == 0) {
+        comentario = $('#MessagePadre').val();
+    }
+    else {
+        comentario = comentario.value;
+        padreId = messagePadreId;
+    }
 
     var data = {
-        Comentario: comentario,
+        Message: comentario,
         ProductId: productId,
-        ExperienceId: experienceId
+        ExperienceId: experienceId,
+        IdComentarioPadre: padreId
     };
 
     $.ajax({
-        url: '/Messages/CreateMessagePadre',
-        type: 'POST',
-        data: JSON.stringify(data),
-        contentType: 'application/json; charset=utf-8',
-        success: function (data) {
-            if (data.result == "ERROR") {
-                alert("Error al enviar comentario");
-            }
-            else {
-                location.reload();
-            }
-        }
-    });
-});
-
-function buttonMessageHijo(messagePadreId, comentario) {
-    var data = {
-        Comentario: comentario.value,
-        MessagePadreId: messagePadreId
-    };
-
-    $.ajax({
-        url: '/Messages/CreateMessageHijo',
+        url: '/Messages/CreateMessage',
         type: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json; charset=utf-8',

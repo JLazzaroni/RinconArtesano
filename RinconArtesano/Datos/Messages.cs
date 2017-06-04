@@ -18,6 +18,7 @@ namespace Datos
         public Messages()
         {
             this.Messages1 = new HashSet<Messages>();
+            this.Denuncias = new HashSet<Denuncias>();
         }
     
         public int IdComentario { get; set; }
@@ -34,5 +35,7 @@ namespace Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Messages> Messages1 { get; set; }
         public virtual Messages Messages2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Denuncias> Denuncias { get; set; }
     }
 }

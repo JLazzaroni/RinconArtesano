@@ -40,7 +40,7 @@ function adminUnblockContenido(tipoContenido, id) {
 }
 
 function adminActivateContenido(tipoContenido, id) {
-    var controller = tipoContenido == "experiencia" ? "Experiences" : "Products";
+    var controller = tipoContenido == "experiencia" ? "Experiences" : (tipoContenido == "producto" ? "Products" : "Messages");
     var data = { id: id };
     $.ajax({
         url: '/' + controller + '/manualActivate',
@@ -58,7 +58,7 @@ function adminActivateContenido(tipoContenido, id) {
 }
 
 function adminDeleteContenido(tipoContenido, id) {
-    var controller = tipoContenido == "experiencia" ? "Experiences" : "Products";
+    var controller = tipoContenido == "experiencia" ? "Experiences" : (tipoContenido == "producto" ? "Products" : "Messages");
     var data = { id: id };
     $.ajax({
         url: '/' + controller + '/manualDelete',

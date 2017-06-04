@@ -1,8 +1,8 @@
 ﻿$('#denunciasBtn').click(function (e) {
     e.preventDefault();
 
-    var messageId = $('#messageId').val();
-    if (messageId == 0) {
+    var comentarioId = $('#messageId').val();
+    if (comentarioId == 0) {
         var productId = $('#ProductId').val();
         var experienceId = $('#ExperienceId').val();
     }
@@ -28,7 +28,7 @@
         Comentario: comentario,
         ProductId: productId,
         ExperienceId: experienceId,
-        MessageId: messageId
+        ComentarioId: comentarioId
 
     };
     $.ajax({

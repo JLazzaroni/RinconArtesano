@@ -22,10 +22,12 @@ namespace Datos
         public Nullable<System.DateTime> DateNull { get; set; }
         public System.DateTime DateAdd { get; set; }
         public string UsersIdDenunciado { get; set; }
+        public Nullable<int> ComentarioId { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual Experiences Experiences { get; set; }
         public virtual Products Products { get; set; }
         public virtual AspNetUsers AspNetUsers1 { get; set; }
+        public virtual Messages Messages { get; set; }
     }
 }

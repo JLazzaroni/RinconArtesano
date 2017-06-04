@@ -195,6 +195,62 @@ namespace RinconArtesano.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrador, Moderador")]
+        public ActionResult GestionarComentarios(string searchStringComentario, string currentFilter, int? page)
+        {
+            try
+            {
+                int intPage = 1;
+                int intPageSize = 5;
+                int intTotalPageCount = 0;
+
+                if (searchStringComentario != null)
+                {
+                    intPage = 1;
+                }
+                else
+                {
+                    if (currentFilter != null)
+                    {
+                        searchStringComentario = currentFilter;
+                        intPage = page ?? 1;
+                    }
+                    else
+                    {
+                        searchStringComentario = "";
+                        intPage = page ?? 1;
+                    }
+                }
+
+                ViewBag.CurrentFilter = searchStringComentario;
+
+                int intSkip = (intPage - 1) * intPageSize;
+
+                intTotalPageCount = db.Messages
+                    .Where(x => x.Message.Contains(searchStringComentario) & (x.DateNull.HasValue || x.IsBlocked == true))
+                    .Count();
+
+                List<Messages> result = db.Messages
+                    .Where(x => x.Message.Contains(searchStringComentario) & (x.DateNull.HasValue || x.IsBlocked == true))
+                    .OrderBy(x => x.Message)
+                    .Skip(intSkip)
+                    .Take(intPageSize)
+                    .ToList();
+
+                ViewBag.Messages = result;
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+                List<Messages> result = new List<Messages>();
+                ViewBag.Messages = result;
+
+                return View();
+            }
+        }
+
         // Users *****************************
 
         // GET: /Admin/Edit/Create 

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "ExperiencesDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<MessagesPadres> Messages = ViewBag.Messages;
+    List<MessagePadreViewModel> Messagess = ViewBag.Messages;
 }
 
 <br />
@@ -125,7 +125,7 @@
     </div>
     @Html.Partial("~/Views/Shared/_DenunciasModal.cshtml")
     @Html.Partial("~/Views/Shared/_Rating.cshtml", Model.Rating)
-    @Html.Partial("~/Views/Shared/_Messages.cshtml", Messages)
+    @Html.Partial("~/Views/Shared/_Messages.cshtml", Messagess)
     <p>
         @Html.ActionLink("Volver", "Home")
     </p>

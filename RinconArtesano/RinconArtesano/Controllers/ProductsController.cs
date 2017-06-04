@@ -41,13 +41,11 @@ namespace RinconArtesano.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             string userId = User.Identity.GetUserId();
 
-            Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
-            var artesano = db.UsersInfo.Where(x => x.UsersId.Equals(products.UsersId)).ToList();
-
             var datos = db.Ratings.Where(x => x.ProductId == id).Select(x => x.Rating);
-            Decimal puntos = datos.Sum();
+            Decimal puntos = datos.Any() ? datos.Sum() : 0;
             int cantidad = db.Ratings.Where(x => x.ProductId == id).Select(x => x.Rating).Count();
             Decimal rating = cantidad > 0 ? (puntos / cantidad) : 0;
 
@@ -56,6 +54,9 @@ namespace RinconArtesano.Controllers
                 RatingPromedio = rating,
                 RatingSelect = db.Ratings.Where(x => x.ProductId == id && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault()
             };
+
+            Products products = db.Products.SingleOrDefault(s => s.ProductId == id);
+            var artesano = db.UsersInfo.Where(x => x.UsersId.Equals(products.UsersId)).ToList();
 
             ProductDetailsViewModel pd = new ProductDetailsViewModel
             {
@@ -74,17 +75,51 @@ namespace RinconArtesano.Controllers
                 DateModification = products.DateModification,
                 Files = products.Files,
                 ProductsCategories = products.ProductsCategories,
-                Rating = _rating
+                Rating = _rating,
+                UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ProductId == id).Any()
             };
 
-            pd.UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ProductId == id).Any();
+            List<MessagePadreViewModel> _messages = (from x in db.Messages
+                                                     where x.Category == 1 && x.CategoryId == id && x.IsBlocked == false
+                                                      && x.DateNull == null && x.IdComentarioPadre == null
+                                                     join u in db.AspNetUsers on x.UsersId equals u.Id
+                                                     orderby x.DateAdd descending
+                                                     select new MessagePadreViewModel
+                                                     {
+                                                         IdComentario = x.IdComentario,
+                                                         Message = x.Message,
+                                                         UsersId = x.UsersId,
+                                                         UsersName = u.UserName,
+                                                         DateAdd = x.DateAdd,
+                                                         DateNull = x.DateNull,
+                                                         IsBlocked = x.IsBlocked.HasValue ? x.IsBlocked.Value : false,
+                                                         ComentarioDenuncio = db.Denuncias.Where(d => d.UsersId == userId && d.ComentarioId == x.IdComentario).Any(),
+                                                         MessagesHijos = (from y in db.Messages
+                                                                          where y.IdComentarioPadre == x.IdComentario && y.DateNull == null && y.IsBlocked == false
+                                                                          join us in db.AspNetUsers on y.UsersId equals us.Id
+                                                                          orderby y.DateAdd descending
+                                                                          select new MessageHijoViewModel
+                                                                          {
+                                                                              IdComentario = y.IdComentario,
+                                                                              IdComentarioPadre = y.IdComentarioPadre,
+                                                                              Message = y.Message,
+                                                                              UsersId = y.UsersId,
+                                                                              UsersName = us.UserName,
+                                                                              DateNull = y.DateNull,
+                                                                              IsBlocked = y.IsBlocked.HasValue ? y.IsBlocked.Value : false,
+                                                                              ComentarioDenuncio = db.Denuncias.Where(de => de.UsersId == userId && de.ComentarioId == y.IdComentario).Any(),
+                                                                              DateAdd = y.DateAdd
+                                                                          }).ToList()
+                                                     }).ToList();
 
-            ViewBag.Messages = db.MessagesPadres.Where(x => x.Category == 1 && x.CategoryId == id && x.DateNull == null).ToList();
+            ViewBag.Messages = _messages;
+
             if (products == null)
             {
                 return HttpNotFound();
             }
-            return View(pd);//products);
+
+            return View(pd);
         }
 
         // GET: Products

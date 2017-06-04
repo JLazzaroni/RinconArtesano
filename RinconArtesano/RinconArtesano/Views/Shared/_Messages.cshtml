@@ -1,5 +1,5 @@
 ﻿@using Datos;
-@model List<MessagesPadres>
+@model List<MessagePadreViewModel>
 
 @{int i = 0;}
 @{int a = 0;}
@@ -12,15 +12,22 @@
 @if (@Model.Count() > 0)
 {
     <div class="panel-group" id="accordion1">
-        @foreach (MessagesPadres item in @Model)
+        @foreach (MessagePadreViewModel item in @Model)
         {
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion1" href="#collapse_@i" aria-expanded="true" class="trigger collapsed" aria-controls="collapse_@i">
-                            @item.AspNetUsers.UserName - @item.DateAdd
+                            @item.UsersName - @item.DateAdd
                         </a>
-                        <i id="messagePadre" data-toggle="modal" data-target=".modalDenuncias" data-id="5" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
+                        @if (item.ComentarioDenuncio == false)
+                        {
+                            <i id="messagePadre" data-toggle="modal" data-target=".modalDenuncias" data-id="@item.IdComentario" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
+                        }
+                        else
+                        {
+                            <a style="float: right;">Usted ya ha denunciado este comentario.</a>
+                        }
                     </h4>
                 </div>
 
@@ -28,18 +35,25 @@
                     <div class="panel-body">
                         <h4 class="panel-title">@item.Message</h4>
                         <br />
-                        @if (item.MessagesHijos.Count > 0)
+                        @if (item.MessagesHijos.Count() > 0)
                         {
-                            foreach (MessagesHijos item1 in item.MessagesHijos)
+                            foreach (MessageHijoViewModel item1 in item.MessagesHijos)
                             {
                                 <div class="panel-group" id="accordion_@b">
                                     <div class="panel panel-default">
                                         <div class="panel-heading" style="background-color: lemonChiffon">
                                             <h4 class="panel-title">
                                                 <a data-toggle="collapse" data-parent="#accordion_@b" href="#collapse2_@a">
-                                                    @item1.AspNetUsers.UserName - @item1.DateAdd
+                                                    @item1.UsersName - @item1.DateAdd
                                                 </a>
-                                                <i id="messageHijo" data-toggle="modal" data-target=".modalDenuncias" data-id="15" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
+                                                @if (item1.ComentarioDenuncio == false)
+                                                {
+                                                    <i id="messageHijo" data-toggle="modal" data-target=".modalDenuncias" data-id="@item1.IdComentario" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
+                                                }
+                                                else
+                                                {
+                                                    <a style="float: right;">Usted ya ha denunciado este comentario.</a>
+                                                }
                                             </h4>
                                         </div>
                                         <div id="collapse2_@a" class="panel-collapse collapse in">
@@ -47,8 +61,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                b++;
-                                a++;
+                                                b++;
+                                                a++;
                             }
                         }
 
@@ -65,9 +79,9 @@
                                     <br />
                                     <div class="col-md-12">
                                         <div class="input-group">
-                                            <textarea class="form-control" cols="40" id="Message_@item.IdMessagePadre" rows="2" style="max-width: 95%;"></textarea>
+                                            <textarea class="form-control" cols="40" id="Message_@item.IdComentario" rows="2" style="max-width: 95%;"></textarea>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" href="javascript:void(0);" onclick="buttonMessageHijo(@item.IdMessagePadre, Message_@item.IdMessagePadre); return false;">Responder</button>
+                                                <button class="btn btn-default" type="button" href="javascript:void(0);" onclick="messageAdd(@item.IdComentario, Message_@item.IdComentario); return false;">Responder</button>
                                             </span>
                                         </div>
                                         <br />
@@ -99,7 +113,7 @@
                 <div class="input-group">
                     <textarea class="form-control" cols="40" id="MessagePadre" rows="2" style="max-width: 95%;"></textarea>
                     <span class="input-group-btn">
-                        <button class="btn btn-default" id="buttonMessagePadre" type="button">Comentar</button>
+                        <button class="btn btn-default" id="buttonMessagePadre" type="button" href="javascript:void(0);" onclick="messageAdd(0,0); return false;">Comentar</button>
                     </span>
                 </div>
                 <br />

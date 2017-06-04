@@ -23,9 +23,9 @@ namespace RinconArtesano.Controllers
         public ActionResult CreateMessagePadre(MessagePadreViewModel messagePadre)
         {
             //Validaciones
-            if (String.IsNullOrWhiteSpace(messagePadre.Comentario))
+            if (String.IsNullOrWhiteSpace(messagePadre.Message))
                 ModelState.AddModelError("Comentario", "Error en el campo Comentario, debe ingresar un texto.");
-            else if (messagePadre.Comentario.Length > 1000)
+            else if (messagePadre.Message.Length > 1000)
                 ModelState.AddModelError("Comentario", "Error en el campo Comentario, el mismo no puede superar los 1000 caracteres.");
 
             if (!ModelState.IsValid)
@@ -40,7 +40,7 @@ namespace RinconArtesano.Controllers
                     string userId = User.Identity.GetUserId();
                     MessagesPadres mess = new MessagesPadres();
                     mess.UsersId = userId;
-                    mess.Message = messagePadre.Comentario;
+                    mess.Message = messagePadre.Message;
 
                     if (messagePadre.ProductId.HasValue)
                     {
@@ -70,9 +70,9 @@ namespace RinconArtesano.Controllers
         public ActionResult CreateMessageHijo(MessageHijoViewModel messageHijo)
         {
             //Validaciones
-            if (String.IsNullOrWhiteSpace(messageHijo.Comentario))
+            if (String.IsNullOrWhiteSpace(messageHijo.Message))
                 ModelState.AddModelError("Comentario", "Error en el campo Comentario, debe ingresar un texto.");
-            else if (messageHijo.Comentario.Length > 1000)
+            else if (messageHijo.Message.Length > 1000)
                 ModelState.AddModelError("Comentario", "Error en el campo Comentario, el mismo no puede superar los 1000 caracteres.");
 
             if (!ModelState.IsValid)
@@ -87,8 +87,8 @@ namespace RinconArtesano.Controllers
                     string userId = User.Identity.GetUserId();
                     MessagesHijos mess = new MessagesHijos();
                     mess.UsersId = userId;
-                    mess.Message = messageHijo.Comentario;
-                    mess.IdMessagePadre = messageHijo.MessagePadreId;
+                    mess.Message = messageHijo.Message;
+                    mess.IdMessagePadre = messageHijo.IdComentarioPadre.Value;
                     mess.DateAdd = DateTime.Now;
 
                     db.MessagesHijos.Add(mess);
@@ -177,6 +177,69 @@ namespace RinconArtesano.Controllers
                     return Json(new { result = "ERROR" });
                 }
             }
+        }
+
+        [Authorize]
+        // GET: Products/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Messages messages = db.Messages.Find(id);
+            if (messages == null)
+            {
+                return HttpNotFound();
+            }
+            else if (messages.UsersId != User.Identity.GetUserId())
+            {
+                return View("PermissionsError");
+            }
+            return View(messages);
+        }
+
+        [Authorize]
+        // POST: Products/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Messages messages = db.Messages.Find(id);
+            messages.DateNull = DateTime.Now;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        public JsonResult manualDelete(int id)
+        {
+            Messages messages = db.Messages.Find(id);
+            messages.DateNull = DateTime.Now;
+            db.SaveChanges();
+            return Json(new { message = "Comentario eliminado exitosamente.", status = "OK" });
+        }
+        [Authorize(Roles = "Administrador, Moderador")]
+        [HttpPost]
+        public JsonResult manualActivate(int id)
+        {
+            Messages messages = db.Messages.Find(id);
+            messages.DateNull = null;
+            messages.IsBlocked = false;
+
+            db.SaveChanges();
+            return Json(new { message = "Comentario activado exitosamente.", status = "OK" });
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
