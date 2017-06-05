@@ -205,6 +205,15 @@ namespace RinconArtesano.Controllers
                 return false;
         }
 
+        public static Boolean existEmailBoolean(string email)
+        {
+            RinconArtesanoEntities db = new RinconArtesanoEntities();
+            if (db.AspNetUsers.Any(u => u.Email.ToUpper().Equals(email.ToUpper())))
+                return true;
+            else
+                return false;
+        }
+
         //[HttpPost]
         //public JsonResult existsUserName(string UserName)
         //{

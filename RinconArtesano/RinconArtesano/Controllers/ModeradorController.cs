@@ -280,6 +280,8 @@ namespace RinconArtesano.Controllers
                     ModelState.AddModelError("UserName", "Este nombre de usuario ya existe.");
                 if (String.IsNullOrWhiteSpace(vm.Email))
                     ModelState.AddModelError("Email", "Error en el campo Email.");
+                if (AccountController.existEmailBoolean(vm.Email))
+                    ModelState.AddModelError("Email", "Este Email ya existe.");
                 if (String.IsNullOrWhiteSpace(vm.Password))
                     ModelState.AddModelError("Password", "Error en el campo Contraseña.");
                 string validacionPass = AccountController.IsValidPassword(vm.Password);
@@ -320,7 +322,7 @@ namespace RinconArtesano.Controllers
                     {
                         ViewBag.Roles = GetAllRolesAsSelectList();
                         ModelState.AddModelError(string.Empty,
-                            "Error: Error al crear el usuario. Comprobar los requisitos del password.");
+                            "Error: Error al crear el usuario.");
                         return View(vm);
                     }
                 }
