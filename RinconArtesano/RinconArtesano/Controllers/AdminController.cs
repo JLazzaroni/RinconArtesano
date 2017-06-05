@@ -251,6 +251,250 @@ namespace RinconArtesano.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrador")]
+        public ActionResult GestionarDenunciasProductos(string searchStringDenuncia, string currentFilter, int? page)
+        {
+            try
+            {
+                int intPage = 1;
+                int intPageSize = 5;
+                int intTotalPageCount = 0;
+
+                if (searchStringDenuncia != null)
+                {
+                    intPage = 1;
+                }
+                else
+                {
+                    if (currentFilter != null)
+                    {
+                        searchStringDenuncia = currentFilter;
+                        intPage = page ?? 1;
+                    }
+                    else
+                    {
+                        searchStringDenuncia = "";
+                        intPage = page ?? 1;
+                    }
+                }
+
+                ViewBag.CurrentFilter = searchStringDenuncia;
+
+                int intSkip = (intPage - 1) * intPageSize;
+
+                intTotalPageCount = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.ProductId != null & x.DateNull == null)
+                    .Count();
+
+                List<Denuncias> result = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.ProductId != null & x.DateNull == null)
+                    .OrderBy(x => x.Comentario)
+                    .Skip(intSkip)
+                    .Take(intPageSize)
+                    .ToList();
+
+                ViewBag.Denuncias = result;
+                ViewBag.TipoDenuncias = "Productos";
+
+                return View("GestionarDenuncias");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+                List<Denuncias> result = new List<Denuncias>();
+                ViewBag.Denuncias = result;
+                ViewBag.TipoDenuncias = "Productos";
+
+                return View("GestionarDenuncias");
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        public ActionResult GestionarDenunciasExperiencias(string searchStringDenuncia, string currentFilter, int? page)
+        {
+            try
+            {
+                int intPage = 1;
+                int intPageSize = 5;
+                int intTotalPageCount = 0;
+
+                if (searchStringDenuncia != null)
+                {
+                    intPage = 1;
+                }
+                else
+                {
+                    if (currentFilter != null)
+                    {
+                        searchStringDenuncia = currentFilter;
+                        intPage = page ?? 1;
+                    }
+                    else
+                    {
+                        searchStringDenuncia = "";
+                        intPage = page ?? 1;
+                    }
+                }
+
+                ViewBag.CurrentFilter = searchStringDenuncia;
+                ViewBag.TipoDenuncias = "Experiencias";
+
+                int intSkip = (intPage - 1) * intPageSize;
+
+                intTotalPageCount = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.ExperienceId != null & x.DateNull == null)
+                    .Count();
+
+                List<Denuncias> result = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.ExperienceId != null & x.DateNull == null)
+                    .OrderBy(x => x.Comentario)
+                    .Skip(intSkip)
+                    .Take(intPageSize)
+                    .ToList();
+
+                ViewBag.Denuncias = result;
+                ViewBag.TipoDenuncias = "Experiencias";
+
+                return View("GestionarDenuncias");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+                List<Denuncias> result = new List<Denuncias>();
+                ViewBag.Denuncias = result;
+
+                return View("GestionarDenuncias");
+            }
+        }
+
+        [Authorize(Roles = "Administrador")]
+        public ActionResult GestionarDenunciasUsuarios(string searchStringDenuncia, string currentFilter, int? page)
+        {
+            try
+            {
+                int intPage = 1;
+                int intPageSize = 5;
+                int intTotalPageCount = 0;
+
+                if (searchStringDenuncia != null)
+                {
+                    intPage = 1;
+                }
+                else
+                {
+                    if (currentFilter != null)
+                    {
+                        searchStringDenuncia = currentFilter;
+                        intPage = page ?? 1;
+                    }
+                    else
+                    {
+                        searchStringDenuncia = "";
+                        intPage = page ?? 1;
+                    }
+                }
+
+                ViewBag.CurrentFilter = searchStringDenuncia;
+
+                int intSkip = (intPage - 1) * intPageSize;
+
+                intTotalPageCount = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.UsersIdDenunciado != null & x.DateNull == null)
+                    .Count();
+
+                List<Denuncias> result = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.UsersIdDenunciado != null & x.DateNull == null)
+                    .OrderBy(x => x.Comentario)
+                    .Skip(intSkip)
+                    .Take(intPageSize)
+                    .ToList();
+
+                ViewBag.Denuncias = result;
+                ViewBag.TipoDenuncias = "Usuarios";
+
+                return View("GestionarDenuncias");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+                List<Denuncias> result = new List<Denuncias>();
+                ViewBag.Denuncias = result;
+                ViewBag.TipoDenuncias = "Experiencias";
+
+                return View("GestionarDenuncias");
+            }
+        }
+
+
+        [Authorize(Roles = "Administrador")]
+        public ActionResult GestionarDenunciasComentarios(string searchStringDenuncia, string currentFilter, int? page)
+        {
+            try
+            {
+                int intPage = 1;
+                int intPageSize = 5;
+                int intTotalPageCount = 0;
+
+                if (searchStringDenuncia != null)
+                {
+                    intPage = 1;
+                }
+                else
+                {
+                    if (currentFilter != null)
+                    {
+                        searchStringDenuncia = currentFilter;
+                        intPage = page ?? 1;
+                    }
+                    else
+                    {
+                        searchStringDenuncia = "";
+                        intPage = page ?? 1;
+                    }
+                }
+
+                ViewBag.CurrentFilter = searchStringDenuncia;
+
+                int intSkip = (intPage - 1) * intPageSize;
+
+                intTotalPageCount = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.ComentarioId != null & x.DateNull == null)
+                    .Count();
+
+                List<Denuncias> result = db.Denuncias
+                    .Where(x => x.Comentario.Contains(searchStringDenuncia) & x.ComentarioId != null & x.DateNull == null)
+                    .OrderBy(x => x.Comentario)
+                    .Skip(intSkip)
+                    .Take(intPageSize)
+                    .ToList();
+
+                ViewBag.Denuncias = result;
+                ViewBag.TipoDenuncias = "Comentarios";
+
+                return View("GestionarDenuncias");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, "Error: " + ex);
+                List<Denuncias> result = new List<Denuncias>();
+                ViewBag.Denuncias = result;
+                ViewBag.TipoDenuncias = "Comentarios";
+
+                return View("GestionarDenuncias");
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteDenuncia(int id, string actionName)
+        {
+            Denuncias _denuncias = db.Denuncias.Find(id);
+            _denuncias.DateNull = DateTime.Now;
+            db.SaveChanges();
+            return RedirectToAction("GestionarDenunciasProductos", "Admin");
+        }
+
         // Users *****************************
 
         // GET: /Admin/Edit/Create 

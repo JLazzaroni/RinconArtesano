@@ -1,0 +1,146 @@
+﻿@using Datos;
+<script src="~/Scripts/admin.js"></script>
+@{
+    List<Denuncias> Model = ViewBag.Denuncias;
+    string TipoDenuncia = ViewBag.TipoDenuncias;
+}
+@Html.Partial("~/Views/Admin/_MenuGestion.cshtml")
+
+<p>
+    @Html.ActionLink("Productos", "GestionarDenunciasProductos", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Experiencias", "GestionarDenunciasExperiencias", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Usuarios", "GestionarDenunciasUsuarios", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Comentarios", "GestionarDenunciasComentarios", null, new { @class = "btn btn-default" })
+</p>
+
+<h3>@TipoDenuncia</h3>
+<br />
+@if (TipoDenuncia == "Productos")
+{
+    using (Html.BeginForm("GestionarDenunciasProductos", HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Get))
+    {
+        <div class="form-group">
+            <div class="row" style="display: flex;">
+                Buscar denuncias:&nbsp; @Html.TextBox("searchStringDenuncia", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                <input class="btn btn-primary" type="submit" value="Buscar" />
+            </div>
+        </div>
+    }
+}
+else if (TipoDenuncia == "Experiencias")
+{
+    using (Html.BeginForm("GestionarDenunciasExperiencias", HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Get))
+    {
+        <div class="form-group">
+            <div class="row" style="display: flex;">
+                Buscar denuncias:&nbsp; @Html.TextBox("searchStringDenuncia", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                <input class="btn btn-primary" type="submit" value="Buscar" />
+            </div>
+        </div>
+    }
+}
+else if (TipoDenuncia == "Usuarios")
+{
+    using (Html.BeginForm("GestionarDenunciasUsuarios", HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Get))
+    {
+        <div class="form-group">
+            <div class="row" style="display: flex;">
+                Buscar denuncias:&nbsp; @Html.TextBox("searchStringDenuncia", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                <input class="btn btn-primary" type="submit" value="Buscar" />
+            </div>
+        </div>
+    }
+}
+else if (TipoDenuncia == "Comentarios")
+{
+    using (Html.BeginForm("GestionarDenunciasComentarios", HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Get))
+    {
+        <div class="form-group">
+            <div class="row" style="display: flex;">
+                Buscar denuncias:&nbsp; @Html.TextBox("searchStringDenuncia", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                <input class="btn btn-primary" type="submit" value="Buscar" />
+            </div>
+        </div>
+    }
+}
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Denunciante
+        </th>
+        <th>
+            Comentario
+        </th>
+
+        @if (TipoDenuncia == "Productos")
+        {
+            <th>
+                Producto Reportado
+            </th>
+        }
+        else if (TipoDenuncia == "Experiencias")
+        {
+            <th>
+                Experiencia Reportada
+            </th>
+        }
+        else if (TipoDenuncia == "Usuarios")
+        {
+            <th>
+                Usuario Reportado
+            </th>
+        }
+        else if (TipoDenuncia == "Comentarios")
+        {
+            <th>
+                Comentario Reportado
+            </th>
+        }
+        <th>
+            Fecha
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUsers.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentario)
+            </td>
+            <td>
+                @if (item.ProductId != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Products.ProductTitle)
+                }
+                else if (item.ExperienceId != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Experiences.ExperienceTitle)
+                }
+                else if (item.UsersIdDenunciado != null)
+                {
+                    @Html.DisplayFor(modelItem => item.AspNetUsers1.UserName)
+                }
+                else if (item.ComentarioId != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Messages.Message)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdd)
+            </td>
+            <td>
+                @using (Html.BeginForm("DeleteDenuncia", "Admin", new { id = @item.DenunciaId, actionName = Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath)) }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="DESESTIMAR" class="btn btn-success" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+<br />

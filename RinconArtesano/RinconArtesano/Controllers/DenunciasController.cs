@@ -175,6 +175,17 @@ namespace RinconArtesano.Controllers
                 return false;
         }
 
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteDenuncia(int id)
+        {
+            Denuncias _denuncias = db.Denuncias.Find(id);
+            _denuncias.DateNull = DateTime.Now;
+            db.SaveChanges();
+            return RedirectToAction("GestionarDenunciasProductos", "GestionarDenunciasProductos");
+        }
+
 
         protected override void Dispose(bool disposing)
         {
