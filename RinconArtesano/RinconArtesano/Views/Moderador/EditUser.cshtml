@@ -36,14 +36,14 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LockoutEndDateUtc, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LockoutEndDateUtc, "Fecha fin de bloqueo UTC", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.LockoutEndDateUtc, new { @class = "form-control", type = "date" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IsBlocked, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IsBlocked, "Bloqueado", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsBlocked, new { @class = "form-control" })

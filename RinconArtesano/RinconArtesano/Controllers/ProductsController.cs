@@ -127,7 +127,7 @@ namespace RinconArtesano.Controllers
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            return View(db.Products.Where(x => x.UsersId == userId).ToList());
+            return View(db.Products.Where(x => x.UsersId == userId && x.DateNull == null).ToList());
         }
 
         // GET: Products/Details/5

@@ -114,7 +114,7 @@ namespace RinconArtesano.Controllers
         public ActionResult Index()
         {
             string userId = User.Identity.GetUserId();
-            return View(db.Experiences.Where(x => x.UsersId == userId).ToList());
+            return View(db.Experiences.Where(x => x.UsersId == userId && x.DateNull == null).ToList());
         }
 
         // GET: Experiences/Details/5
