@@ -21,26 +21,67 @@
                     </div>
                 </div>
             </div>
-            @if (User.IsInRole("Administrador"))
+            @if (User.IsInRole("Moderador"))
             {
-            <div class="col-lg-12 col-sm-12">
-                <div class="circle-tile">
-                    <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarCategorias">
-                        <div class="circle-tile-heading orange">
-                            <i class="fa fa-list fa-fw fa-3x"></i>
+                <div class="col-lg-12 col-sm-12">
+                    <div class="circle-tile">
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarDenuncias">
+                            <div class="circle-tile-heading red">
+                                <i class="fa fa-exclamation-circle fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content red">
+                            <div class="circle-tile-description text-faded">
+                                Gestionar
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                Denuncias
+                                <span id="sparklineC"></span>
+                            </div>
+                            <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarDenuncias" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
                         </div>
-                    </a>
-                    <div class="circle-tile-content orange">
-                        <div class="circle-tile-description text-faded">
-                            Gestionar
-                        </div>
-                        <div class="circle-tile-number text-faded">
-                            Categorías
-                        </div>
-                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarCategorias" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
                     </div>
                 </div>
-            </div>
+            }
+            else if (User.IsInRole("Administrador"))
+            {
+                <div class="col-lg-6 col-sm-12">
+                    <div class="circle-tile">
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarDenuncias">
+                            <div class="circle-tile-heading red">
+                                <i class="fa fa-exclamation-circle fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content red">
+                            <div class="circle-tile-description text-faded">
+                                Gestionar
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                Denuncias
+                                <span id="sparklineC"></span>
+                            </div>
+                            <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarDenuncias" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="circle-tile">
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarCategorias">
+                            <div class="circle-tile-heading orange">
+                                <i class="fa fa-list fa-fw fa-3x"></i>
+                            </div>
+                        </a>
+                        <div class="circle-tile-content orange">
+                            <div class="circle-tile-description text-faded">
+                                Gestionar
+                            </div>
+                            <div class="circle-tile-number text-faded">
+                                Categorías
+                            </div>
+                            <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarCategorias" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     </div>
