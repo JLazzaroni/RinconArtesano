@@ -196,8 +196,8 @@ namespace RinconArtesano.Controllers
                     SearchMessagesExperiences me = new SearchMessagesExperiences
                     {
                         Id = x.CategoryId,
-                        Title = db.Products.Find(x.CategoryId).ProductTitle,
-                        UserName = db.Products.Find(x.CategoryId).AspNetUsers.UserName
+                        Title = db.Experiences.Find(x.CategoryId).ExperienceTitle,
+                        UserName = db.Experiences.Find(x.CategoryId).AspNetUsers.UserName
                     };
                     mExp.Add(me);
                 }

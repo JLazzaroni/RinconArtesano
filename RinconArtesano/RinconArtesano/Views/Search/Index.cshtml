@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<SearchMessagesProducts> messagesProducts = ViewBag.MessagesProducts;
     List<SearchMessagesExperiences> messagesExperiences = ViewBag.MessagesExperiences;
-    
+
 }
 <br />
 <h4 class="form__titulo">Resultados de búsqueda</h4>
@@ -104,10 +104,10 @@
                         <li>
                             <div>
                                 @{
-                                    var p = messagesProducts.Where(x => x.Id == item.CategoryId).FirstOrDefault();
-                                    <strong>@p.UserName</strong>
+                        var p = messagesProducts.Where(x => x.Id == item.CategoryId).FirstOrDefault();
+                        <strong>@p.UserName</strong>
                                     <a href="@Url.Action("ProductsDetails", "Products", new { id = item.CategoryId })">@p.Title</a>
-                                    <div class="container">
+                                    <div class="container" style="max-width: 35vw;">
                                         @item.Message
                                     </div>
                                 }
@@ -125,10 +125,10 @@
                         <li>
                             <div>
                                 @{
-                                    var e = messagesExperiences.Where(x => x.Id == item.CategoryId).FirstOrDefault();
-                                    <strong>@e.UserName</strong>
-                                    <a href="@Url.Action("ProductsDetails", "Products", new { id = item.CategoryId })">@e.Title</a>
-                                    <div class="container">
+                        var e = messagesExperiences.Where(x => x.Id == item.CategoryId).FirstOrDefault();
+                        <strong>@e.UserName</strong>
+                                    <a href="@Url.Action("ExperiencesDetails", "Experiences", new { id = item.CategoryId })">@e.Title</a>
+                                    <div class="container" style="max-width: 35vw;">
                                         @item.Message
                                     </div>
                                 }
