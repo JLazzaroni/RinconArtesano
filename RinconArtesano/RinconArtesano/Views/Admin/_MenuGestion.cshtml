@@ -1,17 +1,109 @@
 ﻿<div class="row" style="padding: 40px;">
-    <div class="col-md-4"><a class="btn btn-default" href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/Index">Gestionar usuarios</a></div>
+    <div class="col-md-4">
+        <div class="row"><h2 class="text-center">Usuarios</h2></div>
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <div class="circle-tile">
+                    <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/Index">
+                        <div class="circle-tile-heading dark-blue">
+                            <i class="fa fa-users fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-blue">
+                        <div class="circle-tile-description text-faded">
+                            Gestionar
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            Usuarios
+                            <span id="sparklineA"></span>
+                        </div>
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/Index" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            @if (User.IsInRole("Administrador"))
+            {
+            <div class="col-lg-12 col-sm-12">
+                <div class="circle-tile">
+                    <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarCategorias">
+                        <div class="circle-tile-heading orange">
+                            <i class="fa fa-list fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content orange">
+                        <div class="circle-tile-description text-faded">
+                            Gestionar
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            Categorías
+                        </div>
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarCategorias" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
 
-    <div class="col-md-8" style="padding: 10px;">
+
+    <div class="col-md-8">
         <div class="row"><h2 class="text-center">Contenido bloqueado o eliminado</h2></div>
-        <div class="row" style="padding: 10px;">
-            <div class="col-md-4">
-                <a class="btn btn-default" href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarExperiencias" style="margin-left: 25%;margin-right: 25%;">Gestionar Experiencias</a>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="circle-tile">
+                    <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarExperiencias">
+                        <div class="circle-tile-heading green">
+                            <i class="fa fa-etsy fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content green">
+                        <div class="circle-tile-description text-faded">
+                            Gestionar
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            Experiencias
+                        </div>
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarExperiencias" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <a class="btn btn-default" href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarProductos" style="margin-left: 25%;margin-right: 25%;">Gestionar Productos</a>
+            <div class="col-lg-4 col-sm-6">
+                <div class="circle-tile">
+                    <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarProductos">
+                        <div class="circle-tile-heading blue">
+                            <i class="fa fa-product-hunt fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content blue">
+                        <div class="circle-tile-description text-faded">
+                            Gestionar
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            Productos
+                            <span id="sparklineB"></span>
+                        </div>
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarProductos" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <a class="btn btn-default" href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarComentarios" style="margin-left: 25%;margin-right: 25%;">Gestionar Comentarios</a>
+            <div class="col-lg-4 col-sm-6">
+                <div class="circle-tile">
+                    <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarComentarios">
+                        <div class="circle-tile-heading purple">
+                            <i class="fa fa-comments fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content purple">
+                        <div class="circle-tile-description text-faded">
+                            Gestionar
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            Comentarios
+                            <span id="sparklineD"></span>
+                        </div>
+                        <a href="/@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()/GestionarComentarios" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
