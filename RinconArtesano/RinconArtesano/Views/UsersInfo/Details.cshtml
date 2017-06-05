@@ -84,12 +84,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => u.Edad, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => u.Edad, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                                 </div>
-                            </div>
+                            </div>*@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => u.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -98,10 +98,16 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 @Html.LabelFor(model => u.DateAdd, htmlAttributes: new { @class = "control-label col-md-2", value = "Fecha creación" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => u.DateAdd, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => u.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => u.Telefono, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
                                 </div>
                             </div>
                         </div>
@@ -133,12 +139,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                @Html.LabelFor(model => u.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                    @Html.EditorFor(model => u.Telefono, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="row">
