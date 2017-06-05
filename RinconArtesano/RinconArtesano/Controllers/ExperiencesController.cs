@@ -63,6 +63,7 @@ namespace RinconArtesano.Controllers
                 Denuncias = experiences.Denuncias,
                 Files = experiences.Files,
                 Rating = _rating,
+                YoutubePath = experiences.YoutubePath,
                 UsuarioDenuncio = db.Denuncias.Where(x => x.UsersId == userId && x.ExperienceId == id).Any()
             };
 
