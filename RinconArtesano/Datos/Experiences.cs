@@ -11,6 +11,7 @@ namespace Datos
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Experiences
     {
@@ -24,7 +25,11 @@ namespace Datos
     
         public int ExperienceId { get; set; }
         public string UsersId { get; set; }
+        [Required]
+        [MaxLength(55)]
         public string ExperienceTitle { get; set; }
+        [Required]
+        [MaxLength(500)]
         public string ExperienceDescription { get; set; }
         public Nullable<System.DateTime> DateNull { get; set; }
         public System.DateTime DateAdd { get; set; }

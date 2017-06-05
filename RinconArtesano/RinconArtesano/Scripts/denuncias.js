@@ -1,4 +1,13 @@
-﻿$('#denunciasBtn').click(function (e) {
+﻿$(".modal").on("shown.bs.modal", function () {
+    if ($(".modal-backdrop").length > 1) {
+        //$(".modal-backdrop").not(':first').remove();
+        $(".modal-backdrop").remove();
+    }
+    //Solucion medio a lo negrada para el problema de los modals que se duplican los divs con clases .modal-backdrop impidiendo hacer foco en el modal.
+})
+
+
+$('#denunciasBtn').click(function (e) {
     e.preventDefault();
 
     var comentarioId = $('#messageId').val();
