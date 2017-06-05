@@ -85,13 +85,13 @@
         <p>
 
             @Html.ActionLink("Editar", "Edit", new { id = Model.ExperienceId }, new { @class = "btn btn-info" }) |
-            @Html.ActionLink("Volver", "Index")
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
         </p>
     }
     else
     {
         <p>
-            @Html.ActionLink("Volver", "Index")
+            @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
         </p>
     }
 </body>

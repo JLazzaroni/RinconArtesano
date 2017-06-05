@@ -1,7 +1,6 @@
 ﻿@using Datos;
 @model Experiences
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,7 +9,6 @@
 <body>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
-
 
     @using (Html.BeginForm("Edit", "Experiences", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -22,7 +20,6 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ExperienceId)
-
             <div class="form-group">
                 @Html.LabelFor(model => model.ExperienceTitle, "Título:", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -30,7 +27,6 @@
                     @Html.ValidationMessageFor(model => model.ExperienceTitle, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.ExperienceDescription, "Descripción:", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -38,7 +34,6 @@
                     @Html.ValidationMessageFor(model => model.ExperienceDescription, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.Label("Link Youtube:", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -53,7 +48,6 @@
             <br />
             <h4 class="form__titulo">Archivos</h4>
             <hr />
-
             <div class="form-group">
                 @{
         int contador = 0;
@@ -100,20 +94,16 @@
             }
         }
                 }
-
             </div>
         </div>
         <hr />
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-0 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-default" />
+                @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-default" })
             </div>
         </div>
     }
-
-    <div>
-        @Html.ActionLink("Volver", "Index")
-    </div>
 </body>
 </html>

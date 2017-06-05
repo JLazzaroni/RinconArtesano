@@ -119,7 +119,10 @@
     @Html.Partial("~/Views/Shared/_DenunciasModal.cshtml")
     @Html.Partial("~/Views/Shared/_Rating.cshtml", Model.Rating)
     @Html.Partial("~/Views/Shared/_Messages.cshtml", Messagess)
-    <p>
-        @Html.ActionLink("Volver", "Home")
-    </p>
+</div>
+<br />
+<div class="form-group">
+    <div class="col-md-offset-0 col-md-10">
+        @Html.ActionLink("Volver", "Home", "Experiences", null, new { @class = "btn btn-default" })
+    </div>
 </div>
