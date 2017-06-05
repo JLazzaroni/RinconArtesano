@@ -56,14 +56,14 @@
                 {
                     <div class="col-md-1">
                         @Html.ActionLink("Editar", "Edit", new { id = item.ProductId }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("Detalles", "Details", new { id = item.ProductId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Detalles", "ProductsDetails", new { id = item.ProductId }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Eliminar", "Delete", new { id = item.ProductId }, new { @class = "btn btn-danger" })
                     </div>
                 }
                 else
                 {
                     <div class="col-md-1">
-                        @Html.ActionLink("Detalles", "Details", new { id = item.ProductId }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Detalles", "ProductsDetails", new { id = item.ProductId }, new { @class = "btn btn-primary" })
                     </div>
                 }
             </div>
