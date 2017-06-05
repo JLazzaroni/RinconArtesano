@@ -199,6 +199,7 @@
     <Compile Include="Models\MessageHijoViewModels.cs" />
     <Compile Include="Models\MessagePadreViewModels.cs" />
     <Compile Include="Models\ProductDetailsViewModel.cs" />
+    <Compile Include="Models\ProductsCategoriesViewModel.cs" />
     <Compile Include="Models\ProductsViewModel.cs" />
     <Compile Include="Models\RatingViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />

@@ -10,6 +10,9 @@
             <li>
                 <a style="color:#F44336" href=@Url.Action("Index", "Admin")>Administracion</a>
             </li>
+    <li>
+        @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+    </li>
         }
         else
         {

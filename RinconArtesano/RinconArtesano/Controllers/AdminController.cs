@@ -1019,7 +1019,7 @@ namespace RinconArtesano.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                if ((from x in db.ProductsCategories where x.ProductCategoryName == pc.ProductCategoryName select x).Any())
+                if ((from x in db.ProductsCategories where x.ProductCategoryName == pc.ProductCategoryName && x.ProductCategoryId != pc.ProductCategoryId select x).Any())
                 {
                     ModelState.AddModelError("ProductCategoryName", "Ya existe una categoría con este nombre.");
                 }

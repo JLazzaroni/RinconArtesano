@@ -177,7 +177,11 @@ namespace RinconArtesano.Controllers
 
             if (!ModelState.IsValid)
             {
+                //ViewBag.ProductCategory = new SelectList(db.ProductsCategories.Where(x => x.DateNull == null), "ProductCategoryId", "ProductCategoryName");
+
                 ViewBag.ProductCategory = new SelectList(db.ProductsCategories.Where(x => x.DateNull == null), "ProductCategoryId", "ProductCategoryName");
+                ViewBag.CategoriesDescription = db.ProductsCategories.Where(x => x.DateNull == null).ToList();
+            
                 return View(products);
             }
             else
@@ -276,6 +280,7 @@ namespace RinconArtesano.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.ProductCategory = new SelectList(db.ProductsCategories.Where(x => x.DateNull == null), "ProductCategoryId", "ProductCategoryName");
+                ViewBag.CategoriesDescription = db.ProductsCategories.Where(x => x.DateNull == null).ToList();
                 return View(products);
             }
             else

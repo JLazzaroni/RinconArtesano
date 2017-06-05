@@ -11,6 +11,7 @@ namespace Datos
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Products
     {
@@ -24,8 +25,13 @@ namespace Datos
     
         public int ProductId { get; set; }
         public string UsersId { get; set; }
+        [Required]
+        [MaxLength(25)]
         public string ProductTitle { get; set; }
+        [Required]
+        [MaxLength(500)]
         public string ProductDescription { get; set; }
+        [Required]
         public int IdCategory { get; set; }
         public Nullable<System.DateTime> DateNull { get; set; }
         public System.DateTime DateAdd { get; set; }

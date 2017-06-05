@@ -12,6 +12,7 @@
         <h4 class="form__titulo">Editar Categoría</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProductCategoryId)
         <div class="form-group">
             @Html.Label("Nombre:", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
