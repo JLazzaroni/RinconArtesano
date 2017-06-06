@@ -21,9 +21,8 @@ namespace RinconArtesano.Controllers
 
             bool existsProduct = db.Ratings.Where(x => x.UsersId == userId && x.ProductId == model.ProductId).Any();
             bool existsExperience = db.Ratings.Where(x => x.UsersId == userId && x.ExperienceId == model.ExperienceId).Any();
-            bool existsUsers = db.Ratings.Where(x => x.UsersId == userId && x.UsId == model.UsersId).Any();
 
-            if (!existsProduct && !existsExperience && !existsUsers)
+            if (!existsProduct && !existsExperience)
             {
                 Ratings _rating = new Ratings();
                 _rating.UsersId = userId;
@@ -32,8 +31,6 @@ namespace RinconArtesano.Controllers
                     _rating.ProductId = model.ProductId;
                 else if (model.ExperienceId != 0)
                     _rating.ExperienceId = model.ExperienceId;
-                else if (model.ExperienceId != 0)
-                    _rating.UsId = model.UsersId;
 
                 _rating.DateAdd = DateTime.Now;
 
@@ -44,19 +41,17 @@ namespace RinconArtesano.Controllers
             {
                 if (existsProduct)
                 {
-                    Ratings _rating = db.Ratings.Where(x => x.UsersId == userId &&x.ProductId == model.ProductId).Single();
+                    Ratings _rating = db.Ratings.Where(x => x.UsersId == userId && x.ProductId == model.ProductId).Single();
                     _rating.Rating = model.Rating;
                     if (model.ProductId != 0)
                         _rating.ProductId = model.ProductId;
                     else if (model.ExperienceId != 0)
                         _rating.ExperienceId = model.ExperienceId;
-                    else if (model.ExperienceId != 0)
-                        _rating.UsId = model.UsersId;
 
                     _rating.DateAdd = DateTime.Now;
                     db.SaveChanges();
                 }
-                else if(existsExperience)
+                else if (existsExperience)
                 {
                     Ratings _rating = db.Ratings.Where(x => x.UsersId == userId && x.ExperienceId == model.ExperienceId).Single();
                     _rating.Rating = model.Rating;
@@ -64,28 +59,35 @@ namespace RinconArtesano.Controllers
                         _rating.ProductId = model.ProductId;
                     else if (model.ExperienceId != 0)
                         _rating.ExperienceId = model.ExperienceId;
-                    else if (model.ExperienceId != 0)
-                        _rating.UsId = model.UsersId;
-
-                    _rating.DateAdd = DateTime.Now;
-                    db.SaveChanges();
-                }
-                else if (existsUsers)
-                {
-                    Ratings _rating = db.Ratings.Where(x => x.UsersId == userId && x.UsId == model.UsersId).Single();
-                    _rating.Rating = model.Rating;
-                    if (model.ProductId != 0)
-                        _rating.ProductId = model.ProductId;
-                    else if (model.ExperienceId != 0)
-                        _rating.ExperienceId = model.ExperienceId;
-                    else if (model.ExperienceId != 0)
-                        _rating.UsId = model.UsersId;
 
                     _rating.DateAdd = DateTime.Now;
                     db.SaveChanges();
                 }
             }
-            return Json(new { status = "OK" });
+
+            RatingViewModel _ratingModel = new RatingViewModel();
+            if (model.ProductId != 0)
+            {
+                var datos = db.Ratings.Where(x => x.ProductId == model.ProductId).Select(x => x.Rating);
+                Decimal puntos = datos.Any() ? datos.Sum() : 0;
+                int cantidad = db.Ratings.Where(x => x.ProductId == model.ProductId).Select(x => x.Rating).Count();
+                Decimal rating = cantidad > 0 ? (puntos / cantidad) : 0;
+
+                _ratingModel.RatingPromedio = rating;
+                _ratingModel.RatingSelect = db.Ratings.Where(x => x.ProductId == model.ProductId && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault();
+            }
+            else if (model.ExperienceId != 0)
+            {
+                var datos = db.Ratings.Where(x => x.ExperienceId == model.ExperienceId).Select(x => x.Rating);
+                Decimal puntos = datos.Any() ? datos.Sum() : 0;
+                int cantidad = db.Ratings.Where(x => x.ExperienceId == model.ExperienceId).Select(x => x.Rating).Count();
+                Decimal rating = cantidad > 0 ? (puntos / cantidad) : 0;
+
+                _ratingModel.RatingPromedio = rating;
+                _ratingModel.RatingSelect = db.Ratings.Where(x => x.ExperienceId == model.ExperienceId && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault();
+            }
+
+            return PartialView("_Rating", _ratingModel);
         }
     }
 }

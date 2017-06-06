@@ -26,7 +26,6 @@ namespace RinconArtesano.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult ExperiencesDetails(int? id)
         {
             if (id == null)
@@ -71,7 +70,7 @@ namespace RinconArtesano.Controllers
                                                      where x.Category == 2 && x.CategoryId == id && x.IsBlocked == false
                                                       && x.DateNull == null && x.IdComentarioPadre == null
                                                      join u in db.AspNetUsers on x.UsersId equals u.Id
-                                                     orderby x.DateAdd descending
+                                                     orderby x.DateAdd ascending
                                                      select new MessagePadreViewModel
                                                      {
                                                          IdComentario = x.IdComentario,
@@ -85,7 +84,7 @@ namespace RinconArtesano.Controllers
                                                          MessagesHijos = (from y in db.Messages
                                                                           where y.IdComentarioPadre == x.IdComentario && y.DateNull == null && y.IsBlocked == false
                                                                           join us in db.AspNetUsers on y.UsersId equals us.Id
-                                                                          orderby y.DateAdd descending
+                                                                          orderby y.DateAdd ascending
                                                                           select new MessageHijoViewModel
                                                                           {
                                                                               IdComentario = y.IdComentario,
@@ -266,6 +265,7 @@ namespace RinconArtesano.Controllers
                 exper.ExperienceTitle = experiences.ExperienceTitle;
                 exper.ExperienceDescription = experiences.ExperienceDescription;
                 exper.DateModification = DateTime.Now;
+                exper.YoutubePath = experiences.YoutubePath;
 
                 //Si se subio algun archivo, que haga todo el mambo para Files
                 if (!checkNullCollection(uploadedFiles))

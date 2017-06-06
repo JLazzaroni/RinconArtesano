@@ -20,13 +20,16 @@
                         <a data-toggle="collapse" data-parent="#accordion1" href="#collapse_@i" aria-expanded="true" class="trigger collapsed" aria-controls="collapse_@i">
                             @item.UsersName - @item.DateAdd
                         </a>
-                        @if (item.ComentarioDenuncio == false)
+                        @if (User.Identity.IsAuthenticated)
                         {
-                            <i id="messagePadre" data-toggle="modal" data-target=".modalDenuncias" data-id="@item.IdComentario" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
-                        }
-                        else
-                        {
-                            <a style="float: right;">Usted ya ha denunciado este comentario.</a>
+                            if (item.ComentarioDenuncio == false)
+                            {
+                                <i id="messagePadre" data-toggle="modal" data-target=".modalDenuncias" data-id="@item.IdComentario" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
+                            }
+                            else
+                            {
+                                <a style="float: right;">Usted ya ha denunciado este comentario.</a>
+                            }
                         }
                     </h4>
                 </div>
@@ -46,13 +49,16 @@
                                                 <a data-toggle="collapse" data-parent="#accordion_@b" href="#collapse2_@a">
                                                     @item1.UsersName - @item1.DateAdd
                                                 </a>
-                                                @if (item1.ComentarioDenuncio == false)
+                                                @if (User.Identity.IsAuthenticated)
                                                 {
-                                                    <i id="messageHijo" data-toggle="modal" data-target=".modalDenuncias" data-id="@item1.IdComentario" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
-                                                }
-                                                else
-                                                {
-                                                    <a style="float: right;">Usted ya ha denunciado este comentario.</a>
+                                                    if (item1.ComentarioDenuncio == false)
+                                                    {
+                                                        <i id="messageHijo" data-toggle="modal" data-target=".modalDenuncias" data-id="@item1.IdComentario" class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto;float: right; cursor: pointer;" title="Denunciar comentario"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a style="float: right;">Usted ya ha denunciado este comentario.</a>
+                                                    }
                                                 }
                                             </h4>
                                         </div>
@@ -65,30 +71,32 @@
                                                 a++;
                             }
                         }
-
-                        <div class="panel-group" id="accordion_@b">
-                            <div class="panel panel-default">
-                                <div class="panel-heading" style="background-color: lightBlue">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordionComment" href="#collapseComment">
-                                            Responder
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="comment" class="panel-collapse collapse in">
-                                    <br />
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <textarea class="form-control" cols="40" id="Message_@item.IdComentario" rows="2" style="max-width: 95%;"></textarea>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" href="javascript:void(0);" onclick="messageAdd(@item.IdComentario, Message_@item.IdComentario); return false;">Responder</button>
-                                            </span>
-                                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="panel-group" id="accordion_@b">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="background-color: lightBlue">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordionComment" href="#collapseComment">
+                                                Responder
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="comment" class="panel-collapse collapse in">
                                         <br />
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <textarea class="form-control" cols="40" id="Message_@item.IdComentario" rows="2" style="max-width: 95%;"></textarea>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" href="javascript:void(0);" onclick="messageAdd(@item.IdComentario, Message_@item.IdComentario); return false;">Responder</button>
+                                                </span>
+                                            </div>
+                                            <br />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -96,28 +104,30 @@
         }
     </div>
 }
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="panel-group" id="accordionComment">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="background-color: lightBlue">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordionComment" href="#collapseComment">
+                        Nuevo comentario
+                    </a>
+                </h4>
+            </div>
 
-<div class="panel-group" id="accordionComment">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color: lightBlue">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordionComment" href="#collapseComment">
-                    Nuevo comentario
-                </a>
-            </h4>
-        </div>
-
-        <div id="comment" class="panel-collapse collapse in">
-            <br />
-            <div class="col-md-12">
-                <div class="input-group">
-                    <textarea class="form-control" cols="40" id="MessagePadre" rows="2" style="max-width: 95%;"></textarea>
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" id="buttonMessagePadre" type="button" href="javascript:void(0);" onclick="messageAdd(0,0); return false;">Comentar</button>
-                    </span>
-                </div>
+            <div id="comment" class="panel-collapse collapse in">
                 <br />
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <textarea class="form-control" cols="40" id="MessagePadre" rows="2" style="max-width: 95%;"></textarea>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" id="buttonMessagePadre" type="button" href="javascript:void(0);" onclick="messageAdd(0,0); return false;">Comentar</button>
+                        </span>
+                    </div>
+                    <br />
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

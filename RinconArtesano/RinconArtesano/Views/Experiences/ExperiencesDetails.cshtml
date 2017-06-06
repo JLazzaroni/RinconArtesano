@@ -1,11 +1,10 @@
 ﻿@using Datos;
-@model ExperiencesViewModel 
+@model ExperiencesViewModel
 @{
     ViewBag.Title = "ExperiencesDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
     List<MessagePadreViewModel> Messagess = ViewBag.Messages;
 }
-
 <br />
 <h4 class="form__titulo">Experiencias</h4>
 <hr />
@@ -15,16 +14,19 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>@Html.DisplayFor(model => model.ExperienceTitle)</h1>
-                @if (Model.UsuarioDenuncio == false)
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <div data-toggle="modal" data-target=".modalDenuncias" class="btn btn-default">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto; float: left; margin-top: 3px;"></i>
-                        <a style="padding-left: 10px;">Denunciar</a>
-                    </div>
-                }
-                else
-                {
-                    <b>Usted ya ha denunciado este producto.</b>
+                    if (Model.UsuarioDenuncio == false)
+                    {
+                        <div data-toggle="modal" data-target=".modalDenuncias" class="btn btn-default">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true" style="margin: auto; float: left; margin-top: 3px;"></i>
+                            <a style="padding-left: 10px;">Denunciar</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <b>Usted ya ha denunciado este producto.</b>
+                    }
                 }
                 @if (User.IsInRole("Moderador") || User.IsInRole("Administrador"))
                 {
@@ -117,8 +119,12 @@
         </div>
     </div>
     @Html.Partial("~/Views/Shared/_DenunciasModal.cshtml")
-    @Html.Partial("~/Views/Shared/_Rating.cshtml", Model.Rating)
-    @Html.Partial("~/Views/Shared/_Messages.cshtml", Messagess)
+    <div id="RatingSection">
+        @Html.Partial("~/Views/Shared/_Rating.cshtml", Model.Rating)
+    </div>
+    <div id="MessageSection">
+        @Html.Partial("~/Views/Shared/_Messages.cshtml", Messagess)
+    </div>
 </div>
 <br />
 <div class="form-group">

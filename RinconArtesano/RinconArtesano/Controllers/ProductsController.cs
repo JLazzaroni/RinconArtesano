@@ -34,7 +34,6 @@ namespace RinconArtesano.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult ProductsDetails(int? id)
         {
             if (id == null)
@@ -83,7 +82,7 @@ namespace RinconArtesano.Controllers
                                                      where x.Category == 1 && x.CategoryId == id && x.IsBlocked == false
                                                       && x.DateNull == null && x.IdComentarioPadre == null
                                                      join u in db.AspNetUsers on x.UsersId equals u.Id
-                                                     orderby x.DateAdd descending
+                                                     orderby x.DateAdd ascending
                                                      select new MessagePadreViewModel
                                                      {
                                                          IdComentario = x.IdComentario,
@@ -97,7 +96,7 @@ namespace RinconArtesano.Controllers
                                                          MessagesHijos = (from y in db.Messages
                                                                           where y.IdComentarioPadre == x.IdComentario && y.DateNull == null && y.IsBlocked == false
                                                                           join us in db.AspNetUsers on y.UsersId equals us.Id
-                                                                          orderby y.DateAdd descending
+                                                                          orderby y.DateAdd ascending
                                                                           select new MessageHijoViewModel
                                                                           {
                                                                               IdComentario = y.IdComentario,

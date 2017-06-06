@@ -19,6 +19,8 @@
         IdComentarioPadre: padreId
     };
 
+    var zone = $('#MessageSection');
+
     $.ajax({
         url: '/Messages/CreateMessage',
         type: 'POST',
@@ -29,7 +31,14 @@
                 alert("Error al enviar comentario");
             }
             else {
-                location.reload();
+                if (data.status == "Error")
+                {
+                    alert(data.message);
+                }
+                else
+                {
+                    zone.html(data);
+                }
             }
         }
     });

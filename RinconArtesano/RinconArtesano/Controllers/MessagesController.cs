@@ -20,91 +20,6 @@ namespace RinconArtesano.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult CreateMessagePadre(MessagePadreViewModel messagePadre)
-        {
-            //Validaciones
-            if (String.IsNullOrWhiteSpace(messagePadre.Message))
-                ModelState.AddModelError("Comentario", "Error en el campo Comentario, debe ingresar un texto.");
-            else if (messagePadre.Message.Length > 1000)
-                ModelState.AddModelError("Comentario", "Error en el campo Comentario, el mismo no puede superar los 1000 caracteres.");
-
-            if (!ModelState.IsValid)
-            {
-                var m = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-                return Json(new { message = m, status = "Error" }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                try
-                {
-                    string userId = User.Identity.GetUserId();
-                    MessagesPadres mess = new MessagesPadres();
-                    mess.UsersId = userId;
-                    mess.Message = messagePadre.Message;
-
-                    if (messagePadre.ProductId.HasValue)
-                    {
-                        mess.Category = 1;
-                        mess.CategoryId = messagePadre.ProductId.Value;
-                    }
-                    else
-                    {
-                        mess.Category = 2;
-                        mess.CategoryId = messagePadre.ExperienceId.Value;
-                    }
-                    mess.DateAdd = DateTime.Now;
-
-                    db.MessagesPadres.Add(mess);
-                    db.SaveChanges();
-                    return Json(new { result = "OK" });
-                }
-                catch
-                {
-                    return Json(new { result = "ERROR" });
-                }
-            }
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult CreateMessageHijo(MessageHijoViewModel messageHijo)
-        {
-            //Validaciones
-            if (String.IsNullOrWhiteSpace(messageHijo.Message))
-                ModelState.AddModelError("Comentario", "Error en el campo Comentario, debe ingresar un texto.");
-            else if (messageHijo.Message.Length > 1000)
-                ModelState.AddModelError("Comentario", "Error en el campo Comentario, el mismo no puede superar los 1000 caracteres.");
-
-            if (!ModelState.IsValid)
-            {
-                var m = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-                return Json(new { message = m, status = "Error" }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                try
-                {
-                    string userId = User.Identity.GetUserId();
-                    MessagesHijos mess = new MessagesHijos();
-                    mess.UsersId = userId;
-                    mess.Message = messageHijo.Message;
-                    mess.IdMessagePadre = messageHijo.IdComentarioPadre.Value;
-                    mess.DateAdd = DateTime.Now;
-
-                    db.MessagesHijos.Add(mess);
-                    db.SaveChanges();
-                    return Json(new { result = "OK" });
-                }
-                catch
-                {
-                    return Json(new { result = "ERROR" });
-                }
-            }
-        }
-
-
-        [Authorize]
-        [HttpPost]
         public ActionResult CreateMessage(MessageViewModels model)
         {
             //Validaciones
@@ -145,7 +60,6 @@ namespace RinconArtesano.Controllers
 
                         db.Messages.Add(_messages);
                         db.SaveChanges();
-                        return Json(new { result = "OK" });
                     }
                     else
                     {
@@ -169,8 +83,44 @@ namespace RinconArtesano.Controllers
 
                         db.Messages.Add(_messages);
                         db.SaveChanges();
-                        return Json(new { result = "OK" });
                     }
+
+                    List<MessagePadreViewModel> messages = (from x in db.Messages
+                                                            where x.Category == (model.ExperienceId.HasValue ? 2 : 1)
+                                                            && x.CategoryId == (model.ExperienceId.HasValue ? model.ExperienceId : model.ProductId)
+                                                            && x.IsBlocked == false
+                                                            && x.DateNull == null && x.IdComentarioPadre == null
+                                                            join u in db.AspNetUsers on x.UsersId equals u.Id
+                                                            orderby x.DateAdd ascending
+                                                            select new MessagePadreViewModel
+                                                            {
+                                                                IdComentario = x.IdComentario,
+                                                                Message = x.Message,
+                                                                UsersId = x.UsersId,
+                                                                UsersName = u.UserName,
+                                                                DateAdd = x.DateAdd,
+                                                                DateNull = x.DateNull,
+                                                                IsBlocked = x.IsBlocked.HasValue ? x.IsBlocked.Value : false,
+                                                                ComentarioDenuncio = db.Denuncias.Where(d => d.UsersId == userId && d.ComentarioId == x.IdComentario).Any(),
+                                                                MessagesHijos = (from y in db.Messages
+                                                                                 where y.IdComentarioPadre == x.IdComentario && y.DateNull == null && y.IsBlocked == false
+                                                                                 join us in db.AspNetUsers on y.UsersId equals us.Id
+                                                                                 orderby y.DateAdd ascending
+                                                                                 select new MessageHijoViewModel
+                                                                                 {
+                                                                                     IdComentario = y.IdComentario,
+                                                                                     IdComentarioPadre = y.IdComentarioPadre,
+                                                                                     Message = y.Message,
+                                                                                     UsersId = y.UsersId,
+                                                                                     UsersName = us.UserName,
+                                                                                     DateNull = y.DateNull,
+                                                                                     IsBlocked = y.IsBlocked.HasValue ? y.IsBlocked.Value : false,
+                                                                                     ComentarioDenuncio = db.Denuncias.Where(de => de.UsersId == userId && de.ComentarioId == y.IdComentario).Any(),
+                                                                                     DateAdd = y.DateAdd
+                                                                                 }).ToList()
+                                                            }).ToList();
+
+                    return PartialView("_Messages", messages);
                 }
                 catch
                 {

@@ -2,14 +2,14 @@
 
     var productId = $('#ProductId').val();
     var experienceId = $('#ExperienceId').val();
-    var usersId = 0;// $('#UsersId').val();
 
     var data = {
         Rating: rating,
         ProductId: productId,
-        ExperienceId: experienceId,
-        UsersId: usersId
+        ExperienceId: experienceId
     };
+
+    var zone = $('#RatingSection');
 
     $.ajax({
         url: '/Rating/SendRating',
@@ -17,7 +17,8 @@
         data: JSON.stringify(data),
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            location.reload();
+            zone.html(data);
+            check();
         },
         error: function (data) {
             alert(data.message);

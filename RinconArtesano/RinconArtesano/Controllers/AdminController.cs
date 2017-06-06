@@ -531,9 +531,12 @@ namespace RinconArtesano.Controllers
                     ModelState.AddModelError("Email", "Este Email ya existe.");
                 if (String.IsNullOrWhiteSpace(vm.Password))
                     ModelState.AddModelError("Password", "Error en el campo Contraseña.");
-                string validacionPass = AccountController.IsValidPassword(vm.Password);
-                if (validacionPass != "")
-                    ModelState.AddModelError("Password", validacionPass);
+                else
+                {
+                    string validacionPass = AccountController.IsValidPassword(vm.Password);
+                    if (validacionPass != "")
+                        ModelState.AddModelError("Password", validacionPass);
+                }
                 if (String.IsNullOrWhiteSpace(vm.RoleName) || vm.RoleName == "0")
                     ModelState.AddModelError("RoleName", "Error en el campo Role.");
 

@@ -528,10 +528,15 @@ namespace RinconArtesano.Controllers
                     ModelState.AddModelError("Email", "Este Email ya existe.");
                 if (String.IsNullOrWhiteSpace(vm.Password))
                     ModelState.AddModelError("Password", "Error en el campo Contraseña.");
-                string validacionPass = AccountController.IsValidPassword(vm.Password);
-                if (validacionPass != "")
-                    ModelState.AddModelError("Password", validacionPass);
+                else
+                {
+                    string validacionPass = AccountController.IsValidPassword(vm.Password);
+                    if (validacionPass != "")
+                        ModelState.AddModelError("Password", validacionPass);
+                }
                 if (String.IsNullOrWhiteSpace(vm.RoleName) || vm.RoleName == "0")
+                    ModelState.AddModelError("RoleName", "Error en el campo Rol.");
+                if (vm.RoleName == "Administrador")
                     ModelState.AddModelError("RoleName", "Error en el campo Rol.");
 
                 if (!ModelState.IsValid)
@@ -610,14 +615,25 @@ namespace RinconArtesano.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                ExpandedUserViewModel nvm = UpdateDTOUser(vm);
+                if (vm.RoleName == "Administrador")
+                    ModelState.AddModelError("RoleName", "Error en el campo Rol.");
 
-                if (nvm == null)
+                if (!ModelState.IsValid)
                 {
-                    return HttpNotFound();
+                    return View(vm);
                 }
+                else
+                {
 
-                return Redirect("~/Moderador");
+                    ExpandedUserViewModel nvm = UpdateDTOUser(vm);
+
+                    if (nvm == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    return Redirect("~/Moderador");
+                }
             }
             catch (Exception ex)
             {
