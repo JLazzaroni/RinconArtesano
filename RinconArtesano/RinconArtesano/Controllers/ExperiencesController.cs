@@ -42,7 +42,7 @@ namespace RinconArtesano.Controllers
 
             RatingViewModel _rating = new RatingViewModel()
             {
-                RatingPromedio = rating,
+                RatingPromedio = Math.Round(rating,2),
                 RatingSelect = db.Ratings.Where(x => x.ExperienceId == id && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault()
             };
 

@@ -73,7 +73,7 @@ namespace RinconArtesano.Controllers
                 int cantidad = db.Ratings.Where(x => x.ProductId == model.ProductId).Select(x => x.Rating).Count();
                 Decimal rating = cantidad > 0 ? (puntos / cantidad) : 0;
 
-                _ratingModel.RatingPromedio = rating;
+                _ratingModel.RatingPromedio = Math.Round(rating, 2);
                 _ratingModel.RatingSelect = db.Ratings.Where(x => x.ProductId == model.ProductId && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault();
             }
             else if (model.ExperienceId != 0)
@@ -83,7 +83,7 @@ namespace RinconArtesano.Controllers
                 int cantidad = db.Ratings.Where(x => x.ExperienceId == model.ExperienceId).Select(x => x.Rating).Count();
                 Decimal rating = cantidad > 0 ? (puntos / cantidad) : 0;
 
-                _ratingModel.RatingPromedio = rating;
+                _ratingModel.RatingPromedio = Math.Round(rating, 2);
                 _ratingModel.RatingSelect = db.Ratings.Where(x => x.ExperienceId == model.ExperienceId && x.UsersId == userId).Select(x => x.Rating).SingleOrDefault();
             }
 
