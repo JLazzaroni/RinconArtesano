@@ -1,4 +1,5 @@
 ﻿@using Datos;
+@using Microsoft.AspNet.Identity;
 @model List<MessagePadreViewModel>
 
 @{int i = 0;}
@@ -20,7 +21,7 @@
                         <a data-toggle="collapse" data-parent="#accordion1" href="#collapse_@i" aria-expanded="true" class="trigger collapsed" aria-controls="collapse_@i">
                             @item.UsersName - @item.DateAdd
                         </a>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated && item.UsersId != User.Identity.GetUserId())
                         {
                             if (item.ComentarioDenuncio == false)
                             {
@@ -49,7 +50,7 @@
                                                 <a data-toggle="collapse" data-parent="#accordion_@b" href="#collapse2_@a">
                                                     @item1.UsersName - @item1.DateAdd
                                                 </a>
-                                                @if (User.Identity.IsAuthenticated)
+                                                @if (User.Identity.IsAuthenticated && item1.UsersId != User.Identity.GetUserId())
                                                 {
                                                     if (item1.ComentarioDenuncio == false)
                                                     {

@@ -38,9 +38,7 @@ namespace Datos
         public virtual DbSet<ProductsCategories> ProductsCategories { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<NoVigentesExperiences> NoVigentesExperiences { get; set; }
-        public virtual DbSet<NoVigentesProducts> NoVigentesProducts { get; set; }
         public virtual DbSet<VigentesExperiences> VigentesExperiences { get; set; }
-        public virtual DbSet<VigentesProducts> VigentesProducts { get; set; }
         public virtual DbSet<UsersInfo> UsersInfo { get; set; }
         public virtual DbSet<Ratings> Ratings { get; set; }
         public virtual DbSet<Messages> Messages { get; set; }

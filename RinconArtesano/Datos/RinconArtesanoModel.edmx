@@ -77,7 +77,7 @@
           <Property Name="ExperienceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ExperienceTitle" Type="varchar" MaxLength="55" Nullable="false" />
-          <Property Name="ExperienceDescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ExperienceDescription" Type="varchar" MaxLength="3500" Nullable="false" />
           <Property Name="DateNull" Type="datetime" />
           <Property Name="DateAdd" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" />
@@ -145,8 +145,8 @@
           </Key>
           <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProductTitle" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="ProductDescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProductTitle" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="3500" Nullable="false" />
           <Property Name="IdCategory" Type="int" Nullable="false" />
           <Property Name="DateNull" Type="datetime" />
           <Property Name="DateAdd" Type="datetime" Nullable="false" />
@@ -231,28 +231,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.NoVig
           <Property Name="IsBlocked" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.NoVigentesProducts' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="NoVigentesProducts">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="UsersId" />
-            <PropertyRef Name="ProductTitle" />
-            <PropertyRef Name="ProductDescription" />
-            <PropertyRef Name="IdCategory" />
-            <PropertyRef Name="DateAdd" />
-            <PropertyRef Name="IsBlocked" />
-          </Key>
-          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProductTitle" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="ProductDescription" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="IdCategory" Type="int" Nullable="false" />
-          <Property Name="DateNull" Type="datetime" />
-          <Property Name="DateAdd" Type="datetime" Nullable="false" />
-          <Property Name="DateModification" Type="datetime" />
-          <Property Name="IsBlocked" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.VigentesExperiences' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VigentesExperiences">
           <Key>
@@ -271,28 +249,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <Property Name="DateAdd" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" />
           <Property Name="YoutubePath" Type="varchar" MaxLength="100" />
-          <Property Name="IsBlocked" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.VigentesProducts' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="VigentesProducts">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="UsersId" />
-            <PropertyRef Name="ProductTitle" />
-            <PropertyRef Name="ProductDescription" />
-            <PropertyRef Name="IdCategory" />
-            <PropertyRef Name="DateAdd" />
-            <PropertyRef Name="IsBlocked" />
-          </Key>
-          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UsersId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProductTitle" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="ProductDescription" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="IdCategory" Type="int" Nullable="false" />
-          <Property Name="DateNull" Type="datetime" />
-          <Property Name="DateAdd" Type="datetime" Nullable="false" />
-          <Property Name="DateModification" Type="datetime" />
           <Property Name="IsBlocked" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -633,19 +589,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
     [NoVigentesExperiences].[IsBlocked] AS [IsBlocked]
     FROM [dbo].[NoVigentesExperiences] AS [NoVigentesExperiences]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="NoVigentesProducts" EntityType="Self.NoVigentesProducts" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [NoVigentesProducts].[ProductId] AS [ProductId], 
-    [NoVigentesProducts].[UsersId] AS [UsersId], 
-    [NoVigentesProducts].[ProductTitle] AS [ProductTitle], 
-    [NoVigentesProducts].[ProductDescription] AS [ProductDescription], 
-    [NoVigentesProducts].[IdCategory] AS [IdCategory], 
-    [NoVigentesProducts].[DateNull] AS [DateNull], 
-    [NoVigentesProducts].[DateAdd] AS [DateAdd], 
-    [NoVigentesProducts].[DateModification] AS [DateModification], 
-    [NoVigentesProducts].[IsBlocked] AS [IsBlocked]
-    FROM [dbo].[NoVigentesProducts] AS [NoVigentesProducts]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="VigentesExperiences" EntityType="Self.VigentesExperiences" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VigentesExperiences].[ExperienceId] AS [ExperienceId], 
@@ -658,19 +601,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
     [VigentesExperiences].[YoutubePath] AS [YoutubePath], 
     [VigentesExperiences].[IsBlocked] AS [IsBlocked]
     FROM [dbo].[VigentesExperiences] AS [VigentesExperiences]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="VigentesProducts" EntityType="Self.VigentesProducts" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [VigentesProducts].[ProductId] AS [ProductId], 
-    [VigentesProducts].[UsersId] AS [UsersId], 
-    [VigentesProducts].[ProductTitle] AS [ProductTitle], 
-    [VigentesProducts].[ProductDescription] AS [ProductDescription], 
-    [VigentesProducts].[IdCategory] AS [IdCategory], 
-    [VigentesProducts].[DateNull] AS [DateNull], 
-    [VigentesProducts].[DateAdd] AS [DateAdd], 
-    [VigentesProducts].[DateModification] AS [DateModification], 
-    [VigentesProducts].[IsBlocked] AS [IsBlocked]
-    FROM [dbo].[VigentesProducts] AS [VigentesProducts]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -863,7 +793,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <Property Name="ExperienceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ExperienceTitle" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ExperienceDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExperienceDescription" Type="String" MaxLength="3500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModification" Type="DateTime" Precision="3" />
@@ -928,8 +858,8 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           </Key>
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductTitle" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="3500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IdCategory" Type="Int32" Nullable="false" />
           <Property Name="DateNull" Type="DateTime" Precision="3" />
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
@@ -982,26 +912,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="NoVigentesProducts">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="UsersId" />
-            <PropertyRef Name="ProductTitle" />
-            <PropertyRef Name="ProductDescription" />
-            <PropertyRef Name="IdCategory" />
-            <PropertyRef Name="DateAdd" />
-            <PropertyRef Name="IsBlocked" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdCategory" Type="Int32" Nullable="false" />
-          <Property Name="DateNull" Type="DateTime" Precision="3" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateModification" Type="DateTime" Precision="3" />
-          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="VigentesExperiences">
           <Key>
             <PropertyRef Name="ExperienceId" />
@@ -1019,26 +929,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateModification" Type="DateTime" Precision="3" />
           <Property Name="YoutubePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="VigentesProducts">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="UsersId" />
-            <PropertyRef Name="ProductTitle" />
-            <PropertyRef Name="ProductDescription" />
-            <PropertyRef Name="IdCategory" />
-            <PropertyRef Name="DateAdd" />
-            <PropertyRef Name="IsBlocked" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UsersId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductTitle" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IdCategory" Type="Int32" Nullable="false" />
-          <Property Name="DateNull" Type="DateTime" Precision="3" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateModification" Type="DateTime" Precision="3" />
           <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -1231,9 +1121,7 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
           <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="NoVigentesExperiences" EntityType="Self.NoVigentesExperiences" />
-          <EntitySet Name="NoVigentesProducts" EntityType="Self.NoVigentesProducts" />
           <EntitySet Name="VigentesExperiences" EntityType="Self.VigentesExperiences" />
-          <EntitySet Name="VigentesProducts" EntityType="Self.VigentesProducts" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -1678,21 +1566,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NoVigentesProducts">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.NoVigentesProducts">
-              <MappingFragment StoreEntitySet="NoVigentesProducts">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VigentesExperiences">
             <EntityTypeMapping TypeName="RinconArtesanoModel.VigentesExperiences">
               <MappingFragment StoreEntitySet="VigentesExperiences">
@@ -1704,21 +1577,6 @@ advertencia 6002: La tabla o vista 'db8ec05b901b98419ea5c1a74c014fbd40.dbo.Vigen
                 <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
                 <ScalarProperty Name="DateModification" ColumnName="DateModification" />
                 <ScalarProperty Name="YoutubePath" ColumnName="YoutubePath" />
-                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VigentesProducts">
-            <EntityTypeMapping TypeName="RinconArtesanoModel.VigentesProducts">
-              <MappingFragment StoreEntitySet="VigentesProducts">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-                <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="IdCategory" ColumnName="IdCategory" />
-                <ScalarProperty Name="DateNull" ColumnName="DateNull" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
                 <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -29,7 +29,7 @@ namespace Datos
         [MaxLength(55)]
         public string ExperienceTitle { get; set; }
         [Required]
-        [MaxLength(500)]
+        [MaxLength(3500)]
         public string ExperienceDescription { get; set; }
         public Nullable<System.DateTime> DateNull { get; set; }
         public System.DateTime DateAdd { get; set; }

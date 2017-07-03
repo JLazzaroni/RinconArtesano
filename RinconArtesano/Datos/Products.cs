@@ -26,10 +26,10 @@ namespace Datos
         public int ProductId { get; set; }
         public string UsersId { get; set; }
         [Required]
-        [MaxLength(25)]
+        [MaxLength(55)]
         public string ProductTitle { get; set; }
         [Required]
-        [MaxLength(500)]
+        [MaxLength(3500)]
         public string ProductDescription { get; set; }
         [Required]
         public int IdCategory { get; set; }

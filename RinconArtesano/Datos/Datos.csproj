@@ -175,9 +175,6 @@
     <Compile Include="NoVigentesExperiences.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NoVigentesProducts.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Products.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
@@ -210,9 +207,6 @@
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VigentesExperiences.cs">
-      <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VigentesProducts.cs">
       <DependentUpon>RinconArtesanoModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
